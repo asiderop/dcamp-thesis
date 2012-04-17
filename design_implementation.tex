@@ -1,0 +1,60 @@
+\chapter{Design \& Implementation}
+\label{design_implementation}
+
+\textbf{General design:} semi-centralized, hierarchical peer-to-peer system utilizing the pipe-flow architecture pattern in which leaf (sensor) nodes of the hierarchy collect data, filter out extraneous data, and send it up the pipe to an aggregate node which subsequently filters out more data and sends it up to another aggregate or root node.
+
+\section{\dcamp Roles and Services}
+\subsection{Roles}
+\begin{itemize}
+\item \textbf{Node}---basic dCAMP functionality; provides inter-node communication, heartbeat monitoring, and failure recovery. 
+\item \textbf{Sensor}---local performance metric gathering; essentially the dCAMP layer on top of the OS and hardware performance APIs. 
+\item \textbf{Filter}---performance metric filtering; provides throttling and thresholding of metrics. 
+\item \textbf{Collector}---performance metric aggregation; provides collection of and calculation on metrics from multiple sensors and/or collectors. 
+\item \textbf{Management}---primary entry-point for end-user control of dCAMP system; provides hierarchy management and configuration distribution.
+\end{itemize}
+
+\subsection{Service-to-Role Mapping}
+The following is a table of services which can be "published" by a dCAMP node and the roles which they implement. The base service is running on every node in the dCAMP system. The root service is essentially a special aggregate service which provides the additional management role. 
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Service} & \textbf{Role(s)} \\
+\hline
+Root Service & Management, Collector, Filter \\
+\hline
+Aggregate Service & Collector, Filter \\
+\hline
+Metrics Service & Sensor, Filter \\
+\hline
+Base Service & Node \\
+\hline
+CAMP Service & (none) \\
+\hline
+\end{tabular}
+
+\subsection{Failure Rules}
+\begin{itemize}
+\item if sensor loses its aggregate, communicate with root to be assigned to a new aggregate
+\item if sensor loses its root, it assumes the root role
+\item to reconcile multiple root roles in one system, one root notifies other roots of its superiority; new root assumes responsibility for restructuring hierarchy and coordinating data synchronization process
+\end{itemize}
+
+\subsection{Limitations}
+\begin{itemize}
+\item uniform configuration: The configuration of the entire system is uniform, i.e., all branches of the system will be collecting the same data at each level in the hierarchy---it is not possible to have different data being collected by different branches.
+\item network failure: \dcamp does not support any fault tolerance for network failures; \dcamp only attempts to recover from node failures. It is assumed that if (part of) the network goes down, the lack of data from that subnet will suffice
+\item time accuracy: The system time among multiple nodes in the system may vary significantly; \dcamp is not meant to be a high-resolution system with respect to the order of performance data occurrences. It is assumed that the ordering of performance events in the system is insignificant and timestamps associated with performance data are rough estimates.
+\end{itemize}
+
+\subsection{Execution Steps}
+These steps are for the current, prototype version of \dcamp. \textit{Setup: All nodes are running as base nodes (listening for commands via CLI and network port)}
+\begin{enumerate}
+\item User initializes root node via CLI (providing configuration) 
+\item Root node registers each listening node (configuring as metric nodes) 
+\item Metrics are sampled, reported, and logged (repeating indefinitely) 
+\item Metric nodes sample metrics and report metrics back to root node 
+\item Root node logs received metrics to disk 
+\item User shuts down root node via CLI 
+\item Root node unregisters each listening node (reverting to base nodes) 
+\item Root node terminates (reverting to base node)
+\end{enumerate}
+

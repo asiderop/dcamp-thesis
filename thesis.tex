@@ -1,0 +1,133 @@
+% Cal Poly Thesis
+% 
+% based on UC Thesis format
+%
+% modified by Mark Barry 2/07.
+%
+
+\documentclass[12pt]{ucthesis}
+
+\usepackage{ifpdf}
+\ifpdf
+    \usepackage[pdftex]{graphicx}
+    % Update title and author below...
+    \usepackage[pdftex,plainpages=false,breaklinks=true,colorlinks=true,urlcolor=blue,citecolor=blue,%
+                                       linkcolor=blue,bookmarks=true,bookmarksopen=true,%
+                                       bookmarksopenlevel=3,pdfstartview=FitV,
+                                       pdfauthor={Alexander Paul Sideropoulos},
+                                       pdftitle={dCAMP: Distributed Common API for Measuring Performance},
+                                       pdfkeywords={thesis, masters, cal poly, distributed computing, performance monitoring}
+                                       ]{hyperref}
+    %Options with pdfstartview are FitV, FitB and FitH
+    \pdfcompresslevel=1
+\else
+    \usepackage{graphicx}
+\fi
+
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[letterpaper]{geometry}
+\usepackage[overload]{textcase}
+
+
+
+\bibliographystyle{abbrv}
+
+\setlength{\parindent}{0.25in} \setlength{\parskip}{6pt}
+
+\geometry{verbose,nohead,tmargin=1.25in,bmargin=1in,lmargin=1.5in,rmargin=1.3in}
+
+\setcounter{tocdepth}{2}
+
+
+% Different font in captions (single-spaced, bold) ------------
+\newcommand{\captionfonts}{\small\bf\ssp}
+
+\makeatletter  % Allow the use of @ in command names
+\long\def\@makecaption#1#2{%
+  \vskip\abovecaptionskip
+  \sbox\@tempboxa{{\captionfonts #1: #2}}%
+  \ifdim \wd\@tempboxa >\hsize
+    {\captionfonts #1: #2\par}
+  \else
+    \hbox to\hsize{\hfil\box\@tempboxa\hfil}%
+  \fi
+  \vskip\belowcaptionskip}
+\makeatother   % Cancel the effect of \makeatletter
+% ---------------------------------------
+
+%custom commands
+\newcommand{\camp}{\emph{CAMP}}
+\newcommand{\dcamp}{\emph{dCAMP}}
+
+\begin{document}
+
+% Declarations for Front Matter
+
+% Update fields below!
+\title{dCAMP: Distributed Common API for Measuring Performance}
+\author{Alexander Paul Sideropoulos}
+\degreemonth{June} \degreeyear{2009} \degree{Master of Science}
+\defensemonth{August} \defenseyear{2009}
+\numberofmembers{3} \chair{Dr. Michael Haungs} \othermemberA{Dr. Gene Fisher} \othermemberB{Dr. David Janzen} \field{Computer Science} \campus{San Luis Obispo}
+\copyrightyears{seven}
+
+
+
+\maketitle
+
+\begin{frontmatter}
+
+% Custom made for Cal Poly (by Mark Barry).
+\copyrightpage
+
+% Custom made for Cal Poly (by Andrew Tsui).
+\committeemembershippage
+
+
+\input{abstract}
+
+%\begin{acknowledgements}
+
+%   Thank you...
+
+%\end{acknowledgements}
+
+
+\addcontentsline{toc}{chapter}{Contents}
+\tableofcontents
+
+
+\listoftables
+
+\listoffigures
+
+\end{frontmatter}
+
+\pagestyle{plain}
+
+
+
+\renewcommand{\baselinestretch}{1.66}
+
+
+% ------------- Main chapters here --------------------
+
+\input{introduction}
+\input{dcamp}
+\input{design_implementation}
+\input{analysis}
+\input{related_work}
+\input{future_work}
+\input{conclusions}
+
+% ------------- End main chapters ----------------------
+
+\clearpage
+\bibliography{refs}
+%\bibliographystyle{plain}
+%\addcontentsline{toc}{chapter}{Bibliography}
+
+\end{document}
+
