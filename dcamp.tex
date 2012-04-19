@@ -1,4 +1,4 @@
-\chapter{dCAMP}
+\chapter{\dcamp}
 \label{dcamp}
 
 The Distributed Common API for Measuring Performance (\dcamp) is a distributed performance framework built on top of Mark Gabel and Michael Haungs' 2007 research on \emph{CAMP: a common API for measuring performance} \cite{gabel2007}. The fundamental functionality of \camp is providing an accurate and ``consistent method for retrieving system performance data from multiple platforms.'' \dcamp\ takes advantage of this functionality and the authors' work done in validating \camp's accuracy and adds the following core feature sets:
@@ -10,37 +10,91 @@ The Distributed Common API for Measuring Performance (\dcamp) is a distributed p
 \end{itemize}
 
 \section{Terminology}
-Knowing the following terminology will make it easier to understand and discuss the dCAMP project, its main goals, its usage, its components, and how it works. 
+Knowing the following terminology will make it easier to understand and discuss the \dcamp project, its main goals, its usage, its components, and how it works. 
 
-\textbf{Distributed Performance Testing Framework (DPTF), Distributed Performance Monitoring Framework (DPMF), Distributed Performance Framework (DPF):} An DPTF or DPMF (collectively termed DPF) is a framework which allows its users to evaluate the performance of a system from both black box and white box perspectives by publishing interfaces for instrumenting, collecting, analyzing, and visualizing performance data across the distributed system and distributed applications. Typically, the framework provides a black box interface into monitoring a distributed system or application and includes mechanisms for triggering actions based on performance events. The dCAMP project is designed to be an DPF. 
+\begin{description}
 
-\textbf{Performance Metric:} Performance metrics are any data about a given node relating to its throughput, capacity, utilization, or latency. In dCAMP, these are grouped into four different sets of performance metrics (global, network, disk, and per-process) and a fifth set of inquiry metrics. They are described fully below. 
+\item[Distributed Performance Testing Framework (DPTF),]
+\item[Distributed Performance Monitoring Framework (DPMF),]
+\item[Distributed Performance Framework (DPF):]
+An DPTF or DPMF (collectively termed DPF) is a framework which allows its users to evaluate the performance of a system from both black box and white box perspectives by publishing interfaces for instrumenting, collecting, analyzing, and visualizing performance data across the distributed system and distributed applications.
+Typically, the framework provides a black box interface into monitoring a distributed system or application and includes mechanisms for triggering actions based on performance events.
+The \dcamp project is designed to be an DPF. 
 
-\textbf{Metric Collection, Metric Aggregation, Metric Calculation:} Metric collection (or aggregation or calculation) is the process of combining metrics from multiple nodes into a single metric. Performance metrics, while useful at an individual system granularity, can be rather limited in value for a DPF where the goal is measurement of the distributed system as a whole. Metric collection provides a coarser granularity for the performance metrics. Collection could calculate a sum, average, percent, or any other mathematically relevant operation across multiple nodes in the system. 
+\item[Performance Metric:]
+Performance metrics are any data about a given node relating to its throughput, capacity, utilization, or latency.
+In \dcamp, these are grouped into four different sets of performance metrics (global, network, disk, and per-process) and a fifth set of inquiry metrics.
+They are described fully below. 
 
-\textbf{Filter, Throttle, Threshold:} Filtering (or throttling or thresholding) provides a mechanism for reducing the amount of data sent between nodes of the system. Filtering allows a user to specify when or at what point to report metrics from one level to its parent. For example, a filter might be set to only report average CPU utilization that is over seventy-five percent. 
+\item[Metric Collection,]
+\item[Metric Aggregation,]
+\item[Metric Calculation:]
+Metric collection (or aggregation or calculation) is the process of combining metrics from multiple nodes into a single metric.
+Performance metrics, while useful at an individual system granularity, can be rather limited in value for a DPF where the goal is measurement of the distributed system as a whole.
+Metric collection provides a coarser granularity for the performance metrics.
+Collection could calculate a sum, average, percent, or any other mathematically relevant operation across multiple nodes in the system. 
 
-\textbf{dCAMP Node, dCAMP Process:} A single, independently running instance of dCAMP in the distributed system is called a dCAMP node or process. More than one node may exist on a single computer. A node consists of the Node role and zero or more other dCAMP roles. 
+\item[Filter,]
+\item[Throttle,]
+\item[Threshold:]
+Filtering (or throttling or thresholding) provides a mechanism for reducing the amount of data sent between nodes of the system.
+Filtering allows a user to specify when or at what point to report metrics from one level to its parent.
+For example, a filter might be set to only report average CPU utilization that is over seventy-five percent. 
 
-\textbf{dCAMP Role:} Roles are a way of logically grouping functions within the dCAMP system, from performance metric gathering to dCAMP system management. A description of all the dCAMP roles can be found below. 
+\item[\dcamp Node,]
+\item[\dcamp Process:]
+A single, independently running instance of \dcamp in the distributed system is called a \dcamp node or process.
+More than one node may exist on a single computer.
+A node consists of the Node role and zero or more other \dcamp roles. 
 
-\textbf{dCAMP Service:} Services in the dCAMP system are implementations of one or more dCAMP roles. There does NOT exist a one-to-one relationship between services and roles; the dCAMP service-to-role mapping can be seen below. Each services is implemented in dCAMP as a single Python class. 
+\item[\dcamp Role:]
+Roles are a way of logically grouping functions within the \newline \dcamp system, from performance metric gathering to \dcamp system management.
+A description of all the \dcamp roles can be found below. 
 
-\textbf{dCAMP Hierarchy:} The dCAMP system is organized in a hierarchical pattern with respect to data movement and system control functionality. The hierarchy can be thought of as a tree structure, with leaf nodes being at the top of the hierarchy and a single root node at the bottom. Metric data moves down the hierarchy from leaves to the root; configuration data and control commands move up from the root to the leaves. 
+\item[\dcamp Service:]
+Services in the \dcamp system are implementations of one or more \dcamp roles.
+There does NOT exist a one-to-one relationship between services and roles; the \dcamp service-to-role mapping can be seen below.
+Each services is implemented in \dcamp as a single Python class. 
 
-\textbf{dCAMP Level:} Levels are a way of organizing the dCAMP hierarchy horizontally. Levels are defined by their distance from the root node. For example, level one is one node away from the root node, or said another way, the first level is directly "connected" to the root node. The second level is two nodes away from the root node, or any node in the second level is connected to the root node by another node (in the first level). This necessarily means the root is in level zero (all by itself). 
+\item[\dcamp Hierarchy:]
+The \dcamp system is organized in a hierarchical pattern with respect to data movement and system control functionality.
+The hierarchy can be thought of as a tree structure, with leaf nodes being at the top of the hierarchy and a single root node at the bottom.
+Metric data moves down the hierarchy from leaves to the root; configuration data and control commands move up from the root to the leaves. 
 
-\textbf{Parent Node:} Nodes are called parent nodes if there is at least one node connected to it from a level of higher ordinal value. For example, a node in level one with at least one node connected to it from level two is considered a parent node. The root node is inherently a parent node. 
+\item[\dcamp Level:]
+Levels are a way of organizing the \dcamp hierarchy horizontally.
+Levels are defined by their distance from the root node.
+For example, level one is one node away from the root node, or said another way, the first level is directly "connected" to the root node.
+The second level is two nodes away from the root node, or any node in the second level is connected to the root node by another node (in the first level).
+This necessarily means the root is in level zero (all by itself). 
 
-\textbf{Child Node:} A node is called a child node if it is connected to another node in a level of lower ordinal value. For example, a node in level one is connected to the root node (in level zero), so it is called a child node. The root node is the only node in the dCAMP system which is NOT a child node. 
+\item[Parent Node:]
+Nodes are called parent nodes if there is at least one node connected to it from a level of higher ordinal value.
+For example, a node in level one with at least one node connected to it from level two is considered a parent node.
+The root node is inherently a parent node. 
 
-\textbf{Configuration:} The dCAMP configuration specifies everything about the system, including root node, hierarchy levels, metrics, sampling frequency, reporting frequency, filtering, communication details, etc. The configuration is set at the root node and then distributed to the rest of the dCAMP system. Configuration details can be found below. 
+\item[Child Node:]
+A node is called a child node if it is connected to another node in a level of lower ordinal value.
+For example, a node in level one is connected to the root node (in level zero), so it is called a child node.
+The root node is the only node in the \dcamp system which is NOT a child node. 
 
-\textbf{Metric Sampling:} Metric sampling is the process of measuring metrics on a given node. 
+\item[Configuration:]
+The \dcamp configuration specifies everything about the system, including root node, hierarchy levels, metrics, sampling frequency, reporting frequency, filtering, communication details, etc.
+The configuration is set at the root node and then distributed to the rest of the \dcamp system.
+Configuration details can be found below. 
 
-\textbf{Metric Reporting:} Metric reporting is the process of sending sampled metrics to a parent node.
+\item[Metric Sampling:]
+Metric sampling is the process of measuring metrics on a given node. 
+
+\item[Metric Reporting:]
+Metric reporting is the process of sending sampled metrics to a parent node.
+
+\end{description}
 
 \section{\dcamp Metrics}
+Metrics marked with "(\dcamp)" are extensions added by the \dcamp project to the basic CAMP metrics.
+These provide a performance view of multiple nodes in the distributed network and are collected by the Aggregate service rather than the CAMP service.
+
 \subsection{Global Metrics}
 Global metrics measure overall CPU, process, thread, and memory usage of the system.
 \begin{itemize}

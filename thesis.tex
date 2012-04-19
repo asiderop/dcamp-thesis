@@ -7,11 +7,16 @@
 
 \documentclass[12pt]{ucthesis}
 
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[letterpaper]{geometry}
+\usepackage[overload]{textcase}
+\usepackage{enumitem}
 \usepackage{ifpdf}
 \ifpdf
     \usepackage[pdftex]{graphicx}
     % Update title and author below...
-    \usepackage[pdftex,plainpages=false,breaklinks=true,colorlinks=true,urlcolor=blue,citecolor=blue,%
+    \usepackage[pdftex,plainpages=false,pdfpagelabels,breaklinks=true,colorlinks=true,urlcolor=blue,citecolor=blue,%
                                        linkcolor=blue,bookmarks=true,bookmarksopen=true,%
                                        bookmarksopenlevel=3,pdfstartview=FitV,
                                        pdfauthor={Alexander Paul Sideropoulos},
@@ -24,13 +29,8 @@
     \usepackage{graphicx}
 \fi
 
-\usepackage{amssymb}
-\usepackage{amsmath}
-\usepackage[letterpaper]{geometry}
-\usepackage[overload]{textcase}
-
-\usepackage{enumitem}
-\setitemize{nolistsep}
+% no line spacing with lists
+\setlist{nolistsep}
 
 \setlength{\parindent}{0.25in} \setlength{\parskip}{6pt}
 
@@ -55,8 +55,8 @@
 % ---------------------------------------
 
 %custom commands
-\newcommand{\camp}{\emph{CAMP}}
-\newcommand{\dcamp}{\emph{dCAMP}}
+\newcommand{\camp}{\emph{CAMP }}
+\newcommand{\dcamp}{\emph{dCAMP }}
 
 \begin{document}
 
@@ -70,8 +70,6 @@
 \numberofmembers{3} \chair{Dr. Michael Haungs} \othermemberA{Dr. Gene Fisher} \othermemberB{Dr. David Janzen} \field{Computer Science} \campus{San Luis Obispo}
 \copyrightyears{seven}
 
-
-
 \maketitle
 
 \begin{frontmatter}
@@ -82,32 +80,25 @@
 % Custom made for Cal Poly (by Andrew Tsui).
 \committeemembershippage
 
-
 \input{abstract}
 
-%\begin{acknowledgements}
+\begin{acknowledgements}
 
-%   Thank you...
+   Thank you...
 
-%\end{acknowledgements}
-
+\end{acknowledgements}
 
 \addcontentsline{toc}{chapter}{Contents}
 \tableofcontents
 
-
 \listoftables
-
 \listoffigures
 
 \end{frontmatter}
 
 \pagestyle{plain}
 
-
-
 \renewcommand{\baselinestretch}{1.66}
-
 
 % ------------- Main chapters here --------------------
 
@@ -124,8 +115,6 @@
 \clearpage
 \bibliography{refs}
 \bibliographystyle{abbrv}
-%\bibliographystyle{plain}
-%\addcontentsline{toc}{chapter}{Bibliography}
 
 \end{document}
 
