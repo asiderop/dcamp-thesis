@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ ! -e out ]
+then
+	mkdir out
+fi
+
 if [ "xclean" == "x$1" ]
 then
 	rm out/*
