@@ -1,54 +1,80 @@
 \chapter{Introduction}
 \label{introduction}
 
-As the Internet has become more pervasive in today's business economy, there has been a natural trend of distributing large, complex systems across multiple components locally and throughout the world.
-These systems are not always homogeneous with respect to hardware architecture or even operating system, and development of these system can prove to be quite difficult even with the best tools available.
-In order to effectively build these systems, software engineers must be able to test their system for performance defects as well as bottlenecks.
-Additionally, distributed systems must respond to changes in availability and work load on its individual nodes.
+As the Internet has become more pervasive in today's business economy, there has been a natural trend of distributing
+large, complex systems across multiple components locally and throughout the world. These systems are not always
+homogeneous with respect to hardware architecture or even operating system, and development of these system can prove to
+be quite difficult even with the best tools available. In order to effectively build these systems, software engineers
+must be able to test their system for performance defects as well as bottlenecks. Additionally, distributed systems must
+respond to changes in availability and work load on its individual nodes.
 
-Distributed performance testing frameworks supply software practitioners and system administrators with tools to evaluate the performance of a system from both black box and white box perspectives by publishing interfaces for instrumenting, collecting, analyzing, and visualizing performance data across the distributed system and distributed applications.
-Distributed performance monitoring frameworks, often considered part of the testing framework, provide a black box interface into monitoring a distributed system or application and usually includes mechanisms for triggering actions based on performance events.
-For the purpose of this work, I introduce the term distributed performance framework to collectively refer to both distributed performance testing and distributed performance monitoring frameworks.
+Distributed performance testing frameworks supply software practitioners and system administrators with tools to
+evaluate the performance of a system from both black box and white box perspectives by publishing interfaces for
+instrumenting, collecting, analyzing, and visualizing performance data across the distributed system and distributed
+applications. Distributed performance monitoring frameworks, often considered part of the testing framework, provide a
+black box interface into monitoring a distributed system or application and usually includes mechanisms for triggering
+actions based on performance events. For the purpose of this work, I introduce the term distributed performance
+framework to collectively refer to both distributed performance testing and distributed performance monitoring
+frameworks.
 
 \section{Distributed Performance Framework Criterion}
-In order for practitioners and researchers alike to effectively use a distributed performance framework, it is necessary to have a set criteria for evaluation.
-Presented here is an extended criterion of the general requirements presented by \cite{zanikolas2005} for grid systems.
-Data Delivery Models and Security have been taken directly from their work.
-Scalability has been modified to only consider good performance as its goal while Low Intrusiveness has been turned into Transparency.
-Extensibility has been removed from the list, and Completeness and Validity have been added.
-This work provides an alternate definition for Portability.
+
+In order for practitioners and researchers alike to effectively use a distributed performance framework, it is necessary
+to have a set criteria for evaluation. Presented here is an extended criterion of the general requirements presented by
+\cite{zanikolas2005} for grid systems. Data Delivery Models and Security have been taken directly from their work.
+Scalability has been modified to only consider good performance as its goal while Low Intrusiveness has been turned into
+Transparency. Extensibility has been removed from the list, and Completeness and Validity have been added. This work
+provides an alternate definition for Portability.
 
 \subsection{Data Delivery Models}
-Monitoring information includes fairly static (e.g., software and hardware configuration of a given node) and dynamic events (e.g., current processor load, memory), which suggests the use of different measurement policies (e.g., periodic or on demand).
-In addition, consumer patterns may vary from sparse interactions to long lived subscriptions for receiving a constant stream of events.
-In this regard, the monitoring system must support both pull and push data delivery models.
+
+Monitoring information includes fairly static (e.g., software and hardware configuration of a given node) and dynamic
+events (e.g., current processor load, memory), which suggests the use of different measurement policies (e.g., periodic
+or on demand). In addition, consumer patterns may vary from sparse interactions to long lived subscriptions for
+receiving a constant stream of events. In this regard, the monitoring system must support both pull and push data
+delivery models.
 \cite{zanikolas2005}
 
 \subsection{Security}
-Certain scenarios may require a monitoring service to support security services such as access control, single or mutual authentication of parties, and secure transport of monitoring information.
+
+Certain scenarios may require a monitoring service to support security services such as access control, single or mutual
+authentication of parties, and secure transport of monitoring information.
 \cite{zanikolas2005}
 
 \subsection{Scalability}
-Monitoring systems have to cope efficiently with a growing number of resources, events and users.
-This scalability can be achieved as a result of good performance which guarantees that a monitoring system will achieve the needed throughput within an acceptable response time in a variety of load scenarios.
+
+Monitoring systems have to cope efficiently with a growing number of resources, events and users. This scalability can
+be achieved as a result of good performance which guarantees that a monitoring system will achieve the needed throughput
+within an acceptable response time in a variety of load scenarios.
 \cite{zanikolas2005}
 
 \subsection{Transparency}
-Transparency refers to the lack of impact a distributed performance framework makes on the system being monitored.
-As \cite{zanikolas2005} states, it is ``typically measured as a function of host (processor, memory, I/O) and network load (bandwidth) generated by the collection, processing and distribution of events.''
-If a framework lacks transparency it will fail to allow the underlying distributed system to perform well and will produce inaccurate performance measurements, thereby reducing its Scalability and destroying its Validity.
+
+Transparency refers to the lack of impact a distributed performance framework makes on the system being monitored. As
+\cite{zanikolas2005} states, it is ``typically measured as a function of host (processor, memory, I/O) and network load
+(bandwidth) generated by the collection, processing and distribution of events.'' If a framework lacks transparency it
+will fail to allow the underlying distributed system to perform well and will produce inaccurate performance
+measurements, thereby reducing its Scalability and destroying its Validity.
 
 \subsection{Completeness}
-The Completeness of a distributed performance framework refers to the exhaustiveness to which it gathers performance metrics.
-At a minimum, a framework must provide interfaces for measuring and aggregating performance data about a system's processor, memory, disk, and network usage.
-Several distributed performance frameworks provide further detailed performance metrics about the given distributed system being monitored, but this is usually at the cost of Portability.
+
+The Completeness of a distributed performance framework refers to the exhaustiveness to which it gathers performance
+metrics. At a minimum, a framework must provide interfaces for measuring and aggregating performance data about a
+system's processor, memory, disk, and network usage. Several distributed performance frameworks provide further detailed
+performance metrics about the given distributed system being monitored, but this is usually at the cost of Portability.
 
 \subsection{Validity}
-A distributed performance framework is only as good as the data is produces; if the sensors or gathering techniques are inaccurate, then the data is inaccurate and useless.
-Validity of a framework is achieved when the authors of a framework provide formal verification of its accuracy.
+
+A distributed performance framework is only as good as the data is produces; if the sensors or gathering techniques are
+inaccurate, then the data is inaccurate and useless. Validity of a framework is achieved when the authors of a framework
+provide formal verification of its accuracy.
 
 \subsection{Portability}
-A framework's ability to run on a completely heterogeneous distributed system without special considerations by the practitioner is what I define as Portability.
-More specifically, a portable framework has a unified API regardless of the system architecture, does not restrict itself to applications written in specific programming languages, and does not require practitioners to manually instrument their application code.
-This black box characteristic is vital for a viable distributed performance framework's effectiveness as it allows practitioners to focus on the performance data and not on a myriad of APIs for various architectures or languages.
+
+A framework's ability to run on a completely heterogeneous distributed system without special considerations by the
+practitioner is what I define as Portability. More specifically, a portable framework has a unified API regardless of
+the system architecture, does not restrict itself to applications written in specific programming languages, and does
+not require practitioners to manually instrument their application code. This black box characteristic is vital for a
+viable distributed performance framework's effectiveness as it allows practitioners to focus on the performance data and
+not on a myriad of APIs for various architectures or languages.
 
