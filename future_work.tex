@@ -1,3 +1,20 @@
 \chapter{Future Work}
 \label{future_work}
 
+\begin{itemize}
+
+\item uniform configuration: The configuration of the entire system is uniform, i.e., all branches of the system will be
+collecting the same data at each level in the hierarchy---it is not possible to have different data being collected by
+different branches.
+
+\item network failure: \dcamp does not support any fault tolerance for network failures; \dcamp only attempts to recover
+from node failures. It is assumed that if (part of) the network goes down, the lack of data from that subnet will
+suffice
+
+\item time accuracy: The system time among multiple nodes in the system may vary significantly; \dcamp is not meant to
+be a high-resolution system with respect to the order of performance data occurrences. It is assumed that the ordering
+of performance events in the system is insignificant and timestamps associated with performance data are rough
+estimates.
+
+\end{itemize}
+

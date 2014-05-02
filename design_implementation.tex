@@ -6,83 +6,133 @@ in which leaf (sensor) nodes of the hierarchy collect data, filter out extraneou
 aggregate node which subsequently filters out more data and sends it up to another aggregate or root node.
 
 \section{\dcamp Roles and Services}
-\subsection{Roles}
+
+The dCAMP distributed system is comprised of one or more nodes each running one or more roles. Each role--a published,
+remotely accessible interface--provides one or more sets of functionality. Each set of functionality is known as a
+service.
+
+\subsection{Services}
 
 \begin{itemize}
 
-\item \textbf{Node}---basic dCAMP functionality; provides inter-node communication, heartbeat monitoring, and failure
-recovery. 
+\item \textbf{Node}---rudimentary dCAMP functionality; handles topology communication, heartbeat monitoring, and failure
+recovery.
 
 \item \textbf{Sensor}---local performance metric gathering; essentially the dCAMP layer on top of the OS and hardware
-performance APIs. 
+performance APIs (accessed via CAMP).
 
-\item \textbf{Filter}---performance metric filtering; provides throttling and thresholding of metrics. 
+\item \textbf{Filter}---performance metric filtering; provides throttling and thresholding of metrics.
 
-\item \textbf{Collector}---performance metric aggregation; provides collection of and calculation on metrics from
-multiple sensors and/or collectors. 
+\item \textbf{Aggregation}--—performance metric aggregation; provides collection of and calculation on metrics from
+multiple sensors and/or collectors.
 
-\item \textbf{Management}---primary entry-point for end-user control of dCAMP system; provides hierarchy management and
-configuration distribution.
+\item \textbf{Management}--—primary entry-point for end-user control of dCAMP distributed system; this is the dCAMP
+instrument panel, providing basic administration functions (e.g. start, stop, etc.).
+
+\item \textbf{Configuration}--—complete configuration replication; provides topology and configuration distribution.
 
 \end{itemize}
 
-\subsection{Service-to-Role Mapping}
+\subsection{Roles}
 
-The following is a table of services which can be "published" by a dCAMP node and the roles which they implement. The
-base service is running on every node in the dCAMP system. The root service is essentially a special aggregate service
-which provides the additional management role. 
+The \textit{Base} role must be running on each node for it to be part of the dCAMP distributed system. In this document,
+a "Base node" is defined as a dCAMP node which has not yet been configured, i.e. it has not joined a running dCAMP
+system.
+
+The \textit{Metric} role runs on the nodes from which performance metrics should be collected. The \textit{Collector}
+role acts as an aggregation point in the system, combining performance data from multiple \textit{Metric} (and
+\textit{Collector}) nodes and providing additional aggregated performance metrics.
+
+There is only one \textit{Root} role active in the system; it acts as the master copy of the dCAMP configuration and
+sole user-interface point. The \textit{Root} role is not strictly attached to any given node in the system. Rather, the
+\textit{Root} role may dynamically move to any first-level \textit{Collector} node if the current \textit{Root} node
+fails.
+
+Depending on the use case and desired system performance, an administrator may choose to split roles across multiple
+nodes or collapse them onto a single node. For example, a single node may act as \textit{Metric}, \textit{Collector},
+and \textit{Root} for smaller systems while larger systems would employ dedicated \textit{Collector} nodes.
+
+\subsection{Role-to-Service Mapping}
+
+The following table lists the roles which can be "published" by a dCAMP node and the services which they implement.
 
 \begin{tabular}{|l|l|}
 
 \hline
-\textbf{Service} & \textbf{Role(s)} \\
+\textbf{Role} & \textbf{Service(s)} \\
 \hline
-Root Service & Management, Collector, Filter \\
+Root & Management, Aggregation, Filter, Configuration \\
 \hline
-Aggregate Service & Collector, Filter \\
+Collector & Aggregation, Filter, Configuration \\
 \hline
-Metrics Service & Sensor, Filter \\
+Metric & Sensor, Filter \\
 \hline
-Base Service & Node \\
-\hline
-CAMP Service & (none) \\
+Base & Node \\
 \hline
 
 \end{tabular}
 
-\subsection{Failure Rules}
+\section{Requirements}
+
+\subsection{Functional Requirements}
+
+\begin{enumerate}
+
+\item Configuration
+  \begin{itemize}
+  \item instantiation, administration
+  \item topology coordination
+  \item metric collection spec.
+  \end{itemize}
+
+\item Metric Collection
+  \begin{itemize}
+  \item dCAMP API on top of CAMP
+  \item filters (at various levels), thresholds
+  \item aggregation of metrics across nodes
+  \item output to log file
+  \end{itemize}
+
+\item Fault Tolerance
+  \begin{itemize}
+  \item simple rules to handle failures
+  \end{itemize}
+
+\end{enumerate}
+
+\subsection{Fault Tolerance}
+
+\begin{enumerate}
+
+\item Topology MUST sustain brief network disconnectivity of any node.
+
+\item Sensor nodes MUST be allowed to enter/exit topology at any time.
+
+\item Root/Collector nodes (i.e. parents) MUST failover in case of extended disconnectivity.
+  \begin{itemize}
+  \item Loss of previously collected data SHOULD be minimized during failover.
+  \end{itemize}
+
+\item Management node SHOULD be allowed to enter/exit topology at any time.
+
+\end{enumerate}
+
+\subsection{Testing}
 
 \begin{itemize}
 
-\item if sensor loses its aggregate, communicate with root to be assigned to a new aggregate
+\item \textbf{Transparency:} dCAMP SHOULD introduce negligible performance impact on sensor nodes.
 
-\item if sensor loses its root, it assumes the root role
+\item \textbf{Accuracy:} dCAMP MUST accurately report metrics/performance of sensor nodes (individual and aggregated).
 
-\item to reconcile multiple root roles in one system, one root notifies other roots of its superiority; new root assumes
-responsibility for restructuring hierarchy and coordinating data synchronization process
+\item \textbf{Scalability:} dCAMP SHOULD maintain its transparency and accuracy as it scales (i.e. the number of sensor nodes
+increases).
 
-\end{itemize}
-
-\subsection{Limitations}
-
-\begin{itemize}
-
-\item uniform configuration: The configuration of the entire system is uniform, i.e., all branches of the system will be
-collecting the same data at each level in the hierarchy---it is not possible to have different data being collected by
-different branches.
-
-\item network failure: \dcamp does not support any fault tolerance for network failures; \dcamp only attempts to recover
-from node failures. It is assumed that if (part of) the network goes down, the lack of data from that subnet will
-suffice
-
-\item time accuracy: The system time among multiple nodes in the system may vary significantly; \dcamp is not meant to
-be a high-resolution system with respect to the order of performance data occurrences. It is assumed that the ordering
-of performance events in the system is insignificant and timestamps associated with performance data are rough
-estimates.
+\item \textbf{Fault Tolerance:} dCAMP MUST successfully handle entrance/exit of any node(s) in the system.
 
 \end{itemize}
 
-\subsection{Execution Steps}
+\section{Execution Steps}
 
 These steps are for the current, prototype version of \dcamp. \textit{Setup: All nodes are running as base nodes
 (listening for commands via CLI and network port)}
@@ -100,3 +150,11 @@ These steps are for the current, prototype version of \dcamp. \textit{Setup: All
 
 \end{enumerate}
 
+\section{ZeroMQ Protocols}
+
+For a quick background on ZeroMQ socket types and message patterns, please see \hyperref[zeromq_primer]{ZeroMQ Primer}.
+
+\input{proto_topo}
+\input{proto_conf}
+\input{proto_data}
+% \input{proto_elec}

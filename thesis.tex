@@ -12,9 +12,11 @@
 \usepackage[letterpaper]{geometry}
 \usepackage[overload]{textcase}
 \usepackage{enumitem}
+\usepackage{listings}
 \usepackage{ifpdf}
 \ifpdf
     \usepackage[pdftex]{graphicx}
+    \graphicspath{ {./images/} }
     % Update title and author below...
     \usepackage[pdftex,plainpages=false,pdfpagelabels,breaklinks=true,colorlinks=true,urlcolor=blue,citecolor=blue,%
                                        linkcolor=blue,bookmarks=true,bookmarksopen=true,%
@@ -113,8 +115,13 @@
 % ------------- End main chapters ----------------------
 
 \clearpage
+
 \bibliography{refs}
 \bibliographystyle{abbrv}
+
+\appendix
+\input{appendixA}
+\input{appendixB}
 
 \end{document}
 
