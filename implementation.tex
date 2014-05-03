@@ -1,0 +1,29 @@
+\chapter{Implementation}
+\label{implementation}
+
+\section{Execution Steps}
+
+These steps are for the current, prototype version of \dcamp. \textit{Setup: All nodes are running as base nodes
+(listening for commands via CLI and network port)}
+
+\begin{enumerate}
+
+\item User initializes root node via CLI (providing configuration) 
+\item Root node registers each listening node (configuring as metric nodes) 
+\item Metrics are sampled, reported, and logged (repeating indefinitely) 
+\item Metric nodes sample metrics and report metrics back to root node 
+\item Root node logs received metrics to disk 
+\item User shuts down root node via CLI 
+\item Root node unregisters each listening node (reverting to base nodes) 
+\item Root node terminates (reverting to base node)
+
+\end{enumerate}
+
+\section{ZeroMQ Protocols}
+
+For a quick background on ZeroMQ socket types and message patterns, please see \hyperref[zeromq_primer]{ZeroMQ Primer}.
+
+\input{proto_topo}
+\input{proto_conf}
+\input{proto_data}
+% \input{proto_elec}
