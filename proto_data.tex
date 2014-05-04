@@ -1,16 +1,33 @@
 \subsection{Data Flow Protocol}
+\label{proto_data}
 
-There are two data flow protocols in the dCAMP system: the external protocol for data flowing from one node to the next
+There are two data flow protocols in the \dcamp system: the external protocol for data flowing from one node to the next
 (via PUB/SUB) and the internal protocol for data flowing between components of a single node (via PUSH/PULL). Both
 protocols have the same specification and use the same message formats.
 
-\includegraphics[scale=0.5]{data.png}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.66]{data.png}
+    \caption{Data Flow Diagram}
+    \label{fig:proto_data_image}
+\end{figure}
 
-The dCAMP data flow protocol is very simple, comprised of a single data message type and a heartbeat message type. The
+The \dcamp data flow protocol is very simple, comprised of a single data message type and a heartbeat message type. The
 data flows from one node to another via PUB/SUB sockets. Internally, data flows from the upstream data producers,
 through a filtering/processing unit, and out to downstream data consumers.
 
 When data rate is slower than a predefined threshold, heartbeats are sent instead to keep inter-node connections alive.
+
+\begin{figure}[ht]
+\vspace{+10pt}
+\begin{verbatim}
+data-flow = *( METRIC / HUGZ )
+\end{verbatim}
+\vspace{-5pt}
+\caption[Data Flow Specification]
+	{Data Flow Specification: All messages are sent from child (Metric or Collector) to parent (Collector or Root).}
+\label{fig:proto_data_spec}
+\end{figure}
 
 \subsubsection{Metric Types}
 
@@ -42,22 +59,22 @@ NOTE ABOUT ACCUMULATION (DOESN'T WORK)
 \subsubsection{Metric Extensions}
 
 \textbf{VARIABLE LENGTH DATA}
-Does dCAMP need to support arbitrary data lengths?
+Does \dcamp need to support arbitrary data lengths?
 
 \textbf{NESTED METRICS}
 It could be possible for data messages to contain nested data messages, e.g. average/sum of rates.
 
 \textbf{GROUPINGS}
-dCAMP may need a more compact data message format for combining multiple metrics into a single message, e.g. for
+\dcamp may need a more compact data message format for combining multiple metrics into a single message, e.g. for
 aggregation purposes or representing entire branches in the topology.
 group by source/type/time?
 group start/end frames?
 
 \textbf{HISTOGRAMS}
-dCAMP should provide a metric histogram ability. Perhaps this should done at each node or only at the root.
+\dcamp should provide a metric histogram ability. Perhaps this should done at each node or only at the root.
 
 \textbf{METRIC REQUESTS}
-The admin can use dCAMP to request metrics on a one-time basis, for example, to enumerate the available disks on each
+The admin can use \dcamp to request metrics on a one-time basis, for example, to enumerate the available disks on each
 node. The key here is a metric collection is not based on configuration file but rather on real-time input from the
 end-user.
 
@@ -72,11 +89,7 @@ empty for average and rate metric types; in case of HUGZ message type, no other 
 5 are all empty. The config property is only present for internal messages (sent from Sensor to Filter) and represents
 the metric configuration's unique name.
 
-\begin{lstlisting}
-data-flow = *( METRIC / HUGZ )
-\end{lstlisting}
-
-\begin{lstlisting}
+\begin{verbatim}
 Frame 0: data source (leaf or collector node endpoint), as 0MQ string
 Frame 1: properties, JSON-encoded, as 0MQ string
 Frame 2: time t1 in ms epoch utc, 8 bytes in network order
@@ -88,4 +101,4 @@ properties = *( type / detail / config )
 type       = "type=" ( "HUGZ" / "basic" / "sum" / "average" / "percent" / "rate" )
 detail     = "detail=" <string>
 config     = "config-name=" <string>
-\end{lstlisting}
+\end{verbatim}

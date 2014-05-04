@@ -1,29 +1,62 @@
 \chapter{Implementation}
 \label{implementation}
 
-\section{Execution Steps}
-
-These steps are for the current, prototype version of \dcamp. \textit{Setup: All nodes are running as base nodes
-(listening for commands via CLI and network port)}
-
-\begin{enumerate}
-
-\item User initializes root node via CLI (providing configuration) 
-\item Root node registers each listening node (configuring as metric nodes) 
-\item Metrics are sampled, reported, and logged (repeating indefinitely) 
-\item Metric nodes sample metrics and report metrics back to root node 
-\item Root node logs received metrics to disk 
-\item User shuts down root node via CLI 
-\item Root node unregisters each listening node (reverting to base nodes) 
-\item Root node terminates (reverting to base node)
-
-\end{enumerate}
-
 \section{ZeroMQ Protocols}
 
-For a quick background on ZeroMQ socket types and message patterns, please see \hyperref[zeromq_primer]{ZeroMQ Primer}.
+For a quick background on ZeroMQ socket types and message patterns, please see Appendix \ref{zeromq_primer}.
 
 \input{proto_topo}
 \input{proto_conf}
 \input{proto_data}
-% \input{proto_elec}
+\input{proto_reco}
+
+\section{Configuration}
+
+\subsection{Node Specification}
+
+Nodes may be specified individually (DNS-resolvable name or IP Address) or as groups (IP subnet). Additionally, nodes
+may be included or excluded based on DNS name or IP Address matching. Name matching does a case-insensitive comparison
+of the node's DNS name; left, right, or whole name matching can be specified. Address matching checks that the node's IP
+Address falls within a given subnet (i.e. IP Address and mask length).
+
+\begin{figure}[ht]
+    \begin{lstlisting}
+    node-spec        = node / node-group
+    node             = address ":" port
+    address          = hostname / ip-address
+    node-group       = group-name 1*( node / subnet ) *filter
+    subnet           = ip-address "/" mask-length
+    filter           = [ "+" / "-" ] ( hostname-match / subnet-match )
+    hostname-match   = [ ( "L" / "R" / "W" ) SP ] partial-hostname
+    subnet-match     = subnet
+    \end{lstlisting}
+    \caption{Configuration File - Node Specification}
+    \label{fig:config_file_node}
+\end{figure}
+
+\subsection{Sample Specification}
+
+Performance metric samples are specified as:
+
+\begin{enumerate}
+\item the node(s) on which to sample the data,
+\item the rate at which data should be sampled,
+\item the threshold past which data should be reported, and lastly
+\item the actual performance metric to be sampled.
+\end{enumerate}
+
+The report threshold can be specified as "hold and report every N seconds" or "report when the metric value is
+greater/less than X". When "hold" is specified (via an *), all metric values sampled during the time limit are sent.
+
+\begin{figure}[ht]
+    \begin{lstlisting}
+    sample-spec      = 1*sample
+    sample           = sample-rate [ report-threshold ] metric
+    sample-rate      = 1*DIGIT "s" ; seconds
+    report-threshold = ( "*" 1*DIGIT "s" ) / ( ( "<" / ">" ) 1*DIGIT ) ; seconds or raw value
+    metric           = "CPU" / "DISK" / "NETWORK"
+    \end{lstlisting}
+    \caption{Configuration File - Sample Specification}
+    \label{fig:config_file_sample}
+\end{figure}
+

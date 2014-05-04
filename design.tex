@@ -5,9 +5,66 @@
 in which leaf (sensor) nodes of the hierarchy collect data, filter out extraneous data, and send it up the pipe to an
 aggregate node which subsequently filters out more data and sends it up to another aggregate or root node.
 
+\dcamp was designed to be simple and only add complexity where needed. This allows, for example, for quick and easy,
+large scale testing. Additionally, in order to be transparent, minimizing network traffic was important.
+
+\section{Requirements}
+
+\subsection{Functional}
+
+\begin{enumerate}
+
+\item Configuration
+      \begin{itemize}
+      \item instantiation, administration
+      \item topology coordination
+      \item metric collection spec.
+      \end{itemize}
+
+\item Metric Collection
+      \begin{itemize}
+      \item \dcamp API on top of CAMP
+      \item filters (at various levels), thresholds
+      \item aggregation of metrics across nodes
+      \item output to log file
+      \end{itemize}
+
+\item Fault Tolerance
+      \begin{itemize}
+      \item simple rules to handle failures
+      \end{itemize}
+
+\end{enumerate}
+
+\subsection{Fault Tolerance}
+
+\begin{enumerate}
+
+\item Topology MUST sustain brief network disconnectivity of any node.
+\item Sensor nodes MUST be allowed to enter/exit topology at any time.
+\item Root/Collector nodes (i.e. parents) MUST failover in case of extended disconnectivity.
+      \begin{itemize}
+      \item Loss of previously collected data SHOULD be minimized during failover.
+      \end{itemize}
+\item Management node SHOULD be allowed to enter/exit topology at any time.
+
+\end{enumerate}
+
+\subsection{Testing}
+
+\begin{itemize}
+
+\item \textbf{Transparency:} \dcamp SHOULD introduce negligible performance impact on sensor nodes.
+\item \textbf{Accuracy:} \dcamp MUST accurately report metrics/performance of sensor nodes (individual and aggregated).
+\item \textbf{Scalability:} \dcamp SHOULD maintain its transparency and accuracy as it scales (i.e. the number of sensor
+      nodes increases).
+\item \textbf{Fault Tolerance:} \dcamp MUST successfully handle entrance/exit of any node(s) in the system.
+
+\end{itemize}
+
 \section{\dcamp Roles and Services}
 
-The dCAMP distributed system is comprised of one or more nodes each running one or more roles. Each role--a published,
+The \dcamp distributed system is comprised of one or more nodes each running one or more roles. Each role--a published,
 remotely accessible interface--provides one or more sets of functionality. Each set of functionality is known as a
 service.
 
@@ -15,35 +72,30 @@ service.
 
 \begin{itemize}
 
-\item \textbf{Node}---rudimentary dCAMP functionality; handles topology communication, heartbeat monitoring, and failure
-recovery.
-
-\item \textbf{Sensor}---local performance metric gathering; essentially the dCAMP layer on top of the OS and hardware
-performance APIs (accessed via CAMP).
-
+\item \textbf{Node}---rudimentary \dcamp functionality; handles topology communication, heartbeat monitoring, and failure
+      recovery.
+\item \textbf{Sensor}---local performance metric gathering; essentially the \dcamp layer on top of the OS and hardware
+      performance APIs (accessed via CAMP).
 \item \textbf{Filter}---performance metric filtering; provides throttling and thresholding of metrics.
-
 \item \textbf{Aggregation}--—performance metric aggregation; provides collection of and calculation on metrics from
-multiple sensors and/or collectors.
-
-\item \textbf{Management}--—primary entry-point for end-user control of dCAMP distributed system; this is the dCAMP
-instrument panel, providing basic administration functions (e.g. start, stop, etc.).
-
+      multiple sensors and/or collectors.
+\item \textbf{Management}--—primary entry-point for end-user control of \dcamp distributed system; this is the \dcamp
+      instrument panel, providing basic administration functions (e.g. start, stop, etc.).
 \item \textbf{Configuration}--—complete configuration replication; provides topology and configuration distribution.
 
 \end{itemize}
 
 \subsection{Roles}
 
-The \textit{Base} role must be running on each node for it to be part of the dCAMP distributed system. In this document,
-a "Base node" is defined as a dCAMP node which has not yet been configured, i.e. it has not joined a running dCAMP
+The \textit{Base} role must be running on each node for it to be part of the \dcamp distributed system. In this document,
+a "Base node" is defined as a \dcamp node which has not yet been configured, i.e. it has not joined a running \dcamp
 system.
 
 The \textit{Metric} role runs on the nodes from which performance metrics should be collected. The \textit{Collector}
 role acts as an aggregation point in the system, combining performance data from multiple \textit{Metric} (and
 \textit{Collector}) nodes and providing additional aggregated performance metrics.
 
-There is only one \textit{Root} role active in the system; it acts as the master copy of the dCAMP configuration and
+There is only one \textit{Root} role active in the system; it acts as the master copy of the \dcamp configuration and
 sole user-interface point. The \textit{Root} role is not strictly attached to any given node in the system. Rather, the
 \textit{Root} role may dynamically move to any first-level \textit{Collector} node if the current \textit{Root} node
 fails.
@@ -54,7 +106,7 @@ and \textit{Root} for smaller systems while larger systems would employ dedicate
 
 \subsection{Role-to-Service Mapping}
 
-The following table lists the roles which can be "published" by a dCAMP node and the services which they implement.
+The following table lists the roles which can be "published" by a \dcamp node and the services which they implement.
 
 \begin{tabular}{|l|l|}
 
@@ -72,62 +124,130 @@ Base & Node \\
 
 \end{tabular}
 
-\section{Requirements}
+\section{Fault Tolerance}
 
-\subsection{Functional Requirements}
+\subsection{Heartbeating (Detecting Disconnections)}
 
-\begin{enumerate}
-
-\item Configuration
-  \begin{itemize}
-  \item instantiation, administration
-  \item topology coordination
-  \item metric collection spec.
-  \end{itemize}
-
-\item Metric Collection
-  \begin{itemize}
-  \item dCAMP API on top of CAMP
-  \item filters (at various levels), thresholds
-  \item aggregation of metrics across nodes
-  \item output to log file
-  \end{itemize}
-
-\item Fault Tolerance
-  \begin{itemize}
-  \item simple rules to handle failures
-  \end{itemize}
-
-\end{enumerate}
-
-\subsection{Fault Tolerance}
-
-\begin{enumerate}
-
-\item Topology MUST sustain brief network disconnectivity of any node.
-
-\item Sensor nodes MUST be allowed to enter/exit topology at any time.
-
-\item Root/Collector nodes (i.e. parents) MUST failover in case of extended disconnectivity.
-  \begin{itemize}
-  \item Loss of previously collected data SHOULD be minimized during failover.
-  \end{itemize}
-
-\item Management node SHOULD be allowed to enter/exit topology at any time.
-
-\end{enumerate}
-
-\subsection{Testing}
+Disconnections are detected via a lack of messages, e.g. missed X consecutive messages or no messages received after D
+seconds.
 
 \begin{itemize}
+\item Metric nodes MUST detect when their parent (Collector) node disconnects. (\hyperref[algor_promo]{Promotion Algorithm})
+\item The Root node MAY detect when a Collector node disconnects. (\hyperref[algor_promo]{Promotion Algorithm})
+\item Collector nodes MUST detect when the Root node disconnects. (\hyperref[algor_elect]{Election Algorithm})
+\item The Root node MUST detect when a Metric node rejoins the system. (\hyperref[algor_remind]{Reminder Algorithm})
+\end{itemize}
 
-\item \textbf{Transparency:} dCAMP SHOULD introduce negligible performance impact on sensor nodes.
+LATER
 
-\item \textbf{Accuracy:} dCAMP MUST accurately report metrics/performance of sensor nodes (individual and aggregated).
+\begin{itemize}
+\item should the configuration TTL be used somehow?
+      \begin{itemize}
+      \item alternatively, this could be based on configuration entry TTL expiration.
+      \item collector-to-collector heartbeating? not needed, since these TTLs will come from the root (via the data protocol)
+      \item ttl used to know which first-level collectors are root-eligible?
+      \end{itemize}
+\item heartbeats are sent from first-level collectors to root or all collectors?
+\item does a collector need to know when a metric node disconnects? no.
+\end{itemize}
 
-\item \textbf{Scalability:} dCAMP SHOULD maintain its transparency and accuracy as it scales (i.e. the number of sensor nodes
-increases).
+\subsection{Reminder Algorithm (Metric Node Recovery)}
+\label{algor_remind}
 
-\item \textbf{Fault Tolerance:} dCAMP MUST successfully handle entrance/exit of any node(s) in the system.
+Metric nodes can leave and enter the \dcamp system at any time. When they rejoin, they should be placed back into the
+same location within the topology so as to maintain as much consistency within the performance data as possible.
 
+The crux of this algorithm is the group definitions within the \dcamp configuration: nodes are always defined to be
+within a group, and the groups define the network topology. Essentially, this algorithm is incorporated into the
+Topology protocol; no additional work is necessary.
+
+\begin{enumerate}
+\item Sensor node rejoins the system with \texttt{POLO} response to Root node's \texttt{MARCO} message.
+\item Root node detects Metric node is already part of \dcamp system.
+\item Root node (re)sends \texttt{ASSIGN} message to Metric node.
+\end{enumerate}
+
+\subsubsection{DETECTION}
+
+Detecting when a Metric node disconnects is not necessary. Rather the Root node only needs to detect when a Metric node
+rejoins the \dcamp system, comparing the Metric node's UUID to the UUID already saved in the topology.
+
+\subsubsection{QUESTIONS}
+
+\begin{itemize}
+\item How does this account for new nodes which have been assigned to Collector node since this Metric node
+      disconnected? Can the Collector node become overloaded, or is this already accounted for with the configuration
+      groups?
+\end{itemize}
+
+\subsection{Promotion Algorithm (Collector Node Recovery)}
+\label{algor_promo}
+
+As with the Reminder Algorithm, this recovery relies heavily on the \hyperref[proto_topo]{Topology Management Protocol}.
+When a Metric node, M, detects its Collector node, C, is down, 
+
+\begin{enumerate}
+\item M sends an \texttt{SOS} message to the Root node, R.
+\item If R has received an \texttt{SOS} message from more than 1/3 of C's group, the algorithm proceeds as per below.
+\end{enumerate}
+
+When the Root node, R, detects one of the Collector nodes has disconnected,
+
+\begin{enumerate}
+\item R broadcasts a \texttt{STOP} message to all nodes within C's group and clears the groups configuration from the
+      \dcamp system.
+\item R then broadcasts a \texttt{MARCO} message and begins rebuilding the group topology via the Topology protocol.
+\end{enumerate}
+
+\subsubsection{DETECTION}
+
+M will use the \hyperref[proto_config]{Configuration Replication Protocol} (\texttt{HUGZ}) to detect when C disconnects.
+R will use the \hyperref[proto_data]{Data Flow Protocol} (\texttt{METRIC(type='HUGZ')}) to detect when any of its
+Collector nodes has disconnected. That is, if M or R receives no messages from C within D seconds, C is considered
+disconnected.
+
+\subsection{Election Algorithm (Root Node Recovery)}
+\label{algor_elect}
+
+This recovery algorithm is based on the bully algorithm\cite{needed}. Only Collector nodes participate in the election,
+initiated when a Collector node, C, detects the Root node, R, is down.
+
+\begin{enumerate}
+\item C sends \texttt{WUTUP} message to all nodes whose UUID is higher than its own, expecting a \texttt{YO} message in
+      response.
+\item If C does not receive any \texttt{YO} messages,
+      \begin{enumerate}
+      \item C declares victory by sending \texttt{IWIN} message to all nodes, and
+      \item C waits W seconds before transitioning to become the Root, allowing for another node to replace it as Root
+            via a separate election.
+      \end{enumerate}
+\item If C receives a \texttt{YO} message,
+      \begin{enumerate}
+      \item C waits for W seconds to receive an \texttt{IWIN} message from another node whose UUID is higher than its
+            own.
+      \item If no \texttt{IWIN} message is received, C resends its \texttt{WUTUP} message and goes through the election
+            process again.
+      \end{enumerate}
+\end{enumerate}
+
+Additionally,
+
+\begin{itemize}
+\item If C receives a \texttt{WUTUP} message from a node whose UUID is lower than its own, C responds with a \texttt{YO}
+      message and then starts its own election.
+\item If C receives an \texttt{IWIN} message from a node whose UUID is lower than its own, C immediately begins a new
+      election.
+\end{itemize}
+
+\subsubsection{DETECTION}
+
+C will use the \hyperref[proto_config]{Configuration Replication Protocol} (\texttt{HUGZ}) to detect when R disconnects.
+That is, if C receives no message from R within D seconds, R is considered disconnected.
+
+\subsubsection{QUESTIONS}
+
+\begin{itemize}
+\item Is there a difference between starting a new election and resending the initial \texttt{WUTUP} message? Is there
+      an optimization to be found by uniquely ID'ing each election?
+\item Can this algorithm be optimized w.r.t. the number of messages sent?
 \end{itemize}

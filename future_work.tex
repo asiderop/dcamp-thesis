@@ -3,18 +3,29 @@
 
 \begin{itemize}
 
-\item uniform configuration: The configuration of the entire system is uniform, i.e., all branches of the system will be
-collecting the same data at each level in the hierarchy---it is not possible to have different data being collected by
-different branches.
+\item multiple-level branches are not supported in the current implementation. that is, all collector nodes have the
+      root node as their parent and only have leaf nodes as their children.
+      \begin{itemize}
+      \item support would allow large group configurations to be automatically split into multiple (identically
+            configured) branches for improved scalability
+      \end{itemize}
 
 \item network failure: \dcamp does not support any fault tolerance for network failures; \dcamp only attempts to recover
 from node failures. It is assumed that if (part of) the network goes down, the lack of data from that subnet will
-suffice
+suffice. specifically, \dcamp does not tolerate the split brain syndrome\cite{needed}.
 
 \item time accuracy: The system time among multiple nodes in the system may vary significantly; \dcamp is not meant to
-be a high-resolution system with respect to the order of performance data occurrences. It is assumed that the ordering
-of performance events in the system is insignificant and timestamps associated with performance data are rough
-estimates.
+be a high-resolution system with respect to the order of performance data occurrences. It is assumed that NTP provides
+sufficient time synchronization across all nodes in the system OR the precise ordering of performance events in the
+system is not required.
+
+\item use IOLoop (green events?) instead of polling sockets for messages
+      \begin{itemize}
+      \item look into using an io loop with callbacks to better manage sockets
+      \item possibly, use a single io loop, hosted by the base node service and passed to the roles it starts?
+      \item this could greatly increase the scalability of dCAMP and reduce its overhead
+      \end{itemize}
+
 
 \end{itemize}
 

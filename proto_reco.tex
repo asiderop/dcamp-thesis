@@ -1,0 +1,22 @@
+\subsection{Recovery Protocol}
+\label{proto_reco}
+
+When the root node dies, the collector nodes join together to elect a new root.
+
+Uses same message pattern as \hyperref[proto_topo]{Topology Discovery Protocol}.
+
+\begin{figure}[ht]
+\vspace{+10pt}
+\begin{verbatim}
+topo-recovery  = ( *sos group-stop / election )
+topo-shutdown  = group-stop
+sos            = B-SOS
+group-stop     = R-MARCO B-POLO R-STOP
+election       = *C-RECOVERY
+\end{verbatim}
+\vspace{-5pt}
+\caption[Recovery Protocol]
+        {Recovery Protocol: \texttt{R-} represents the Root node sending a message, \texttt{B-}
+         represents a Base node sending a message, and \texttt{C-} represents a Collector node sending a message.}
+\label{fig:proto_reco_spec}
+\end{figure}

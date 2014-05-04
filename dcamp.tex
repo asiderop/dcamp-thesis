@@ -162,3 +162,21 @@ Inquiry metrics provide a mechanism for enumerating various properties of the sy
 \item "process identifier" for each running process launched from an executable of the given name
 \end{itemize}
 
+\section{Execution}
+
+These steps are for the current, prototype version of \dcamp. \textit{Setup: All nodes are running as base nodes
+(listening for commands via CLI and network port)}
+
+\begin{enumerate}
+
+\item User initializes root node via CLI (providing configuration) 
+\item Root node registers each listening node (configuring as metric nodes) 
+\item Metrics are sampled, reported, and logged (repeating indefinitely) 
+\item Metric nodes sample metrics and report metrics back to root node 
+\item Root node logs received metrics to disk 
+\item User shuts down root node via CLI 
+\item Root node unregisters each listening node (reverting to base nodes) 
+\item Root node terminates (reverting to base node)
+
+\end{enumerate}
+

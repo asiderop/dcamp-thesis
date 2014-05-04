@@ -1,14 +1,22 @@
-\subsection{Configuration Distribution Protocol}
+\subsection{Configuration Replication Protocol}
+\label{proto_config}
 
-The dCAMP configuration distribution algorithm adheres to the Clustered Hashmap Protocol
-(\url{http://rfc.zeromq.org/spec:12/CHP}) with a few minor (and one major) modifications:
+The \dcamp configuration distribution algorithm adheres to the Clustered Hashmap Protocol\cite{chp} with a few minor
+(and one major) modifications:
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.66]{config.png}
+    \caption{Configuration Protocol Diagram}
+    \label{fig:proto_config_image}
+\end{figure}
 
 \begin{enumerate}
 \item only the Root node may write new configuration changes,
 \item the full configuration table will be replicated across all first-level Collector nodes (lower-level nodes may
       filter their configuration to only store relevant data),
 \item a different set of command names are used (as described below), and
-\item configuration updates are distributed via the dCAMP hierarchy (instead of directly from the Root node).
+\item configuration updates are distributed via the \dcamp hierarchy (instead of directly from the Root node).
 \end{enumerate}
 
 A newly assigned first-level Collector node will first subscribe to new configuration updates from the Root node and
@@ -17,26 +25,18 @@ will first subscribe to new configuration updates from its parent Collector node
 node a filtered configuration snapshot request. Once its snapshot has been successfully received, a node will process
 any pending configuration updates and then, in the case of a Collector node, respond to child node snapshot requests.
 
-\begin{figure}[b]
-    \centering
-    \includegraphics[scale=0.5]{config.png}
-    \caption{Configuration Protocol Diagram}
-    \label{fig:proto_config_image}
-\end{figure}
-
-\textit{In the following ABNF specification, \texttt{P-} represents the parent node (Root or Collector) sending a
-message and \texttt{C-} represents the child node sending a message.}
-
-\begin{figure}[h]
-    \centering
-    \begin{lstlisting}
-    config-distribution = *update / snap-sync
-    
-    update              = P-KVPUB / P-HUGZ
-    snap-sync           = C-ICANHAZ *P-KVSYNC ( P-KTHXBAI / P-WTF )
-    \end{lstlisting}
-    \caption{Configuration Protocol}
-    \label{fig:proto_config_image}
+\begin{figure}[ht]
+\vspace{+10pt}
+\begin{verbatim}
+config-distribution = *update / snap-sync
+update              = P-KVPUB / P-HUGZ
+snap-sync           = C-ICANHAZ *P-KVSYNC ( P-KTHXBAI / P-WTF )
+\end{verbatim}
+\vspace{-5pt}
+\caption[Configuration Protocol Specification]
+	{Configuration Protocol Specification: \texttt{P-} represents the parent node (Root or Collector) sending a
+	 message and \texttt{C-} represents the child node sending a message.}
+\label{fig:proto_config_spec}
 \end{figure}
 
 \subsubsection{Message Definitions}
@@ -48,40 +48,40 @@ semantics.
 \textbf{ICANHAZ} \\
 configuration snapshot request
 
-\begin{lstlisting}
+\begin{verbatim}
 Frame 0: "ICANHAZ"
 Frame 1: sequence number, 8 bytes in network order
 Frame 2: <empty>
 Frame 3: <empty>
 Frame 4: subtree specification
-\end{lstlisting}
+\end{verbatim}
 
 \textbf{KVSYNC} \\
 snapshot sync message
 
-\begin{lstlisting}
+\begin{verbatim}
 Frame 0: key, as 0MQ string
 Frame 1: sequence number, 8 bytes in network order
 Frame 2: <empty>
 Frame 3: <empty>
 Frame 4: value, as blob
-\end{lstlisting}
+\end{verbatim}
 
 \textbf{KTHXBAI} \\
 end of successful snapshot sync
 
-\begin{lstlisting}
+\begin{verbatim}
 Frame 0: "KTHXBAI"
 Frame 1: sequence number, 8 bytes in network order
 Frame 2: <empty>
 Frame 3: <empty>
 Frame 4: subtree specification
-\end{lstlisting}
+\end{verbatim}
 
 \textbf{KVPUB} \\
 configuration update sent from parent to child
 
-\begin{lstlisting}
+\begin{verbatim}
 Frame 0: key, as 0MQ string
 Frame 1: sequence number, 8 bytes in network order
 Frame 2: UUID, 16 bytes in network order
@@ -89,15 +89,15 @@ Frame 3: properties, JSON-encoded, as 0MQ string
 Frame 4: value, as blob
 
 properties = ...
-\end{lstlisting}
+\end{verbatim}
 
 \textbf{HUGZ} \\
 heartbeat message sent from parent to child (when no config updates)
 
-\begin{lstlisting}
+\begin{verbatim}
 Frame 0: "HUGZ"
 Frame 1: 00000000
 Frame 2: <empty>
 Frame 3: <empty>
 Frame 4: <empty>
-\end{lstlisting}
+\end{verbatim}
