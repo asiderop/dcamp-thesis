@@ -5,13 +5,6 @@ The \dcamp distributed topology is dynamically established as the Root node send
 join messages from Base nodes. Once a Base node responds to the Root, the Base node is given its assignment.
 
 \begin{figure}[ht]
-    \centering
-    \includegraphics[scale=0.66]{topo.png}
-    \label{fig:proto_topo_image}
-    \caption{Topology Discovery Protocol Diagram}
-\end{figure}
-
-\begin{figure}[ht]
 \vspace{+10pt}
 \begin{verbatim}
 topo-discovery = *discover join
@@ -25,43 +18,71 @@ join           = B-POLO ( R-ASSIGN / R-WTF )
 \label{fig:proto_topo_spec}
 \end{figure}
 
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.66]{topo.png}
+    \label{fig:proto_topo_image}
+    \caption{Topology Discovery Protocol Diagram}
+\end{figure}
+
 \subsubsection{Message Definitions}
 
-\textbf{MARCO} \\
-discovery message, two frames
+\textbf{TOPO} is a generic topology message consisting of four frames. This message type is designed to be sent across a
+PUB/SUB connection, from which subscribers filter incoming messages using the first frame. This design proves useful for
+the \hyperref[proto_reco]{Recovery Protocol}.
 
+The \texttt{MARCO} message is simply shorthand for \texttt{TOPO(key="/MARCO")}.
+
+\begin{figure}[ht]
+\vspace{+10pt}
 \begin{verbatim}
-Frame 0: root endpoint identity, as 0MQ string
-Frame 1: root endpoint UUID, 16 bytes in network order
+Frame 0: key, as 0MQ string
+Frame 1: root endpoint identity, as 0MQ string
+Frame 2: root endpoint UUID, 16 bytes in network order
+Frame 3: <empty> or content, as 0MQ string
 \end{verbatim}
+\vspace{-20pt}
+\caption{\texttt{TOPO} Message Definition}
+\label{fig:message_topo}
+\end{figure}
 
-\textbf{POLO} \\
-join message, two frames
+\textbf{CONTROL} is a generic control message consisting of four frames and designed to be sent across a REQ/REP
+connection. The \texttt{POLO} and \texttt{ASSIGN} messages are shorthand for \texttt{CONTROL(command="POLO")} and
+\texttt{CONTROL(command="ASSIGN")} respectively.
 
-\begin{verbatim}
-Frame 0: base endpoint identity, as 0MQ string
-Frame 1: base endpoint UUID, 16 bytes in network order
-\end{verbatim}
+In the case of \texttt{ASSIGN}, the third frame contains the specific topology instructions (level-one collector, leaf
+node, etc.) being sent to the Base node.
 
-\textbf{CONTROL} \\
-control message, two frames; frame 1 contains the specific topology instructions (level-one collector, leaf node, etc.)
-
+\begin{figure}[ht]
+\vspace{+10pt}
 \begin{verbatim}
 Frame 0: command, as 0MQ string
-Frame 1: properties, JSON-encoded, as 0MQ string
-command     = "assignment" / "stop"
-properties  = *( parent / level / group / config-file )
+Frame 1: base endpoint identity, as 0MQ string
+Frame 2: base endpoint UUID, 16 bytes in network order
+Frame 3: properties, JSON-encoded, as 0MQ string
+
+command     = "polo" / "assignment"
+properties  = *( parent / level / group )
 parent      = "parent=" <node-endpoint-identity>
 level       = "level=" ( "root" / "branch" / "leaf" )
-group       = "group=" <group-identity> / NULL
-config-file = "config-file=" <file-path>
+group       = "group=" <group-identity>
 \end{verbatim}
+\vspace{-20pt}
+\caption{\texttt{CONTROL} Message Definition}
+\label{fig:message_control}
+\end{figure}
 
-\textbf{WTF} \\
-error message, three frames (the error string may be empty)
+\textbf{WTF} is \dcamp's error message type. It has three frames (though frame 2 may be empty) with the first designed
+to make error detection simple.
 
+\begin{figure}[ht]
+\vspace{+10pt}
 \begin{verbatim}
-Frame 0: "WTF"
+Frame 0: "WTF", as 0MQ string
 Frame 1: error code, 4 bytes in network order
-Frame 2: error message, as 0MQ string
+Frame 2: <empty> or error message, as 0MQ string
 \end{verbatim}
+\vspace{-20pt}
+\caption{\texttt{WTF} Message Definition}
+\label{fig:message_wtf}
+\end{figure}

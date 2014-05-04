@@ -1,7 +1,7 @@
 \subsection{Configuration Replication Protocol}
 \label{proto_config}
 
-The \dcamp configuration distribution algorithm adheres to the Clustered Hashmap Protocol\cite{chp} with a few minor
+The \dcamp configuration replication algorithm adheres to the Clustered Hashmap Protocol\cite{chp} with a few minor
 (and one major) modifications:
 
 \begin{figure}[ht]
@@ -28,9 +28,9 @@ any pending configuration updates and then, in the case of a Collector node, res
 \begin{figure}[ht]
 \vspace{+10pt}
 \begin{verbatim}
-config-distribution = *update / snap-sync
-update              = P-KVPUB / P-HUGZ
-snap-sync           = C-ICANHAZ *P-KVSYNC ( P-KTHXBAI / P-WTF )
+config-replication = *update / snap-sync
+update             = P-KVPUB / P-HUGZ
+snap-sync          = C-ICANHAZ ( ( *P-KVSYNC P-KTHXBAI ) / P-WTF )
 \end{verbatim}
 \vspace{-5pt}
 \caption[Configuration Protocol Specification]
@@ -42,8 +42,7 @@ snap-sync           = C-ICANHAZ *P-KVSYNC ( P-KTHXBAI / P-WTF )
 \subsubsection{Message Definitions}
 
 These messages come from the CHP protocol. Additionally, a WTF error message may be sent by the parent in case of error.
-It should be noted, each of the following messages is really the same five-frame format with varying key values and
-semantics.
+It should be noted, each of the following messages is really the same five-frame format with varying keys and semantics.
 
 \textbf{ICANHAZ} \\
 configuration snapshot request
