@@ -29,3 +29,29 @@ system is not required.
 \item security --- send salted passphrase with every control message, encrypt all messages, etc.
 
 \end{itemize}
+
+\subsubsection{Metric Extensions}
+
+\textbf{VARIABLE LENGTH DATA}
+Does \dcamp need to support arbitrary data lengths?
+
+\textbf{NESTED METRICS}
+It could be possible for data messages to contain nested data messages, e.g. average/sum of rates.
+
+\textbf{GROUPINGS}
+\dcamp may need a more compact data message format for combining multiple metrics into a single message, e.g. for
+aggregation purposes or representing entire branches in the topology.
+group by source/type/time?
+group start/end frames?
+
+\textbf{HISTOGRAMS}
+\dcamp should provide a metric histogram ability. Perhaps this should done at each node or only at the root.
+
+\textbf{METRIC REQUESTS}
+The admin can use \dcamp to request metrics on a one-time basis, for example, to enumerate the available disks on each
+node. The key here is a metric collection is not based on configuration file but rather on real-time input from the
+end-user.
+
+Perhaps there should be some special, e.g. "once", metric collection specifications so config data can be sent up to the
+root only at node start.
+

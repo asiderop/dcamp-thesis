@@ -5,14 +5,13 @@
     +   accumulation vs raw metrics, i.e. calculate now or later
 
 *   implementation
-    +   data protocols and message structures
     +   metric sampling and aggregation
     +   role execution: base node launches other role, communication
 
 ### done
 
 *   implementation
-    +   discovery, config, 
+    +   discovery, config, data protocols and message structures
 
 *   design
     +   design goals: simple, minimal network traffic

@@ -104,12 +104,12 @@ Depending on the use case and desired system performance, an administrator may c
 nodes or collapse them onto a single node. For example, a single node may act as \textit{Metric}, \textit{Collector},
 and \textit{Root} for smaller systems while larger systems would employ dedicated \textit{Collector} nodes.
 
-\subsection{Role-to-Service Mapping}
+\subsection{Role-to-Service Mappings}
 
-The following table lists the roles which can be "published" by a \dcamp node and the services which they implement.
+Table \ref{tab:role_to_services} lists the roles which can be "published" by a \dcamp node and the services which they implement.
 
+\begin{table}
 \begin{tabular}{|l|l|}
-
 \hline
 \textbf{Role} & \textbf{Service(s)} \\
 \hline
@@ -121,8 +121,10 @@ Metric & Sensor, Filter, Configuration \\
 \hline
 Base & Node \\
 \hline
-
 \end{tabular}
+\caption{Role to Service Mappings}
+\label{tab:role_to_services}
+\end{table}
 
 \section{Fault Tolerance}
 

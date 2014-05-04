@@ -12,13 +12,13 @@ protocols have the same specification and use the same message formats.
     \label{fig:proto_data_image}
 \end{figure}
 
-The \dcamp data flow protocol is very simple, comprised of a single data message type and a heartbeat message type. The
-data flows from one node to another via PUB/SUB sockets. Internally, data flows from the upstream data producers,
-through a filtering/processing unit, and out to downstream data consumers.
+The \dcamp data flow protocol is very simple, comprised of a single data message type. The data flows from one node to
+another via PUB/SUB sockets. Internally, data flows from the upstream data producers, through a filtering/processing
+unit, and out to downstream data consumers via PUSH/PULL sockets.
 
 When data rate is slower than a predefined threshold, heartbeats are sent instead to keep inter-node connections alive.
 
-\begin{figure}[ht]
+\begin{figure}[H]
 \vspace{+10pt}
 \begin{verbatim}
 data-flow = *( METRIC / HUGZ )
@@ -29,76 +29,86 @@ data-flow = *( METRIC / HUGZ )
 \label{fig:proto_data_spec}
 \end{figure}
 
-\subsubsection{Metric Types}
+\subsubsection{Performance Measurement}
 
-A metric message must contain: source (node or aggregation), type (e.g. basic, sum, etc.), time (or range), value(s)
-(possibly numerator and denominator). Should these types be raw until collected by the root node?
+When discussing performance measurement, it is important to understand how metrics are sampled, calculated, and
+presented to an end user.
 
-\begin{itemize}
-\item basic -- v1 = value at t1, v2 = empty, t2 = empty
-\item sum -- v1 = sum at t1, v2 = empty, t2 = empty
-\item average -- v1 = sum between t1 and t2, v2 = count
-\item percent -- v1 = numerator at t1, v2 = denominator at t1, t2 = empty
-\item rate -- v1 = value at t1, v2 = value at t2
-\end{itemize}
+Performance metrics, also called counters, are usually monotonically increasing values. That is, reading its raw,
+instantaneous value is virtually meaningless; to correctly read the counter it must be sampled at two different points
+in time and then calculated.
 
-NOTE ABOUT ACCUMULATION (DOESN'T WORK)
+For example, when displaying a graph of data point for non-basic metric types, each data point is really a calculated
+value of the value at the current timestamp and that at the previous timestamp. It is possible to look at fewer data
+samples to first get a course-grain view (e.g. five-minute samples) of the metric before drilling in a looking at
+finer-grain samples (e.g. one-second samples).
 
-\begin{itemize}
-\item filtering can be done two ways: accumulatively and discretely.
-\item accumulative means we send only one final value for each time range (e.g. collect every second but report every
-      minute, so 60 samples are combined into a single value and sent)
-\item discrete means we send each constituent value for each time range, but they are "held" until the time limit is
-      reached
-\item also, how does this interact with value-based limits? these are always discrete?
-\item ACTUALLY: accumulation is not valuable for monotonically increasing values--it is the same as just sampling at the
-      slower frequency. accumulation is only valuable for non-monotonically increasing values. but in that case, one
-      should find the raw, monotonically increasing values from which it is calculated.
-\end{itemize}
+Non-monotonically increasing counters do exist (e.g. disk speed, Ethernet uplink speed, etc.), but these are usually
+fairly static configuration values and do not need to be sampled frequently. \dcamp supports these types of counters
+with the "basic" metric type.
 
-\subsubsection{Metric Extensions}
+Table \ref{tab:metric_types} shows how each of the \dcamp metric types are calculated. Note: unlike some other
+performance measurement frameworks\cite{ganglia}, \dcamp stores all metrics in their raw, uncalculated form and only
+presents a calculated value upon display.
 
-\textbf{VARIABLE LENGTH DATA}
-Does \dcamp need to support arbitrary data lengths?
-
-\textbf{NESTED METRICS}
-It could be possible for data messages to contain nested data messages, e.g. average/sum of rates.
-
-\textbf{GROUPINGS}
-\dcamp may need a more compact data message format for combining multiple metrics into a single message, e.g. for
-aggregation purposes or representing entire branches in the topology.
-group by source/type/time?
-group start/end frames?
-
-\textbf{HISTOGRAMS}
-\dcamp should provide a metric histogram ability. Perhaps this should done at each node or only at the root.
-
-\textbf{METRIC REQUESTS}
-The admin can use \dcamp to request metrics on a one-time basis, for example, to enumerate the available disks on each
-node. The key here is a metric collection is not based on configuration file but rather on real-time input from the
-end-user.
-
-Perhaps there should be some special, e.g. "once", metric collection specifications so config data can be sent up to the
-root only at node start.
+\begin{table}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Type} & \textbf{Contents of Single Sample} & \textbf{Calculation of Two Samples}
+\\
+\hline
+basic & raw value at specified timestamp & \( C = V_{t_2} \)
+\\
+\hline
+delta & raw value at specified timestamp & \( C = V_{t_2} - V_{t_1} \)
+\\
+\hline
+rate & raw value at timestamp & \( C = (V_{t_2} - V_{t_1}) / (t_2 - t_1) \)
+\\
+\hline
+average & raw value and raw base value at timestamp & \( C = (V_{t_2} - V_{t_1}) / (B_{t_2} - B_{t_1}) \)
+\\
+\hline
+percent & raw value and raw base value at timestamp & \( C = ( (V_{t_2} - V_{t_1}) / (B_{t_2} - B_{t_1}) ) 100 \)
+\\
+\hline
+\end{tabular}
+\caption[Metric Types]
+        {Metric Types: \(C\) represents the value calculated from two samples taken at \(t_1\) and \(t_2\). \(V\) is the
+	 value and \(B\) is the base value in the \texttt{METRIC} message}
+\label{tab:metric_types}
+\end{table}
 
 \subsubsection{Message Definitions}
 
-\textbf{METRIC} \\
-message containing performance metric data; value v2 will be empty for basic and sum metric types; time t2 will NOT be
-empty for average and rate metric types; in case of HUGZ message type, no other property strings are used and frames 3 -
-5 are all empty. The config property is only present for internal messages (sent from Sensor to Filter) and represents
-the metric configuration's unique name.
+\textbf{\texttt{METRIC}} is a five-frame message containing the performance metric data sampled by the Sensor service or
+calculated by the Aggregation service. The \texttt{HUGZ} message is simply shorthand for \texttt{METRIC(type="HUGZ")}.
 
+A single data sample MUST contain: source identifier (node or aggregation), metric identifier, timestamp, and one or two
+values depending on the metric type.
+
+In case of \texttt{HUGZ}, no other property strings are used, and Frames 3 through 5 are all empty. Frame 4 will be
+non-empty for average and percent types.
+
+NOTE: This message needs to be cleaned up...its a bit too verbose. I think just the config-seqid is needed to identify
+      the metric being sampled.
+
+\begin{figure}[H]
+\vspace{+10pt}
 \begin{verbatim}
 Frame 0: data source (leaf or collector node endpoint), as 0MQ string
-Frame 1: properties, JSON-encoded, as 0MQ string
-Frame 2: time t1 in ms epoch utc, 8 bytes in network order
-Frame 3: value v1, 8 bytes in network order
-Frame 4: time t2 in ms epoch utc, 8 bytes in network order; not empty for average and rate
-Frame 5: value v2, 8 bytes in network order; empty for basic and sum
+Frame 1: properties, JSON-encoded as 0MQ string
+Frame 2: time in ms epoch utc, 8 bytes in network order
+Frame 3: value, 8 bytes in network order
+Frame 4: base value, 8 bytes in network order; only for average and percent types
 
-properties = *( type / detail / config )
-type       = "type=" ( "HUGZ" / "basic" / "sum" / "average" / "percent" / "rate" )
+properties = *( type / detail / config / seqid )
+type       = "type=" ( "HUGZ" / "basic" / "delta" / "rate" / "average" / "percent" )
 detail     = "detail=" <string>
 config     = "config-name=" <string>
+seqid      = "config-seqid=" <integer>
 \end{verbatim}
+\vspace{-20pt}
+\caption{\texttt{METRIC} Message Definition}
+\label{fig:message_metric}
+\end{figure}
