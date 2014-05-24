@@ -36,7 +36,7 @@ The \dcamp configuration replication algorithm adheres to the Clustered Hashmap 
 (and one major) modifications:
 
 \begin{enumerate}
-\item only the Root node may write new configuration changes,
+\item only the Root node may write updates to the configuration,
 \item the full configuration table will be replicated across all first-level Collector nodes (lower-level nodes may
       filter their configuration to only store relevant data),
 \item a different set of command names are used (as described below), and

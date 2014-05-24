@@ -24,9 +24,16 @@ system is not required.
       \item look into using an io loop with callbacks to better manage sockets
       \item possibly, use a single io loop, hosted by the base node service and passed to the roles it starts?
       \item this could greatly increase the scalability of dCAMP and reduce its overhead
+      \item except the sensor service, most threads sit idly waiting for messages to arrive; this is a waste of system
+            resources; using events reduces complexity of implementation and improves runtime performance
       \end{itemize}
 
 \item security --- send salted passphrase with every control message, encrypt all messages, etc.
+
+\item multicast topo discovery -- reduce config cost, use gateways to multicast into other subnets
+
+\item end-to-end tool built on top of \dcamp; aggregation provides benefit of looking at large parts of system quickly;
+you can look at the aggregate and drill down to find the problem nodes
 
 \end{itemize}
 
