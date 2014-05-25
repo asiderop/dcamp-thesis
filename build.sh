@@ -1,5 +1,8 @@
 #!/bin/bash
 
+PDFTEX=pdflatex
+BIBTEX=bibtex
+
 if [ ! -e out ]
 then
 	mkdir out
@@ -10,4 +13,7 @@ then
 	rm out/*
 fi
 
-runall.sh 'pdflatex -output-directory out thesis' 'bibtex out/thesis' 'pdflatex -output-directory out thesis' 'pdflatex -output-directory out thesis'
+TEXCMD="${PDFTEX} -output-directory ./out thesis"
+BIBCMD="${BIBTEX} ./out/thesis"
+
+runall.sh ./build-images.sh "${TEXCMD}" "${BIBCMD}" "${TEXCMD}" "${TEXCMD}"
