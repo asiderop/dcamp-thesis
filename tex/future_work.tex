@@ -1,14 +1,28 @@
 \chapter{Future Work}
 \label{future_work}
 
+\subsubsection{Additional Features}
+
+These features would provide a more complete, end-to-end solution for distributed performance monitoring.
+
 \begin{itemize}
 
-\item multiple-level branches are not supported in the current implementation. that is, all collector nodes have the
-      root node as their parent and only have leaf nodes as their children.
-      \begin{itemize}
-      \item support would allow large group configurations to be automatically split into multiple (identically
-            configured) branches for improved scalability
-      \end{itemize}
+\item end-to-end tool built on top of \dcamp; aggregation provides benefit of looking at large parts of system quickly;
+you can look at the aggregate and drill down to find the problem nodes
+
+\item Lightweight web server on each node to support REST APIs and graphical interface.
+
+\item security --- send salted passphrase with every control message, encrypt all messages, etc.
+
+\item provide full support for metric sampling in collector role (instead of requiring two nodes on single machine)
+
+\end{itemize}
+
+\subsubsection{Fault Tolerance}
+
+Improve the fault tolerance of \dcamp by implementing these features which were out-of-scope for the original project.
+
+\begin{itemize}
 
 \item network failure: \dcamp does not support any fault tolerance for network failures; \dcamp only attempts to recover
 from node failures. It is assumed that if (part of) the network goes down, the lack of data from that subnet will
@@ -19,6 +33,22 @@ be a high-resolution system with respect to the order of performance data occurr
 sufficient time synchronization across all nodes in the system OR the precise ordering of performance events in the
 system is not required.
 
+\item self-restarting executable for base node
+
+\item detect collector failure in the root role, not just metric role
+
+\item Root node does not need to be present for the system to operate. 1) Root (i.e. `Management` service) node can come
+and go, 2) all data is stored at top-level Collector nodes, 3) Root comes online and asks Collectors for data (since
+T?), 4) there is a "master" Collector node for config (is that same as root?)
+
+\end{itemize}
+
+\subsubsection{Improve Performance and Scalability}
+
+Increase efficiency of protocols and make really large \dcamp systems possible.
+
+\begin{itemize}
+
 \item use IOLoop (green events?) instead of polling sockets for messages
       \begin{itemize}
       \item look into using an io loop with callbacks to better manage sockets
@@ -28,28 +58,21 @@ system is not required.
             resources; using events reduces complexity of implementation and improves runtime performance
       \end{itemize}
 
-\item security --- send salted passphrase with every control message, encrypt all messages, etc.
-
 \item multicast topo discovery -- reduce config cost, use gateways to multicast into other subnets
 
-\item end-to-end tool built on top of \dcamp; aggregation provides benefit of looking at large parts of system quickly;
-you can look at the aggregate and drill down to find the problem nodes
-
-\item Root node does not need to be present for the system to operate. 1) Root (i.e. `Management` service) node can come
-and go, 2) all data is stored at top-level Collector nodes, 3) Root comes online and asks Collectors for data (since
-T?), 4) there is a "master" Collector node for config (is that same as root?)
-
-\item Lightweight web server on each node to support REST APIs and graphical interface.
-
-\item self-restarting executable for base node
-
-\item detect collector failure in the root role, not just metric role
-
-\item provide full support for metric sampling in collector role (instead of requiring two nodes on single machine)
+\item multiple-level branches are not supported in the current implementation. that is, all collector nodes have the
+      root node as their parent and only have leaf nodes as their children.
+      \begin{itemize}
+      \item support would allow large group configurations to be automatically split into multiple (identically
+            configured) branches for improved scalability
+      \end{itemize}
 
 \end{itemize}
 
 \subsubsection{Metric Extensions}
+
+Only a small subset of metrics were implemented in \dcamp as a proof of concept. The rest of the full set listed in
+\hyperref[dcamp_metrics]{\dcamp Metrics} section are left as future work.
 
 \textbf{VARIABLE LENGTH DATA}
 Does \dcamp need to support arbitrary data lengths?
