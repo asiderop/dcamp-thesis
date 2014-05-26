@@ -35,6 +35,18 @@ system is not required.
 \item end-to-end tool built on top of \dcamp; aggregation provides benefit of looking at large parts of system quickly;
 you can look at the aggregate and drill down to find the problem nodes
 
+\item Root node does not need to be present for the system to operate. 1) Root (i.e. `Management` service) node can come
+and go, 2) all data is stored at top-level Collector nodes, 3) Root comes online and asks Collectors for data (since
+T?), 4) there is a "master" Collector node for config (is that same as root?)
+
+\item Lightweight web server on each node to support REST APIs and graphical interface.
+
+\item self-restarting executable for base node
+
+\item detect collector failure in the root role, not just metric role
+
+\item provide full support for metric sampling in collector role (instead of requiring two nodes on single machine)
+
 \end{itemize}
 
 \subsubsection{Metric Extensions}
