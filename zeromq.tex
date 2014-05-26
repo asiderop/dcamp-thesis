@@ -3,26 +3,135 @@
 
 \section{Why ZeroMQ}
 
-Read The Guide.
-Understand simple design.
-Focus on the data.
-Have fun building distributed systems.
+Not surprisingly, the most succinct description of ZeroMQ is found in \textit{The Guide}\cite{zguide} preface,
 
-\section{Socket Types and Message Patterns}
+\begin{quote}
+\O MQ (also known as ZeroMQ, 0MQ, or zmq) looks like an embeddable networking library but acts like a concurrency
+framework. It gives you sockets that carry atomic messages across various transports like in-process, inter-process,
+TCP, and multicast. You can connect sockets N-to-N with patterns like fan-out, pub-sub, task distribution, and
+request-reply. It's fast enough to be the fabric for clustered products. Its asynchronous I/O model gives you scalable
+multicore applications, built as asynchronous message-processing tasks. It has a score of language APIs and runs on most
+operating systems. \O MQ is from iMatix [\url{http://www.imatix.com}] and is LGPLv3 open source.
+\end{quote}
 
-\begin{itemize}
-\item PUB/SUB
-\item REQuest/REPly
-\item PUSH/PULL
-\end{itemize}
+No appendix could justly explain ZeroMQ or give the reader a true understanding of its abilities and proper use. Read
+\textit{The Guide} (a freer and more up-to-date version is online at \url{http://zguide.zeromq.org}) and, if truly
+adventurous (or just morbidly curious), go through all 750+ examples in any of the 28 programming languages available.
 
-\section{Useful Features}
+Forget about RPC, MPI, and raw sockets. ZeroMQ allows a developer to build distributed systems by focusing on the data
+and implementing simple design patterns. In short, ZeroMQ allows the distributed systems developer to have fun. No joke.
 
-\begin{itemize}
+\section{Sockets and Message Patterns}
 
-\item PUB/SUB filtering
-\item atomic multipart messages
-\item send/recv buffers
-\item fair queuing
+To begin understanding ZeroMQ, a foundational knowledge of \O MQ sockets, messages, and patterns is needed.
 
-\end{itemize}
+\subsection{Sockets and Messages}
+
+\O MQ sockets mimic standard TCP sockets, exposing interfaces for creating and destroying instances, binding and
+connecting to network endpoints, and sending and receiving data. However, they have two key differences from their
+TCP counterparts.
+
+First, they are asynchronous---the actual sending and receiving of data on a ZeroMQ socket is handled by a background
+thread. Second, \O MQ sockets have built-in support for one-to-many connections. That is, a single socket can send and
+receive data from multiple endpoints.
+
+ZeroMQ sockets are explicitly typed, with the type dictating how data is routed and queued to and from the socket.
+Furthermore, this explicit typing means only certain socket types can be connected to each other.
+
+ZeroMQ messages are the building blocks of all data sent across ZeroMQ sockets. A message is comprised of one or more
+frames (or parts), and a single frame can be any size (including zero) that fits in memory. ZeroMQ guarantees messages
+are delivered atomically, meaning either all frames of the message are sent/received or none of the frames. Lastly,
+because sockets are asynchronous and messages are atomic, the entire message must fit in memory.
+
+\subsection{Messaging Patterns}
+
+Generally speaking, the ZeroMQ messaging patterns are defined by the socket routing and queuing rules as well as each
+socket's compatible type pairings. As listed in the \texttt{zmq\_socket} man page\cite{zmq-socket}, ZeroMQ supports the
+following core messaging patterns.
+
+\begin{description}
+
+\item[Publish-Subscribe:]
+
+"The publish-subscribe pattern is used for one-to-many distribution of data from a single publisher to multiple
+subscribers in a fan out fashion."
+
+The two socket types used for this pattern are \texttt{PUB}, which can only send messages, and \texttt{SUB}, which can
+only receive messages. Naturally, this is a unidirectional pattern.
+
+\item[Request-Reply:]
+
+"The request-reply pattern is used for sending requests from a [...] client to one or more [...] services, and receiving
+subsequent replies to each request sent."
+
+The two basic socket types for this pattern, \texttt{REQ} and \texttt{REP}, require strict ordering of messages: a
+message must be first be sent on the \texttt{REQ} socket before a message can be received on the socket, and vice versa
+for the \texttt{REP} socket. Two advanced socket types, \texttt{XREQ} (or \texttt{DEALER}) and \texttt{XREP} (or
+\texttt{ROUTER}), allow a more lenient communication pattern.
+
+\item[Pipeline:]
+
+"The pipeline pattern is used for distributing data to nodes arranged in a pipeline. Data always flows down the
+pipeline, and each stage of the pipeline is connected to at least one node. When a pipeline stage is connected to
+multiple nodes data is round-robined among all connected nodes."
+
+\texttt{PUSH} (send-only) and \texttt{PULL} (receive-only) socket types are used for this pattern. Like Pub-Sub, this is
+a unidirectional pattern.
+
+\item[Exclusive Pair:]
+
+"The exclusive pair pattern is used to connect a peer to precisely one other peer. This pattern is used for inter-thread
+communication across the inproc transport."
+
+Only the \texttt{PAIR} socket type can be used for this pattern.
+
+\end{description}
+
+\section{Useful Features for \dcamp}
+
+Apart from the general happiness ZeroMQ offers to the distributed systems developer, some features are particularly
+useful in \dcamp.
+
+\subsection{Topic Filtering}
+
+All messages sent using Pub-Sub are filtered (usually by the publisher) based on the "topics" to which each subscriber
+subscribes. Topics, stated simply, are the leading bytes of a message's first frame. By default, a \texttt{SUB} socket
+is not subscribed to any topics.
+
+Consider a \texttt{PUB} message which contains \texttt{b'/fruit/apple'} as its first frame. A subscriber would receive
+this message if it subscribed to \texttt{b'/fruit'} or \texttt{b'/'} or even \texttt{b''} (an empty frame). But if the
+subscriber was not subscribed to any topics or only subscribed to the \texttt{b'/plants'} topic, it would not receive
+the message. Do note: the topic can be any binary data, not just character data.
+
+Topic filtering fits naturally into the \hyperref[proto_config]{Configuration Replication Protocol} where different
+roles only replicate portions of the config and the \hyperref[proto_topo]{Topology Discovery Protocol} where the root
+node needs to send commands to a subset of the topology.
+
+\subsection{Easy Message Debugging}
+
+ZeroMQ's atomic multipart message passing lends itself to what \textit{The Guide} calls the "Cheap or Nasty pattern"
+\cite{zguide}. That is, use cheap, easy to write/read, overly verbose messages for infrequent control scenarios and
+nasty, compact, highly performant messages for long-lived and frequent data scenarios.
+
+In \dcamp, all control messages follow the cheap pattern, making them easy to debug. But the data messages, which tend
+to not need a lot of debugging, are free to be more optimized.
+
+\subsection{Simplified Threading Design}
+
+While much care must still be taken in their use, the inherent properties of ZeroMQ sockets (asynchronous nature,
+utilization of send/receive queues, ability to round-robin and fair-queue messages) allow for more attention to be paid
+to the design, purpose, and real work of each thread rather than the mechanics of sending and receiving data.
+
+This is clearly seen in \dcamp Service implementations where, for example, a single thread can be used to process both
+remote nodes' performance metrics and the local node's performance metrics without any special coding: one socket with
+multiple endpoints connected and the built-in fair-queuing taking care of routing.
+
+\subsection{Quick Simulation}
+
+The nature of ZMQ bind/connect endpoints just being a protocol and a network address means simulation of large
+distributed systems can take place on a single machine using unique port numbers. Additionally, the interoperability of
+\texttt{inproc} (within the same process) and TCP protocols allows for even larger simulations, not bound by port
+availability on the host.
+
+This is demonstrated several times in examples within \textit{The Guide}, and it indeed held true during \dcamp
+development and testing.
