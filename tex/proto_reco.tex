@@ -1,22 +1,44 @@
-\subsection{Recovery Protocol}
+\subsection{Recovery Protocols}
 \label{proto_reco}
 
-When the root node dies, the collector nodes join together to elect a new root.
+The \dcamp Recovery Protocols are used for the \hyperref[algor_promo]{Promotion} and \hyperref[algor_elect]{Election}
+algorithms and use the same base messages as the \hyperref[proto_topo]{Topology Protocol}, \texttt{TOPO} and
+\texttt{CONTROL}.
 
-Uses same message pattern as \hyperref[proto_topo]{Topology Discovery Protocol}.
-
-\begin{figure}[ht]
+\begin{figure}[H]
 \vspace{+10pt}
 \begin{verbatim}
-topo-recovery  = ( *sos group-stop / election )
-topo-shutdown  = group-stop
-sos            = B-SOS
-group-stop     = R-MARCO B-POLO R-STOP
-election       = *C-RECOVERY
+branch-recovery  = *sos group-stop
+sos              = B-SOS
+group-stop       = R-GROUP B-POLO R-STOP
 \end{verbatim}
 \vspace{-5pt}
-\caption[Recovery Protocol]
-        {Recovery Protocol: \texttt{R-} represents the Root node sending a message, \texttt{B-}
-         represents a Base node sending a message, and \texttt{C-} represents a Collector node sending a message.}
-\label{fig:proto_reco_spec}
+\caption[Branch Recovery Protocol]
+	{Branch Recovery Protocol: \texttt{R-} represents the Root node sending a message and \texttt{B-} represents a
+	 Base node sending a message.}
+\label{fig:proto_reco_branch_spec}
 \end{figure}
+
+The Branch Recovery Protocol is initiated by Base nodes when they detect their Collector has died. Once the Root node
+has received an \texttt{SOS} message from at least one third of the branch's Base nodes, the Root proceeds to shutdown
+the entire branch using the Topology Protocol.
+
+The \texttt{GROUP} message is shorthand for the Topology Protocol's \texttt{TOPO} message with a key value of
+\texttt{"/GROUP/<group-name>"}. This takes advantage of ZeroMQ's Pub-Sub filtering to only stop the faulty branch.
+
+\begin{figure}[H]
+\vspace{+10pt}
+\begin{verbatim}
+root-recovery  = *election
+election       = C-WUTUP *C-YO C-IWIN
+\end{verbatim}
+\vspace{-5pt}
+\caption[Root Recovery Protocol]
+        {Root Recovery Protocol: \texttt{C-} represents a Collector node sending a message.}
+\label{fig:proto_reco_root_spec}
+\end{figure}
+
+As each Collector nodes detect the Root node has died, it attempts to start an election via the Root Recovery Protocol.
+The \texttt{WUTUP} and \texttt{IWIN} messages are shorthand for \texttt{TOPO(key="/RECOVERY/wutup"} and
+\texttt{TOPO(key="/RECOVERY/iwin"} respectively. The \texttt{YO} message is shorthand for
+\texttt{CONTROL(command="yo")}.

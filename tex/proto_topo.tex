@@ -1,15 +1,17 @@
-\subsection{Topology Discovery Protocol}
+\subsection{Topology Protocol}
 \label{proto_topo}
 
 The \dcamp distributed topology is dynamically established as the Root node sends out its discovery message and receives
 join messages from Base nodes. Once a Base node responds to the Root, the Base node is given its assignment.
+Additionally, the Root node can shutdown the system using this same protocol but responding with a "stop" message
+instead of an assignment.
 
 \begin{figure}[H]
 \vspace{+10pt}
 \begin{verbatim}
 topo-discovery = *discover join
 discover       = R-MARCO
-join           = B-POLO ( R-ASSIGN / R-WTF )
+join           = B-POLO ( R-ASSIGN / R-STOP / R-WTF )
 \end{verbatim}
 \vspace{-5pt}
 \caption[Topology Discovery Protocol]
@@ -18,7 +20,7 @@ join           = B-POLO ( R-ASSIGN / R-WTF )
 \label{fig:proto_topo_spec}
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
     \includegraphics[scale=0.66]{topo.pdf}
     \label{fig:proto_topo_image}
@@ -29,7 +31,7 @@ join           = B-POLO ( R-ASSIGN / R-WTF )
 
 \textbf{\texttt{TOPO}} is a generic topology message consisting of four frames. This message type is designed to be sent
 across a PUB/SUB connection, from which subscribers filter incoming messages using the first frame. This design proves
-useful for the \hyperref[proto_reco]{Recovery Protocol}.
+useful for the \hyperref[proto_reco]{Recovery Protocols}.
 
 The \texttt{MARCO} message is simply shorthand for \texttt{TOPO(key="/MARCO")}.
 
@@ -47,8 +49,8 @@ Frame 3: <empty> or content, as 0MQ string
 \end{figure}
 
 \textbf{\texttt{CONTROL}} is a generic control message consisting of four frames and designed to be sent across a
-REQ/REP connection. The \texttt{POLO} and \texttt{ASSIGN} messages are shorthand for \texttt{CONTROL(command="POLO")}
-and \texttt{CONTROL(command="ASSIGN")} respectively.
+REQ/REP connection. The \texttt{POLO}, \texttt{ASSIGN}, and \texttt{STOP} messages are shorthand for
+\texttt{CONTROL(command="POLO")}, \texttt{CONTROL(command="ASSIGN")}, and \texttt{CONTROL(command="STOP")} respectively.
 
 In the case of \texttt{ASSIGN}, the third frame contains the specific topology instructions (level-one collector, leaf
 node, etc.) being sent to the Base node.
