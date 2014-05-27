@@ -59,6 +59,8 @@ if not exists(img_outdir):
 if len(argv) > 1:
     if 'images' == argv[1]:
         build_images()
+    elif 'tex' == argv[1]:
+        build_tex()
     else:
         print('unknown options: {}'.format(argv[1:]))
         exit(1)
