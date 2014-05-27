@@ -9,7 +9,7 @@ algorithms and use the same base messages as the \hyperref[proto_topo]{Topology 
 \vspace{+10pt}
 \begin{verbatim}
 branch-recovery  = *sos group-stop
-sos              = B-SOS
+sos              = B-SOS R-KEEPCALM
 group-stop       = R-GROUP B-POLO R-STOP
 \end{verbatim}
 \vspace{-5pt}
@@ -23,7 +23,20 @@ The Branch Recovery Protocol is initiated by Base nodes when they detect their C
 has received an \texttt{SOS} message from at least one third of the branch's Base nodes, the Root proceeds to shutdown
 the entire branch using the Topology Protocol.
 
-The \texttt{GROUP} message is shorthand for the Topology Protocol's \texttt{TOPO} message with a key value of
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{branch-recovery.pdf}
+    \label{fig:proto_branch_reco_image}
+    \caption[Branch Recovery Protocol Diagram]
+            {Branch Recovery Protocol Diagram: (1) \texttt{SOS}, (2) \texttt{KEEPCALM}, (3) \texttt{GROUP}, (4)
+	    \texttt{POLO}, (5) \texttt{STOP}}
+\end{figure}
+
+\texttt{SOS} and \texttt{KEEPCALM} are shorthand for the \texttt{CONTROL} message with a command value of \texttt{"sos"}
+and \texttt{"keepcalm"} respectively. The \texttt{POLO} and \texttt{STOP} messages come directly from the Topology
+Protocol.
+
+The \texttt{GROUP} message is similarly shorthand for the \texttt{TOPO} message with a key value of
 \texttt{"/GROUP/<group-name>"}. This takes advantage of ZeroMQ's Pub-Sub filtering to only stop the faulty branch.
 
 \begin{figure}[H]
@@ -38,7 +51,19 @@ election       = C-WUTUP *C-YO C-IWIN
 \label{fig:proto_reco_root_spec}
 \end{figure}
 
-As each Collector nodes detect the Root node has died, it attempts to start an election via the Root Recovery Protocol.
+As each Collector node detects the Root node has died, it attempts to start an election via the \texttt{WUTUP} message.
+Collector nodes with higher UUIDs will respond to the first Collector by sending the \texttt{YO} message. If no
+\texttt{YO} messages are received by the first Collector, the \texttt{IWIN} message is sent out to all Collector nodes,
+self-declaring the first Collector as the new Root.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{root-recovery.pdf}
+    \label{fig:proto_root_reco_image}
+    \caption[Root Recovery Protocol Diagram]
+	    {Root Recovery Protocol Diagram: (1) \texttt{WUTUP}, (2) \texttt{YO}, (3) \texttt{WUTUP}, (4) \texttt{IWIN}}
+\end{figure}
+
 The \texttt{WUTUP} and \texttt{IWIN} messages are shorthand for \texttt{TOPO(key="/RECOVERY/wutup"} and
 \texttt{TOPO(key="/RECOVERY/iwin"} respectively. The \texttt{YO} message is shorthand for
 \texttt{CONTROL(command="yo")}.

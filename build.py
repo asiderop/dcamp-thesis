@@ -4,6 +4,7 @@ import sh
 from os.path import exists, join, relpath, dirname
 from os import makedirs
 from time import sleep
+from sys import argv
 
 basedir = dirname(relpath(__file__))
 img_indir = join(basedir, 'images')
@@ -20,6 +21,7 @@ images = [
     'config',
     'data',
     'branch-recovery',
+    'root-recovery',
 ]
 
 def check(cmd):
@@ -41,17 +43,29 @@ def build_images():
         sleep(0.1)  # don't know
         check(s2p.bake(svg, pdf))
 
+    print('images done')
+
 def build_tex():
     check(pdftex)
     check(bibtex)
+    print('bib done')
     check(pdftex)
     check(pdftex)
+    print('tex done')
 
 if not exists(img_outdir):
 	makedirs(img_outdir)  # makes out/ too
 
-build_images()
-build_tex()
+if len(argv) > 1:
+    if 'images' == argv[1]:
+        build_images()
+    else:
+        print('unknown options: {}'.format(argv[1:]))
+        exit(1)
 
-print('Success')
+else:
+    build_images()
+    build_tex()
+
+print('all done')
 
