@@ -1,5 +1,5 @@
 \chapter{Analysis}
-\label{Analysis}
+\label{analysis}
 
 To verify that \dcamp meets the distributed performance framework criterion outlined in Chapter \ref{introduction},
 several experiments were run on a test installation of \dcamp in a test environment. The goal of these experiments was
@@ -9,4 +9,36 @@ These experiments help to define ``reasonable'' for various scenarios, environme
 requirements.
 
 \emph{list out some experiments, test environment characteristics, etc.}
+
+\begin{lstlisting}
+
++   transparency: impact on single system with dCAMP
+    *   measure dCAMP process with CAMP or psutil or other
+	framework
+        +   cpu usage, memory usage, data i/o ?
+    *   dCAMP must be configured to do something while being
+	measured, perhaps configured to measure a benchmark
+	process or other well known application workload (e.g.
+	Fhourstones)
+
++   scalability: impact on network or single system as dCAMP
+    system grows
+    *   take same transparency measurements at various dCAMP
+        sizes: 3 nodes, 30 nodes, 300 nodes...
+    *   scenarios
+	+   increase simulated nodes on single machine
+	    --> extrapolate impact on system only visible after N
+	        nodes...
+            --> monitor network traffic?
+        +   run actually larger system with multiple machines
+	    --> run 10 nodes per machine, scale to thousands of
+	        nodes?
+            --> monitor network and cpu again?
+
++   validity
+    *   base metrics do not need to be revalidated (on top of
+        CAMP / psutil)
+    *   aggregated metrics need validation
+
+\end{lstlisting}
 
