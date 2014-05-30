@@ -46,8 +46,9 @@ Performance metric samples are specified as:
 \item the actual performance metric to be sampled.
 \end{enumerate}
 
-The report threshold can be specified as "hold and report every N seconds" or "report when the metric value is
-greater/less than X". When "hold" is specified (via an *), all metric values sampled during the time limit are sent.
+The report threshold can be specified as ``hold and report every N seconds'' or ``report when the metric value is
+greater/less than X''. When ``hold'' is specified (via an \texttt{*}), all metric values sampled during the time limit
+are sent.
 
 \begin{figure}[ht]
     \begin{lstlisting}
@@ -67,7 +68,7 @@ NOTE ABOUT ACCUMULATION (DOESN'T WORK)
 \item filtering could be done two ways: accumulatively and discretely.
 \item accumulative means we send only one final value for each time range (e.g. collect every second but report every
       minute, so 60 samples are combined into a single value and sent)
-\item discrete means we send each constituent value for each time range, but they are "held" until the time limit is
+\item discrete means we send each constituent value for each time range, but they are ``held'' until the time limit is
       reached
 \item how do these two filtering methods interact with value-based limits? are they always discrete?
 \item ACTUALLY: accumulation is not valuable for monotonically increasing values--it is the same as just sampling at the

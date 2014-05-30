@@ -39,7 +39,7 @@ system is not required.
 
 \item Root node does not need to be present for the system to operate. 1) Root (i.e. `Management` service) node can come
 and go, 2) all data is stored at top-level Collector nodes, 3) Root comes online and asks Collectors for data (since
-T?), 4) there is a "master" Collector node for config (is that same as root?)
+T?), 4) there is a ``master'' Collector node for config (is that same as root?)
 
 \end{itemize}
 
@@ -94,6 +94,6 @@ The admin can use \dcamp to request metrics on a one-time basis, for example, to
 node. The key here is a metric collection is not based on configuration file but rather on real-time input from the
 end-user.
 
-Perhaps there should be some special, e.g. "once", metric collection specifications so config data can be sent up to the
+Perhaps there should be some special, e.g. ``once'', metric collection specifications so config data can be sent up to the
 root only at node start.
 
