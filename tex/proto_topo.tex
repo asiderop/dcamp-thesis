@@ -39,8 +39,8 @@ The \texttt{MARCO} message is simply shorthand for \texttt{TOPO(key="/MARCO")}.
 \vspace{+10pt}
 \begin{verbatim}
 Frame 0: key, as 0MQ string
-Frame 1: root endpoint identity, as 0MQ string
-Frame 2: root endpoint UUID, 16 bytes in network order
+Frame 1: root address, as 0MQ string
+Frame 2: root UUID, 16 bytes in network order
 Frame 3: <empty> or content, as 0MQ string
 \end{verbatim}
 \vspace{-20pt}
@@ -59,13 +59,13 @@ node, etc.) being sent to the Base node.
 \vspace{+10pt}
 \begin{verbatim}
 Frame 0: command, as 0MQ string
-Frame 1: base endpoint identity, as 0MQ string
-Frame 2: base endpoint UUID, 16 bytes in network order
+Frame 1: base address, as 0MQ string
+Frame 2: base UUID, 16 bytes in network order
 Frame 3: properties, JSON-encoded, as 0MQ string
 
 command     = "polo" / "assignment"
 properties  = *( parent / level / group )
-parent      = "parent=" <node-endpoint-identity>
+parent      = "parent=" <node-address>
 level       = "level=" ( "root" / "branch" / "leaf" )
 group       = "group=" <group-identity>
 \end{verbatim}

@@ -128,9 +128,9 @@ multiple endpoints connected and the built-in fair-queuing taking care of routin
 
 \subsection{Quick Simulation}
 
-The nature of ZMQ bind/connect endpoints just being a protocol and a network address means simulation of large
+The nature of ZMQ bind/connect endpoints just being a transport and a network address means simulation of large
 distributed systems can take place on a single machine using unique port numbers. Additionally, the interoperability of
-\texttt{inproc} (within the same process) and TCP protocols allows for even larger simulations, not bound by port
+\texttt{inproc} (within the same process) and TCP transports allows for even larger simulations, not bound by port
 availability on the host.
 
 This is demonstrated several times in examples within \textit{The Guide}, and it indeed held true during \dcamp
