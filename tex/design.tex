@@ -82,7 +82,8 @@ service.
       multiple sensors and/or collectors.
 \item \textbf{Management}--—primary entry-point for end-user control of \dcamp distributed system; this is the \dcamp
       instrument panel, providing basic administration functions (e.g. start, stop, etc.).
-\item \textbf{Configuration}--—complete configuration replication; provides topology and configuration distribution.
+\item \textbf{Configuration}--—complete or partial configuration replication; provides topology and configuration
+      distribution.
 
 \end{itemize}
 
@@ -115,11 +116,11 @@ implement.
 \hline
 \textbf{Role} & \textbf{Service(s)} \\
 \hline
-Root & Management, Aggregation, Filter, Configuration \\
+Root & Management, Aggregation, Filter, Configuration (Full \\
 \hline
-Collector & Aggregation, Filter, Configuration \\
+Collector & Aggregation, Filter, Configuration (Full) \\
 \hline
-Metric & Sensor, Filter, Configuration \\
+Metric & Sensor, Filter, Configuration (Partial) \\
 \hline
 Base & Node \\
 \hline
