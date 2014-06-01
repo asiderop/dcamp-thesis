@@ -32,10 +32,13 @@ def check(cmd):
         print('Error')
         exit(1)
 
+def pprog(msg):
+    print(msg, end='')
+    stdout.flush()
+
 def build_images(given=None):
 
-    print('building images: ', end='')
-    stdout.flush()
+    pprog('building IMAGES: ')
 
     for img in (given or images):
         asci = join(img_indir, img + '.ascii')
@@ -46,8 +49,8 @@ def build_images(given=None):
             print('\nError: file does not exist: {}'.format(asci))
             exit(1)
 
-        print(img+' ', end='')
-        stdout.flush()
+        pprog(img+' ')
+
         check(sh.rm.bake('-f', pdf, svg))
         check(a2s.bake('-i'+asci, '-o'+svg))
         sleep(0.1)  # don't know
@@ -56,12 +59,21 @@ def build_images(given=None):
     print('DONE')
 
 def build_tex():
+    pprog('building TEX: ')
+
+    pprog('tex(1) ')
     check(pdftex)
+
+    pprog('bib ')
     check(bibtex)
-    print('bib done')
+
+    pprog('tex(2) ')
     check(pdftex)
+
+    pprog('tex(3) ')
     check(pdftex)
-    print('tex done')
+
+    print('DONE')
 
 if not exists(img_outdir):
 	makedirs(img_outdir)  # makes out/ too
