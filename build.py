@@ -4,7 +4,7 @@ import sh
 from os.path import exists, join, relpath, dirname
 from os import makedirs
 from time import sleep
-from sys import argv
+from sys import argv, stdout
 
 basedir = dirname(relpath(__file__))
 img_indir = join(basedir, 'images')
@@ -33,7 +33,9 @@ def check(cmd):
         exit(1)
 
 def build_images(given=None):
-    check(sh.rm.bake('-f', sh.glob(join(img_outdir, '*.pdf')), sh.glob(join(img_outdir, '*.svg'))))
+
+    print('building images: ', end='')
+    stdout.flush()
 
     for img in (given or images):
         asci = join(img_indir, img + '.ascii')
@@ -41,14 +43,17 @@ def build_images(given=None):
         pdf = join(img_outdir, img + '.pdf')
 
         if not exists(asci):
-            print('Error: file does not exist: {}'.format(asci))
+            print('\nError: file does not exist: {}'.format(asci))
             exit(1)
 
+        print(img+' ', end='')
+        stdout.flush()
+        check(sh.rm.bake('-f', pdf, svg))
         check(a2s.bake('-i'+asci, '-o'+svg))
         sleep(0.1)  # don't know
         check(s2p.bake(svg, pdf))
 
-    print('images done')
+    print('DONE')
 
 def build_tex():
     check(pdftex)
