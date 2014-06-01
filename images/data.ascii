@@ -15,7 +15,7 @@ Exernal           .->                      |              .->        Internal
   .---+---.   .---+---.   .-----+-----.    |    .---+---.   .---+---.
   |  PUB  |   |  PUB  |   |    PUB    |    |    | PUSH  |   | PUSH  |
   +-------+   +-------+   +-----------+    |    +-------+   +-------+
-  | Sensor|   | Sensor|   | Collector |    |    | Local |   | Child |
+  | Metric|   | Metric|   | Collector |    |    | Local |   | Child |
   | Node  |   | Node  |   | Node      |    |    | Data  |   | Data  |
   #-------#   #-------#   +-----------+    |    #-------#   +-------+
                           |    SUB    |    |                |  SUB  |
