@@ -22,12 +22,12 @@ snap-sync          = C-ICANHAZ ( ( *P-KVSYNC P-KTHXBAI ) / P-WTF )
 \vspace{-5pt}
 \caption[Configuration Protocol Specification]
 	{Configuration Protocol Specification: \texttt{P-} represents the parent node (Root or Collector) sending a
-	 message and \texttt{C-} represents the child node sending a message.}
+	 message and \texttt{C-} represents the child node (Collector or Metric) sending a message.}
 \label{fig:proto_config_spec}
 \end{figure}
 
 A newly assigned first-level Collector node will first subscribe to new configuration updates from the Root node and
-then send a configuration snapshot request to the Root node. A newly assigned Sensor (or non-first-level Collector) node
+then send a configuration snapshot request to the Root node. A newly assigned Metric (or non-first-level Collector) node
 will first subscribe to new configuration updates from its parent Collector node, and then send its parent Collector
 node a filtered configuration snapshot request. Once its snapshot has been successfully received, a node will process
 any pending configuration updates and then, in the case of a Collector node, respond to child node snapshot requests.
@@ -46,7 +46,10 @@ The \dcamp configuration replication algorithm adheres to the Clustered Hashmap 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.5]{config.pdf}
-    \caption{Configuration Protocol Diagram}
+    \caption[Configuration Protocol Diagram]
+	    {Configuration Protocol Diagram: (*) Parent node sends \texttt{KVPUB} or \texttt{HUGZ} at any time, (1)
+	     child node sends \texttt{ICANHAZ} request, (2) parent node replies with zero or more \texttt{KVSYNC}
+	     messages followed by exactly one \texttt{KTHXBAI} message.}
     \label{fig:proto_config_image}
 \end{figure}
 

@@ -9,27 +9,29 @@ algorithms and use the same base messages as the \hyperref[proto_topo]{Topology 
 \vspace{+10pt}
 \begin{verbatim}
 branch-recovery  = *sos group-stop
-sos              = B-SOS R-KEEPCALM
-group-stop       = R-GROUP B-POLO R-STOP
+sos              = M-SOS R-KEEPCALM
+group-stop       = R-GROUP M-POLO R-STOP
 \end{verbatim}
 \vspace{-5pt}
 \caption[Branch Recovery Protocol]
-	{Branch Recovery Protocol: \texttt{R-} represents the Root node sending a message and \texttt{B-} represents a
-	 Base node sending a message.}
+	{Branch Recovery Protocol: \texttt{R-} represents the Root node sending a message and \texttt{M-} represents a
+	 Metric node sending a message.}
 \label{fig:proto_reco_branch_spec}
 \end{figure}
 
-The Branch Recovery Protocol is initiated by Base nodes when they detect their Collector has died. Once the Root node
-has received an \texttt{SOS} message from at least one third of the branch's Base nodes, the Root proceeds to shutdown
-the entire branch using the Topology Protocol.
+The Branch Recovery Protocol is initiated by Metric nodes when they detect their Collector has died. Once the Root node
+has received an \texttt{SOS} message from at least one third of the branch's Metric nodes, the Root proceeds to shutdown
+the entire branch using the \texttt{topo-stop} Topology Protocol. Once shut down, a new Collector is selected and the
+branch is rebuilt using the standard \texttt{topo-discover} Topology Protocol.
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.5]{branch-recovery.pdf}
     \label{fig:proto_branch_reco_image}
     \caption[Branch Recovery Protocol Diagram]
-            {Branch Recovery Protocol Diagram: (1) \texttt{SOS}, (2) \texttt{KEEPCALM}, (3) \texttt{GROUP}, (4)
-	    \texttt{POLO}, (5) \texttt{STOP}}
+            {Branch Recovery Protocol Diagram: (1) Metric nodes send \texttt{SOS} requests, (2) Root replies with
+	     \texttt{KEEPCALM}, (3) Root sends \texttt{GROUP} only to nodes in branch, (4) Metric nodes send
+	     \texttt{POLO} requests, (5) Root replies with \texttt{STOP}}
 \end{figure}
 
 \texttt{SOS} and \texttt{KEEPCALM} are shorthand for the \texttt{CONTROL} message with a command value of \texttt{"sos"}

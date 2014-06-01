@@ -1,21 +1,23 @@
-\subsection{Topology Protocol}
+\subsection{Topology Protocols}
 \label{proto_topo}
 
 The \dcamp distributed topology is dynamically established as the Root node sends out its discovery message and receives
-join messages from Base nodes. Once a Base node responds to the Root, the Base node is given its assignment.
-Additionally, the Root node can shutdown the system using this same protocol but responding with a \texttt{STOP} message
-instead of an assignment.
+join messages from Base nodes. When a Base node responds to the Root, the Base node is given its assignment.
+
+To reduce network traffic and load on the Root, Base nodes are designed to ignore \texttt{MARCO} messages from nodes
+whose UUID matches a previous successful topology discovery handshake. The Root node uses this to its advantage when
+attempting to stop nodes: the same \texttt{MARCO} / \texttt{POLO} pattern is used, but the Root node uses a different
+UUID in the \texttt{MARCO} message and a responds with a \texttt{STOP} message instead of an assignment.
 
 \begin{figure}[H]
 \vspace{+10pt}
 \begin{verbatim}
-topo-discovery = *discover join
-discover       = R-MARCO
-join           = B-POLO ( R-ASSIGN / R-STOP / R-WTF )
+discover = *R-MARCO B-POLO ( R-ASSIGN / R-WTF )
+stop     = R-MARCO B-POLO ( R-STOP / R-WTF )
 \end{verbatim}
 \vspace{-5pt}
-\caption[Topology Protocol]
-        {Topology Protocol: \texttt{R-} represents the Root node sending a message and \texttt{B-}
+\caption[Topology Protocols]
+        {Topology Protocols: \texttt{R-} represents the Root node sending a message and \texttt{B-}
          represents a Base node sending a message.}
 \label{fig:proto_topo_spec}
 \end{figure}
@@ -24,7 +26,9 @@ join           = B-POLO ( R-ASSIGN / R-STOP / R-WTF )
     \centering
     \includegraphics[scale=0.5]{topo.pdf}
     \label{fig:proto_topo_image}
-    \caption{Topology Protocol Diagram}
+    \caption[Topology Protocol Diagram]
+	    {Topology Protocol Diagram: (1) Root sends \texttt{MARCO} at regular intervals, (2) Base sends \texttt{POLO}
+	     request, (3) Root replies with  \texttt{ASSIGN} or \texttt{STOP}}
 \end{figure}
 
 \subsubsection{Message Definitions}

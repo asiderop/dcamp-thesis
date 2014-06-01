@@ -51,27 +51,23 @@ Table \ref{tab:metric_types} shows how each of the \dcamp metric types are calcu
 performance measurement frameworks\cite{ganglia}, \dcamp stores all metrics in their raw, uncalculated form and only
 presents a calculated value upon display.
 
+\renewcommand{\arraystretch}{1.5}
 \begin{table}
-\begin{tabular}{|l|l|l|}
+\begin{tabular}{ l|l|l }
 \hline
 \textbf{Type} & \textbf{Contents of Single Sample} & \textbf{Calculation of Two Samples}
-\\
+\tabularnewline
 \hline
 basic & raw value at specified timestamp & \( C = V_{t_2} \)
-\\
-\hline
+\tabularnewline
 delta & raw value at specified timestamp & \( C = V_{t_2} - V_{t_1} \)
-\\
-\hline
-rate & raw value at timestamp & \( C = (V_{t_2} - V_{t_1}) / (t_2 - t_1) \)
-\\
-\hline
-average & raw value and raw base value at timestamp & \( C = (V_{t_2} - V_{t_1}) / (B_{t_2} - B_{t_1}) \)
-\\
-\hline
-percent & raw value and raw base value at timestamp & \( C = ( (V_{t_2} - V_{t_1}) / (B_{t_2} - B_{t_1}) ) 100 \)
-\\
-\hline
+\tabularnewline
+rate & raw value at timestamp & \( C = \frac{V_{t_2} - V_{t_1}}{t_2 - t_1} \)
+\tabularnewline
+average & raw value and base value at timestamp & \( C = \frac{V_{t_2} - V_{t_1}}{B_{t_2} - B_{t_1}} \)
+\tabularnewline
+percent & raw value and base value at timestamp & \( C = 100 \frac{V_{t_2} - V_{t_1}}{B_{t_2} - B_{t_1}} \)
+\tabularnewline
 \end{tabular}
 \caption[Metric Types]
         {Metric Types: \(C\) represents the value calculated from two samples taken at \(t_1\) and \(t_2\). \(V\) is the
