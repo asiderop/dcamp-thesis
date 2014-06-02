@@ -21,8 +21,8 @@ group-stop       = R-GROUP M-POLO R-STOP
 
 The Branch Recovery Protocol is initiated by Metric nodes when they detect their Collector has died. Once the Root node
 has received an \texttt{SOS} message from at least one third of the branch's Metric nodes, the Root proceeds to shutdown
-the entire branch using the \texttt{topo-stop} Topology Protocol. Once shut down, a new Collector is selected and the
-branch is rebuilt using the standard \texttt{topo-discover} Topology Protocol.
+the entire branch using the ``stop'' Topology Protocol. Once shut down, a new Collector is selected and the branch is
+rebuilt using the standard ``discover'' Topology Protocol.
 
 \begin{figure}[H]
     \centering

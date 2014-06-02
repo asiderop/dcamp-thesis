@@ -79,12 +79,12 @@ if not exists(img_outdir):
 	makedirs(img_outdir)  # makes out/ too
 
 if len(argv) > 1:
-    if 'images' == argv[1]:
+    if argv[1] in ('images', 'images/'):
         i = None
         if len(argv) > 2:
-            i = [argv[2]]
+            i = argv[2:]
         build_images(i)
-    elif 'tex' == argv[1]:
+    if argv[1] in ('tex', 'tex/'):
         build_tex()
     else:
         print('unknown options: {}'.format(argv[1:]))

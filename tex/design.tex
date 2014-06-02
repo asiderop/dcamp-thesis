@@ -258,3 +258,49 @@ That is, if C receives no message from R within D seconds, R is considered disco
       an optimization to be found by uniquely ID'ing each election?
 \item Can this algorithm be optimized w.r.t. the number of messages sent?
 \end{itemize}
+
+\section{\dcamp Operation}
+
+\subsection{Sequence of \dcamp Operation}
+
+The following steps describe how the \dcamp system is turned on. The Base nodes (other than the node assigned to be the
+Root) can be started at any time by using the \dcamp CLI, before or after the Root node is initialized. It is expected
+these Base nodes are managed by a watchdog utility which automatically restarts the node if it exits for any reason.
+
+\begin{figure}[H]
+\vspace{+10pt}
+\begin{lstlisting}[language=bash,frame=single,basicstyle=\footnotesize\ttfamily]
+#!/usr/bin/env bash
+while [ true ]
+do
+    dcamp base --address localhost:56789
+done
+\end{lstlisting}
+\vspace{-10pt}
+\caption{Sample Watchdog Script}
+\label{fig:sample_watchdog}
+\end{figure}
+
+\begin{enumerate}
+
+\item User promotes a Root node via the \dcamp CLI, specifying a configuration file and a Base node's address.
+\item Root node connects to each Base node and begins the ``discover'' \hyperref[proto_topo]{Topology Protocol}.
+\item Base nodes join the \dcamp system at any time, being assigned as Collector or Metric nodes in the topology.
+
+\item \dcamp runs in a steady state, nodes entering or exiting the system at any time.
+
+      \begin{itemize}
+      \item Performance counters are sampled, filtered, reported, and logged by the Metric nodes at regular intervals
+            according to the \hyperref[imp_configuration]{\dcamp Configuration}.
+      \item Performance counters received from child nodes are aggregated, filtered, reported, and logged by Collector
+            nodes at regular intervals according to the \dcamp Configuration.
+      \item Performance counters received from child nodes are aggregated and logged by Root node for later processing
+            (e.g. graphing metrics during a test scenario or correlating statistics with a distributed event log).
+      \end{itemize}
+
+\item User stops \dcamp by using the \dcamp CLI command.
+\item Root node begins the ``stop'' Topology Protocol.
+\item Collector and Metric nodes exit the topology and revert to Base nodes.
+\item Root node exits, reverting to Base node.
+
+\end{enumerate}
