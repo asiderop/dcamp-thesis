@@ -262,6 +262,7 @@ That is, if C receives no message from R within D seconds, R is considered disco
 \section{\dcamp Operation}
 
 \subsection{Sequence of \dcamp Operation}
+\label{operation_sequnce}
 
 The following steps describe how the \dcamp system is turned on. The Base nodes (other than the node assigned to be the
 Root) can be started at any time by using the \dcamp CLI, before or after the Root node is initialized. It is expected
@@ -304,3 +305,34 @@ done
 \item Root node exits, reverting to Base node.
 
 \end{enumerate}
+
+\subsection{Threading Model}
+
+As mentioned above as the first and third steps of \dcamp operation, a Base node can transform into one of the three
+active \dcamp roles: Root, Collector, or Metric. This transformation is actually the Base role (via the Node service)
+launching and managing another Role internally. This interaction is depicted in Figure
+\ref{fig:node_role_service_image}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{node-role-service.pdf}
+    \caption[Node, Role, Services Threading Model Diagram]
+            {Node, Role, Services Threading Model Diagram: Thread boundaries are represented by dashed lines. Except for
+	     the Node service's \texttt{SUB} and \texttt{REQ} sockets, all arrows represent \texttt{PAIR} socket
+	     communication.}
+    \label{fig:node_role_service_image}
+\end{figure}
+
+When a Base node is running, only the bottom two threads (the Base role and the Node service) are active. Once it
+receives an assignment from the ``discover'' Topology Protocol or the \dcamp CLI, the Node service launches an
+appropriate Role thread which, in turn, launches one or more Role-specific service threads.
+
+All communication between the roles and services occurs across \texttt{PAIR} control sockets. There are also various
+service-to-service communications which occur via \texttt{inproc} transport sockets (e.g. the internal
+\hyperref[proto_data]{Data Flow Protocol}) and shared memory data structures (e.g. the Configuration service).
+
+Also mentioned in section \ref{operation_sequnce} as the last two steps, each Role exits and, by doing so, reverts
+itself back to a Base node. This is handled just like before, with the Node service receiving a \texttt{STOP} message
+via the ``stop'' Topology Protocol and then notifying the internally running Role to shut down. The Role thread then
+notifies its service threads, waits for them to finish, then exits.
+
