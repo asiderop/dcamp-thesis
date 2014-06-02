@@ -13,8 +13,8 @@ outdir = join(basedir, 'out')
 
 a2s = sh.Command("/Volumes/Repositories/Personal/asciitosvg/a2s")
 s2p = sh.Command("/usr/local/bin/svg2pdf")
-pdftex = sh.pdflatex.bake('-output-directory', outdir, 'thesis')
-bibtex = sh.bibtex.bake(join(outdir, 'thesis'))
+pdftex = sh.pdflatex.bake('-output-directory', outdir, 'dcamp')
+bibtex = sh.bibtex.bake(join(outdir, 'dcamp'))
 
 images = [
     'topo',
