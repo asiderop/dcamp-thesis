@@ -209,7 +209,7 @@ When the Root node, R, detects one of the Collector nodes has disconnected,
 \subsubsection{DETECTION}
 
 M will use the \hyperref[proto_config]{Configuration Replication Protocol} (\texttt{HUGZ}) to detect when C disconnects.
-R will use the \hyperref[proto_data]{Data Flow Protocol} (\texttt{METRIC(type='HUGZ')}) to detect when any of its
+R will use the \hyperref[proto_data]{Data Flow Protocol} (\texttt{DATA(type='HUGZ')}) to detect when any of its
 Collector nodes has disconnected. That is, if M or R receives no messages from C within D seconds, C is considered
 disconnected.
 

@@ -21,7 +21,7 @@ When data rate is slower than a predefined threshold, heartbeats are sent instea
 \begin{figure}[H]
 \vspace{+10pt}
 \begin{verbatim}
-data-flow = *( METRIC / HUGZ )
+data-flow = *( DATA / HUGZ )
 \end{verbatim}
 \vspace{-5pt}
 \caption[Data Flow Specification]
@@ -71,14 +71,14 @@ percent & raw value and base value at timestamp & \( C = 100 \frac{V_{t_2} - V_{
 \end{tabular}
 \caption[Metric Types]
         {Metric Types: \(C\) represents the value calculated from two samples taken at \(t_1\) and \(t_2\). \(V\) is the
-	 value and \(B\) is the base value in the \texttt{METRIC} message}
+	 value and \(B\) is the base value in the \texttt{DATA} message}
 \label{tab:metric_types}
 \end{table}
 
 \subsubsection{Message Definitions}
 
-\textbf{\texttt{METRIC}} is a five-frame message containing the performance metric data sampled by the Sensor service or
-calculated by the Aggregation service. The \texttt{HUGZ} message is simply shorthand for \texttt{METRIC(type="HUGZ")}.
+\textbf{\texttt{DATA}} is a five-frame message containing the performance metric data sampled by the Sensor service or
+calculated by the Aggregation service. The \texttt{HUGZ} message is simply shorthand for \texttt{DATA(type="HUGZ")}.
 
 A single data sample MUST contain: source identifier (node or aggregation), metric identifier, timestamp, and one or two
 values depending on the metric type.
@@ -105,6 +105,6 @@ config     = "config-name=" <string>
 seqid      = "config-seqid=" <integer>
 \end{verbatim}
 \vspace{-20pt}
-\caption{\texttt{METRIC} Message Definition}
+\caption{\texttt{DATA} Message Definition}
 \label{fig:message_metric}
 \end{figure}
