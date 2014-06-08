@@ -95,7 +95,7 @@ node in the \dcamp system which is not a child node.
 \item[\dcamp Configuration:]
 The \dcamp configuration specifies everything about the system, including hierarchy levels, metrics, sampling periods,
 reporting periods, filtering, communication details, etc. The configuration is set at the root node and then
-distributed to the rest of the \dcamp system. Configuration details can be found in section \ref{imp_configuration}. 
+distributed to the rest of the \dcamp system. Configuration details can be found in section \ref{configuration}. 
 
 \item[ZeroMQ Address,]
 \item[ZeroMQ Endpoint:]
@@ -172,5 +172,71 @@ Inquiry metrics provide a mechanism for enumerating various properties of the sy
 \item Number of CPUs in the system 
 \item ``process identifier'' for the given pid 
 \item ``process identifier'' for each running process launched from an executable of the given name
+\end{itemize}
+
+\section{Configuration}
+\label{configuration}
+
+\subsection{Node Specification}
+
+Nodes may be specified individually (as ZeroMQ addresses) or as groups (IP subnets). Additionally, nodes may be included
+or excluded based on host name or IP Address matching. Name matching does a case-insensitive comparison of the node's
+host name; left, right, or whole name matching can be specified. Address matching checks that the node's IP Address
+falls within a given subnet (i.e. IP Address and mask length).
+
+\begin{figure}[ht]
+    \begin{lstlisting}
+    node-spec        = address / node-group
+    address          = host ":" port
+    host             = name / ip-address
+    node-group       = group-name 1*( address / ( subnet ":" port ) ) *filter
+    subnet           = ip-address "/" mask-length
+    filter           = [ "+" / "-" ] ( name-match / subnet-match )
+    name-match       = [ ( "L" / "R" / "W" ) SP ] name
+    subnet-match     = subnet
+    \end{lstlisting}
+    \caption{Configuration File - Node Specification}
+    \label{fig:config_file_node}
+\end{figure}
+
+\subsection{Sample Specification}
+
+Performance metric samples are specified as:
+
+\begin{enumerate}
+\item the node(s) on which to sample the data,
+\item the rate at which data should be sampled,
+\item the threshold past which data should be reported, and lastly
+\item the actual performance metric to be sampled.
+\end{enumerate}
+
+The report threshold can be specified as ``hold and report every N seconds'' or ``report when the metric value is
+greater/less than X''. When ``hold'' is specified (via an \texttt{*}), all metric values sampled during the time limit
+are sent.
+
+\begin{figure}[ht]
+    \begin{lstlisting}
+    sample-spec      = 1*sample
+    sample           = sample-rate [ report-threshold ] metric
+    sample-rate      = 1*DIGIT "s" ; seconds
+    report-threshold = ( "*" 1*DIGIT "s" ) / ( ( "<" / ">" ) 1*DIGIT ) ; seconds or raw value
+    metric           = "CPU" / "DISK" / "NETWORK"
+    \end{lstlisting}
+    \caption{Configuration File - Sample Specification}
+    \label{fig:config_file_sample}
+\end{figure}
+
+NOTE ABOUT ACCUMULATION (DOESN'T WORK)
+
+\begin{itemize}
+\item filtering could be done two ways: accumulatively and discretely.
+\item accumulative means we send only one final value for each time range (e.g. collect every second but report every
+      minute, so 60 samples are combined into a single value and sent)
+\item discrete means we send each constituent value for each time range, but they are ``held'' until the time limit is
+      reached
+\item how do these two filtering methods interact with value-based limits? are they always discrete?
+\item ACTUALLY: accumulation is not valuable for monotonically increasing values--it is the same as just sampling at the
+      slower frequency. accumulation is only valuable for non-monotonically increasing values. but in that case, one
+      should find the raw, monotonically increasing values from which it is calculated.
 \end{itemize}
 
