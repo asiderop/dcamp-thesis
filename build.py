@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 
 import sh
-from os.path import exists, join, relpath, dirname
-from os import makedirs
+from os.path import exists, join, relpath, dirname, abspath
+from os import makedirs, chdir
 from time import sleep
 from sys import argv, stdout
 
+chdir(dirname(abspath(__file__)))
 basedir = dirname(relpath(__file__))
+
 img_indir = join(basedir, 'images')
 img_outdir = join(basedir, 'out/img')
 outdir = join(basedir, 'out')
@@ -74,6 +76,9 @@ def build_tex():
     check(pdftex)
 
     print('DONE')
+
+#####
+# BEGIN MAIN
 
 if not exists(img_outdir):
 	makedirs(img_outdir)  # makes out/ too
