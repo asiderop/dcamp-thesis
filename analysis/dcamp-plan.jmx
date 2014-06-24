@@ -117,7 +117,7 @@
               <threadCounts>true</threadCounts>
             </value>
           </objProp>
-          <stringProp name="filename">~/results.csv</stringProp>
+          <stringProp name="filename">~/results-dcamp1m-2.csv</stringProp>
           <boolProp name="useGroupName">true</boolProp>
         </ResultCollector>
         <hashTree/>
