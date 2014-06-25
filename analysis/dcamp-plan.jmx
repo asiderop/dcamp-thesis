@@ -117,7 +117,7 @@
               <threadCounts>true</threadCounts>
             </value>
           </objProp>
-          <stringProp name="filename">~/results-dcamp1m-2.csv</stringProp>
+          <stringProp name="filename">~/results-dcamp-5m-3.csv</stringProp>
           <boolProp name="useGroupName">true</boolProp>
         </ResultCollector>
         <hashTree/>
@@ -517,7 +517,7 @@
         <longProp name="ThreadGroup.start_time">1403411386000</longProp>
         <longProp name="ThreadGroup.end_time">1403411386000</longProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
-        <stringProp name="ThreadGroup.duration">520</stringProp>
+        <stringProp name="ThreadGroup.duration">620</stringProp>
         <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
       <hashTree>
