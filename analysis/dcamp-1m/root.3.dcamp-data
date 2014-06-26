@@ -1,0 +1,819 @@
+1403748443582 base=37626590.00 value=3374.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=11
+1403748443617 base=None value=234172416.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=11
+1403748443630 base=2112884736.00 value=85266432.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=11
+1403748443642 base=None value=2370500608.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403748443643 base=None value=285888512.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403748443644 base=None value=7073132935314.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403748443645 base=37626595.00 value=26740365.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403748443582 base=37626590.00 value=3374.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=11
+1403748503056 base=37638495.00 value=13216.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748443617 base=None value=234172416.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=11
+1403748503149 base=None value=234528768.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748443630 base=2112884736.00 value=85266432.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=11
+1403748503224 base=2112884736.00 value=1090945024.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748443642 base=None value=2370500608.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403748503275 base=None value=2371057664.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403748443643 base=None value=285888512.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403748503281 base=None value=379125760.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403748443644 base=None value=7073132935314.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403748503282 base=None value=7078120961081.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403748443645 base=37626595.00 value=26740365.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403748503283 base=37638522.00 value=26750557.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403748503056 base=37638495.00 value=13216.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748563057 base=37650490.00 value=24721.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748503149 base=None value=234528768.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748563128 base=None value=234876928.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748503224 base=2112884736.00 value=1090945024.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748563203 base=2112884736.00 value=1081819136.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748503275 base=None value=2371057664.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403748563281 base=None value=2371606528.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403748503281 base=None value=379125760.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403748563283 base=None value=381607936.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403748503282 base=None value=7078120961081.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403748563284 base=None value=7083290001748.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403748503283 base=37638522.00 value=26750557.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403748563285 base=37650523.00 value=26762558.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403748563057 base=37650490.00 value=24721.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748623057 base=37662490.00 value=36258.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748563128 base=None value=234876928.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748623128 base=None value=235192320.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748563203 base=2112884736.00 value=1081819136.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748623206 base=2112884736.00 value=1075539968.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748563281 base=None value=2371606528.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403748623267 base=None value=2372118528.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403748563283 base=None value=381607936.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403748623269 base=None value=382492672.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403748563284 base=None value=7083290001748.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403748623277 base=None value=7087947737900.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403748563285 base=37650523.00 value=26762558.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403748623278 base=37662521.00 value=26774556.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403748623057 base=37662490.00 value=36258.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748683057 base=37674492.00 value=47831.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748623128 base=None value=235192320.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748683137 base=None value=235507712.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748623206 base=2112884736.00 value=1075539968.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748683211 base=2112884736.00 value=1085726720.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748623267 base=None value=2372118528.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403748683285 base=None value=2372626432.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403748623269 base=None value=382492672.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403748683286 base=None value=381317120.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403748623277 base=None value=7087947737900.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403748683289 base=None value=7092600198725.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403748623278 base=37662521.00 value=26774556.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403748683291 base=37674524.00 value=26786559.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403748683057 base=37674492.00 value=47831.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748743058 base=37686491.00 value=59413.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748683137 base=None value=235507712.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748743133 base=None value=235810816.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748683211 base=2112884736.00 value=1085726720.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748743219 base=2112884736.00 value=1079713792.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748683285 base=None value=2372626432.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403748743283 base=None value=2373183488.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403748683286 base=None value=381317120.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403748743284 base=None value=381849600.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403748683289 base=None value=7092600198725.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403748743288 base=None value=7096967630651.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403748683291 base=37674524.00 value=26786559.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403748743289 base=37686524.00 value=26798558.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403748743058 base=37686491.00 value=59413.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748803057 base=37698491.00 value=71047.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748743133 base=None value=235810816.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748803137 base=None value=236105728.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748743219 base=2112884736.00 value=1079713792.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748803211 base=2112884736.00 value=1072144384.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748743283 base=None value=2373183488.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403748803270 base=None value=2373638144.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403748743284 base=None value=381849600.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403748803271 base=None value=383262720.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403748743288 base=None value=7096967630651.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403748803273 base=None value=7101106426172.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403748743289 base=37686524.00 value=26798558.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403748803274 base=37698521.00 value=26810556.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403748803057 base=37698491.00 value=71047.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748863057 base=37710489.00 value=74904.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748803137 base=None value=236105728.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748863130 base=None value=236421120.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748803211 base=2112884736.00 value=1072144384.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748863207 base=2112884736.00 value=1085136896.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748803270 base=None value=2373638144.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403748863283 base=None value=2374117376.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403748803271 base=None value=383262720.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403748863285 base=None value=384372736.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403748803273 base=None value=7101106426172.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403748863286 base=None value=7105409548456.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403748803274 base=37698521.00 value=26810556.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403748863287 base=37710522.00 value=26822533.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403748863057 base=37710489.00 value=74904.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748923057 base=37722491.00 value=86682.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748863130 base=None value=236421120.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748923133 base=None value=236732416.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748863207 base=2112884736.00 value=1085136896.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748923210 base=2112884736.00 value=1070862336.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748863283 base=None value=2374117376.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403748923263 base=None value=2374715392.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403748863285 base=None value=384372736.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403748923269 base=None value=384790528.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403748863286 base=None value=7105409548456.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403748923271 base=None value=7110000028894.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403748863287 base=37710522.00 value=26822533.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403748923274 base=37722520.00 value=26834531.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403748923057 base=37722491.00 value=86682.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748983057 base=37734493.00 value=98431.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748923133 base=None value=236732416.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748983135 base=None value=237035520.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748923210 base=2112884736.00 value=1070862336.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748983211 base=2112884736.00 value=1076273152.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748923263 base=None value=2374715392.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403748983283 base=None value=2375268352.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403748923269 base=None value=384790528.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403748983284 base=None value=384577536.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403748923271 base=None value=7110000028894.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403748983285 base=None value=7114420363332.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403748923274 base=37722520.00 value=26834531.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403748983286 base=37734523.00 value=26846534.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403748983057 base=37734493.00 value=98431.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749043057 base=37746498.00 value=110280.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748983135 base=None value=237035520.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749043166 base=None value=237301760.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748983211 base=2112884736.00 value=1076273152.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749043278 base=2112884736.00 value=1092059136.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403748983283 base=None value=2375268352.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403749043352 base=None value=2375641088.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403748983284 base=None value=384577536.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403749043354 base=None value=384962560.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403748983285 base=None value=7114420363332.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403749043356 base=None value=7118407866218.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403748983286 base=37734523.00 value=26846534.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403749043358 base=37746537.00 value=26858548.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403749043057 base=37746498.00 value=110280.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749103057 base=37758499.00 value=122196.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749043166 base=None value=237301760.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749103167 base=None value=237592576.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749043278 base=2112884736.00 value=1092059136.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749103226 base=2112884736.00 value=1136246784.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749043352 base=None value=2375641088.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403749103270 base=None value=2376206336.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403749043354 base=None value=384962560.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403749103272 base=None value=411471872.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403749043356 base=None value=7118407866218.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403749103273 base=None value=7122716423047.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403749043358 base=37746537.00 value=26858548.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403749103274 base=37758521.00 value=26870532.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403749103057 base=37758499.00 value=122196.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749163057 base=37770489.00 value=133975.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749103167 base=None value=237592576.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749163118 base=None value=237907968.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749103226 base=2112884736.00 value=1136246784.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749163172 base=2112884736.00 value=1079394304.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749103270 base=None value=2376206336.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403749163222 base=None value=2376742912.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403749103272 base=None value=411471872.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403749163223 base=None value=385945600.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403749103273 base=None value=7122716423047.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403749163224 base=None value=7127261709029.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403749103274 base=37758521.00 value=26870532.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403749163225 base=37770510.00 value=26882521.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403749163057 base=37770489.00 value=133975.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749223057 base=37782487.00 value=144730.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=150
+1403749163118 base=None value=237907968.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749223112 base=None value=238211072.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=150
+1403749163172 base=2112884736.00 value=1079394304.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749223185 base=2112884736.00 value=1086652416.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=150
+1403749163222 base=None value=2376742912.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403749223239 base=None value=2377213952.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403749163223 base=None value=385945600.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403749223241 base=None value=382197760.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403749163224 base=None value=7127261709029.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403749223242 base=None value=7131571335692.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403749163225 base=37770510.00 value=26882521.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403749223243 base=37782514.00 value=26894525.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403749223057 base=37782487.00 value=144730.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=150
+1403749283057 base=37794496.00 value=142108.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749223112 base=None value=238211072.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=150
+1403749283158 base=None value=238440448.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749223185 base=2112884736.00 value=1086652416.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=150
+1403749283259 base=2112884736.00 value=1070415872.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749223239 base=None value=2377213952.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403749283336 base=None value=2377693184.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403749223241 base=None value=382197760.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403749283342 base=None value=384339968.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403749223242 base=None value=7131571335692.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403749283343 base=None value=7134464800281.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403749223243 base=37782514.00 value=26894525.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403749283345 base=37794535.00 value=26906518.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403749283057 base=37794496.00 value=142108.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749343057 base=37806490.00 value=153948.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749283158 base=None value=238440448.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749343122 base=None value=238768128.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749283259 base=2112884736.00 value=1070415872.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749343180 base=2112884736.00 value=1072312320.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749283336 base=None value=2377693184.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403749343225 base=None value=2378209280.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403749283342 base=None value=384339968.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403749343227 base=None value=384851968.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403749283343 base=None value=7134464800281.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403749343227 base=None value=7139349542389.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403749283345 base=37794535.00 value=26906518.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403749343229 base=37806512.00 value=26918495.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403749343057 base=37806490.00 value=153948.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749403057 base=37818491.00 value=165710.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749343122 base=None value=238768128.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749403130 base=None value=239071232.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749343180 base=2112884736.00 value=1072312320.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749403215 base=2112884736.00 value=1068556288.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749343225 base=None value=2378209280.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403749403291 base=None value=2378708992.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403749343227 base=None value=384851968.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403749403297 base=None value=384638976.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403749343227 base=None value=7139349542389.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403749403299 base=None value=7143835012273.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403749343229 base=37806512.00 value=26918495.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403749403301 base=37818527.00 value=26930510.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403749403057 base=37818491.00 value=165710.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749463057 base=37830496.00 value=177677.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749403130 base=None value=239071232.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749463151 base=None value=239321088.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749403215 base=2112884736.00 value=1068556288.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749463248 base=2112884736.00 value=1073242112.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749403291 base=None value=2378708992.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403749463324 base=None value=2379249664.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403749403297 base=None value=384638976.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403749463326 base=None value=384847872.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403749403299 base=None value=7143835012273.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403749463327 base=None value=7147344406837.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403749403301 base=37818527.00 value=26930510.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403749463328 base=37830531.00 value=26942514.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403749463057 base=37830496.00 value=177677.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749523057 base=37842489.00 value=189480.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749463151 base=None value=239321088.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749523114 base=None value=239648768.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749463248 base=2112884736.00 value=1073242112.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749523174 base=2112884736.00 value=1086328832.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749463324 base=None value=2379249664.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403749523224 base=None value=2379642880.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403749463326 base=None value=384847872.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403749523226 base=None value=390455296.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403749463327 base=None value=7147344406837.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403749523227 base=None value=7152140749949.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403749463328 base=37830531.00 value=26942514.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403749523228 base=37842512.00 value=26954495.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403749523057 base=37842489.00 value=189480.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749583057 base=37854491.00 value=201256.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749523114 base=None value=239648768.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749583123 base=None value=239960064.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749523174 base=2112884736.00 value=1086328832.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749583181 base=2112884736.00 value=1096163328.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749523224 base=None value=2379642880.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403749583226 base=None value=2380269568.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403749523226 base=None value=390455296.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403749583227 base=None value=385093632.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403749523227 base=None value=7152140749949.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403749583232 base=None value=7156651405393.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403749523228 base=37842512.00 value=26954495.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403749583234 base=37854512.00 value=26966495.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403749583057 base=37854491.00 value=201256.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749643057 base=37866495.00 value=213088.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749583123 base=None value=239960064.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749643148 base=None value=240242688.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749583181 base=2112884736.00 value=1096163328.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749643233 base=2112884736.00 value=1079894016.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749583226 base=None value=2380269568.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403749643310 base=None value=2380761088.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403749583227 base=None value=385093632.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403749643312 base=None value=384548864.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403749583232 base=None value=7156651405393.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403749643314 base=None value=7160260645857.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403749583234 base=37854512.00 value=26966495.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403749643316 base=37866529.00 value=26978512.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403749643057 base=37866495.00 value=213088.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749703057 base=37878496.00 value=225023.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749643148 base=None value=240242688.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749703153 base=None value=240476160.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749643233 base=2112884736.00 value=1079894016.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749703238 base=2112884736.00 value=1102413824.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749643310 base=None value=2380761088.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403749703316 base=None value=2381137920.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403749643312 base=None value=384548864.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403749703318 base=None value=387149824.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403749643314 base=None value=7160260645857.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403749703320 base=None value=7163573380544.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403749643316 base=37866529.00 value=26978512.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403749703322 base=37878530.00 value=26990513.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403749703057 base=37878496.00 value=225023.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749763057 base=37890495.00 value=208902.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=134
+1403749703153 base=None value=240476160.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749763143 base=None value=240721920.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=134
+1403749703238 base=2112884736.00 value=1102413824.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749763231 base=2112884736.00 value=951328768.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=134
+1403749703316 base=None value=2381137920.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403749763296 base=None value=2381703168.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403749703318 base=None value=387149824.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403749763298 base=None value=369971200.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403749703320 base=None value=7163573380544.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403749763300 base=None value=7166574910258.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403749703322 base=37878530.00 value=26990513.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403749763306 base=37890527.00 value=27002489.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403749763057 base=37890495.00 value=208902.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=134
+1403749823057 base=37902490.00 value=217688.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749763143 base=None value=240721920.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=134
+1403749823120 base=None value=241004544.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749763231 base=2112884736.00 value=951328768.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=134
+1403749823189 base=2112884736.00 value=1084420096.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749763296 base=None value=2381703168.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403749823246 base=None value=2382149632.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403749763298 base=None value=369971200.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403749823248 base=None value=384724992.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403749763300 base=None value=7166574910258.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403749823249 base=None value=7170654178836.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403749763306 base=37890527.00 value=27002489.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403749823250 base=37902516.00 value=27014478.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403749823057 base=37902490.00 value=217688.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749883057 base=37914489.00 value=229500.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749823120 base=None value=241004544.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749883114 base=None value=241328128.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749823189 base=2112884736.00 value=1084420096.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749883243 base=2112884736.00 value=1076445184.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749823246 base=None value=2382149632.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403749883310 base=None value=2382583808.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403749823248 base=None value=384724992.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403749883312 base=None value=385216512.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403749823249 base=None value=7170654178836.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403749883313 base=None value=7175479008966.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403749823250 base=37902516.00 value=27014478.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403749883314 base=37914529.00 value=27026491.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403749883057 base=37914489.00 value=229500.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749943057 base=37926490.00 value=241244.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749883114 base=None value=241328128.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749943117 base=None value=241635328.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749883243 base=2112884736.00 value=1076445184.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749943195 base=2112884736.00 value=1074860032.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749883310 base=None value=2382583808.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403749943244 base=None value=2383202304.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403749883312 base=None value=385216512.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403749943247 base=None value=386088960.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403749883313 base=None value=7175479008966.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403749943248 base=None value=7179911337559.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403749883314 base=37914529.00 value=27026491.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403749943249 base=37926517.00 value=27038479.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403749943057 base=37926490.00 value=241244.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750003057 base=37938497.00 value=253216.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749943117 base=None value=241635328.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750003162 base=None value=241864704.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749943195 base=2112884736.00 value=1074860032.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750003284 base=2112884736.00 value=1099001856.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403749943244 base=None value=2383202304.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403750003381 base=None value=2383603712.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403749943247 base=None value=386088960.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403750003384 base=None value=387133440.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403749943248 base=None value=7179911337559.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403750003386 base=None value=7183303753189.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403749943249 base=37926517.00 value=27038479.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403750003388 base=37938544.00 value=27050506.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403750003057 base=37938497.00 value=253216.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750063057 base=37950488.00 value=265053.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750003162 base=None value=241864704.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750063112 base=None value=242192384.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750003284 base=2112884736.00 value=1099001856.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750063183 base=2112884736.00 value=1069215744.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750003381 base=None value=2383603712.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403750063259 base=None value=2384087040.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403750003384 base=None value=387133440.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403750063261 base=None value=385048576.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403750003386 base=None value=7183303753189.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403750063263 base=None value=7188191533742.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403750003388 base=37938544.00 value=27050506.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403750063269 base=37950521.00 value=27062483.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403750063057 base=37950488.00 value=265053.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750123057 base=37962497.00 value=276992.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750063112 base=None value=242192384.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750123157 base=None value=242421760.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750063183 base=2112884736.00 value=1069215744.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750123259 base=2112884736.00 value=1077800960.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750063259 base=None value=2384087040.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403750123319 base=None value=2384513024.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403750063261 base=None value=385048576.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403750123321 base=None value=385064960.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403750063263 base=None value=7188191533742.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403750123322 base=None value=7191540987239.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403750063269 base=37950521.00 value=27062483.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403750123323 base=37962531.00 value=27074493.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403750123057 base=37962497.00 value=276992.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750183057 base=37974492.00 value=288843.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750123157 base=None value=242421760.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750183126 base=None value=242741248.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750123259 base=2112884736.00 value=1077800960.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750183189 base=2112884736.00 value=1085751296.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750123319 base=None value=2384513024.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403750183235 base=None value=2385098752.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403750123321 base=None value=385064960.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403750183240 base=None value=385495040.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403750123322 base=None value=7191540987239.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403750183242 base=None value=7195756166530.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403750123323 base=37962531.00 value=27074493.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403750183243 base=37974515.00 value=27086477.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403750183057 base=37974492.00 value=288843.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750243057 base=37986494.00 value=300678.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750183126 base=None value=242741248.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750243144 base=None value=243036160.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750183189 base=2112884736.00 value=1085751296.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750243234 base=2112884736.00 value=1087279104.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750183235 base=None value=2385098752.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403750243307 base=None value=2385610752.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403750183240 base=None value=385495040.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403750243309 base=None value=384868352.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403750183242 base=None value=7195756166530.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403750243311 base=None value=7200042313820.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403750183243 base=37974515.00 value=27086477.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403750243316 base=37986529.00 value=27098491.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403750243057 base=37986494.00 value=300678.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750303057 base=37998490.00 value=312612.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750243144 base=None value=243036160.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750303114 base=None value=243298304.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750243234 base=2112884736.00 value=1087279104.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750303177 base=2112884736.00 value=1090330624.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750243307 base=None value=2385610752.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403750303223 base=None value=2386073600.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403750243309 base=None value=384868352.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403750303224 base=None value=387244032.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403750243311 base=None value=7200042313820.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403750303225 base=None value=7203934496809.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403750243316 base=37986529.00 value=27098491.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403750303228 base=37998512.00 value=27110474.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403750303057 base=37998490.00 value=312612.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750363057 base=38010493.00 value=284649.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750303114 base=None value=243298304.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750363138 base=None value=243613696.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750303177 base=2112884736.00 value=1090330624.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750363192 base=2112884736.00 value=1087389696.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750303223 base=None value=2386073600.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403750363246 base=None value=2386655232.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403750303224 base=None value=387244032.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403750363248 base=None value=386392064.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403750303225 base=None value=7203934496809.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403750363249 base=None value=7208092544486.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403750303228 base=37998512.00 value=27110474.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403750363250 base=38010516.00 value=27122456.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403750363057 base=38010493.00 value=284649.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750423057 base=38022494.00 value=296571.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750363138 base=None value=243613696.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750423149 base=None value=243851264.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750363192 base=2112884736.00 value=1087389696.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750423234 base=2112884736.00 value=1074745344.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750363246 base=None value=2386655232.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403750423312 base=None value=2387085312.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403750363248 base=None value=386392064.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403750423314 base=None value=385974272.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403750363249 base=None value=7208092544486.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403750423315 base=None value=7211606514405.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403750363250 base=38010516.00 value=27122456.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403750423317 base=38022528.00 value=27134468.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403750423057 base=38022494.00 value=296571.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750483057 base=38034490.00 value=308424.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750423149 base=None value=243851264.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750483122 base=None value=244178944.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750423234 base=2112884736.00 value=1074745344.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750483180 base=2112884736.00 value=1071357952.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750423312 base=None value=2387085312.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403750483233 base=None value=2387638272.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403750423314 base=None value=385974272.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403750483235 base=None value=385839104.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403750423315 base=None value=7211606514405.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403750483236 base=None value=7216444260968.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403750423317 base=38022528.00 value=27134468.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403750483237 base=38034513.00 value=27146453.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403750483057 base=38034490.00 value=308424.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750543057 base=38046493.00 value=320389.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750483122 base=None value=244178944.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750543143 base=None value=244416512.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750483180 base=2112884736.00 value=1071357952.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750543230 base=2112884736.00 value=1075236864.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750483233 base=None value=2387638272.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403750543307 base=None value=2388117504.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403750483235 base=None value=385839104.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403750543309 base=None value=385835008.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403750483236 base=None value=7216444260968.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403750543311 base=None value=7219787917736.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403750483237 base=38034513.00 value=27146453.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403750543317 base=38046528.00 value=27158468.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403750543057 base=38046493.00 value=320389.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750603057 base=38058487.00 value=332211.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750543143 base=None value=244416512.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750603116 base=None value=244756480.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750543230 base=2112884736.00 value=1075236864.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750603204 base=2112884736.00 value=1127387136.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750543307 base=None value=2388117504.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403750603272 base=None value=2388551680.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403750543309 base=None value=385835008.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403750603278 base=None value=406581248.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403750543311 base=None value=7219787917736.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403750603279 base=None value=7224744453213.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403750543317 base=38046528.00 value=27158468.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403750603280 base=38058520.00 value=27170460.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403750603057 base=38058487.00 value=332211.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750663057 base=38070494.00 value=344082.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750603116 base=None value=244756480.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750663153 base=None value=245035008.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750603204 base=2112884736.00 value=1127387136.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750663253 base=2112884736.00 value=1084960768.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750603272 base=None value=2388551680.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403750663331 base=None value=2389112832.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403750603278 base=None value=406581248.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403750663333 base=None value=385691648.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403750603279 base=None value=7224744453213.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403750663335 base=None value=7228835568544.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403750603280 base=38058520.00 value=27170460.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403750663337 base=38070533.00 value=27182473.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403750663057 base=38070494.00 value=344082.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750723057 base=38082486.00 value=355993.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750663153 base=None value=245035008.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750723113 base=None value=245305344.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750663253 base=2112884736.00 value=1084960768.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750723175 base=2112884736.00 value=1072570368.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750663331 base=None value=2389112832.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403750723228 base=None value=2389567488.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403750663333 base=None value=385691648.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403750723233 base=None value=385810432.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403750663335 base=None value=7228835568544.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403750723234 base=None value=7232672709356.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403750663337 base=38070533.00 value=27182473.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403750723236 base=38082512.00 value=27194452.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403750723057 base=38082486.00 value=355993.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750783057 base=38094488.00 value=367769.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750723113 base=None value=245305344.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750783118 base=None value=245620736.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750723175 base=2112884736.00 value=1072570368.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750783185 base=2112884736.00 value=1082466304.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750723228 base=None value=2389567488.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403750783243 base=None value=2390124544.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403750723233 base=None value=385810432.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403750783245 base=None value=386637824.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403750723234 base=None value=7232672709356.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403750783247 base=None value=7236921273487.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403750723236 base=38082512.00 value=27194452.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403750783249 base=38094515.00 value=27206454.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403750783057 base=38094488.00 value=367769.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750843057 base=38106494.00 value=379658.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750783118 base=None value=245620736.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750843147 base=None value=245874688.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750783185 base=2112884736.00 value=1082466304.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750843237 base=2112884736.00 value=1090183168.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750783243 base=None value=2390124544.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403750843314 base=None value=2390435840.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403750783245 base=None value=386637824.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403750843316 base=None value=386609152.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403750783247 base=None value=7236921273487.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403750843318 base=None value=7240685555058.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403750783249 base=38094515.00 value=27206454.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403750843320 base=38106529.00 value=27218469.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403750843057 base=38106494.00 value=379658.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750903057 base=38118496.00 value=391613.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750843147 base=None value=245874688.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750903155 base=None value=246108160.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750843237 base=2112884736.00 value=1090183168.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750903260 base=2112884736.00 value=1069637632.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750843314 base=None value=2390435840.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403750903341 base=None value=2390931456.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403750843316 base=None value=386609152.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403750903343 base=None value=385597440.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403750843318 base=None value=7240685555058.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403750903345 base=None value=7244131131566.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403750843320 base=38106529.00 value=27218469.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403750903347 base=38118534.00 value=27230474.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403750903057 base=38118496.00 value=391613.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750963057 base=38130494.00 value=403547.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750903155 base=None value=246108160.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750963151 base=None value=246321152.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750903260 base=2112884736.00 value=1069637632.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750963250 base=2112884736.00 value=1078075392.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750903341 base=None value=2390931456.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403750963323 base=None value=2391365632.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403750903343 base=None value=385597440.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403750963326 base=None value=382341120.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403750903345 base=None value=7244131131566.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403750963327 base=None value=7247462603766.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403750903347 base=38118534.00 value=27230474.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403750963329 base=38130531.00 value=27242471.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403750963057 base=38130494.00 value=403547.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751023057 base=38142488.00 value=368087.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750963151 base=None value=246321152.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751023124 base=None value=246616064.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750963250 base=2112884736.00 value=1078075392.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751023182 base=2112884736.00 value=1089388544.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403750963323 base=None value=2391365632.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403751023236 base=None value=2391889920.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403750963326 base=None value=382341120.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403751023238 base=None value=385556480.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403750963327 base=None value=7247462603766.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403751023239 base=None value=7251245523714.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403750963329 base=38130531.00 value=27242471.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403751023240 base=38142512.00 value=27254431.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403751023057 base=38142488.00 value=368087.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751083057 base=38154487.00 value=379882.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751023124 base=None value=246616064.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751083114 base=None value=246939648.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751023182 base=2112884736.00 value=1089388544.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751083179 base=2112884736.00 value=1098899456.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751023236 base=None value=2391889920.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403751083235 base=None value=2392397824.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403751023238 base=None value=385556480.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403751083236 base=None value=386584576.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403751023239 base=None value=7251245523714.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403751083237 base=None value=7256056048015.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403751023240 base=38142512.00 value=27254431.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403751083239 base=38154512.00 value=27266431.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403751083057 base=38154487.00 value=379882.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751143057 base=38166489.00 value=391646.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751083114 base=None value=246939648.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751143123 base=None value=247250944.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751083179 base=2112884736.00 value=1098899456.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751143186 base=2112884736.00 value=1090265088.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751083235 base=None value=2392397824.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403751143244 base=None value=2392938496.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403751083236 base=None value=386584576.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403751143246 base=None value=386945024.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403751083237 base=None value=7256056048015.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403751143248 base=None value=7260620044002.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403751083239 base=38154512.00 value=27266431.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403751143254 base=38166515.00 value=27278434.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403751143057 base=38166489.00 value=391646.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751203057 base=38178494.00 value=403451.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751143123 base=None value=247250944.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751203153 base=None value=247545856.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751143186 base=2112884736.00 value=1090265088.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751203253 base=2112884736.00 value=1082294272.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751143244 base=None value=2392938496.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403751203327 base=None value=2393327616.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403751143246 base=None value=386945024.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403751203329 base=None value=386510848.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403751143248 base=None value=7260620044002.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403751203331 base=None value=7264980960303.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403751143254 base=38166515.00 value=27278434.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403751203337 base=38178532.00 value=27290451.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403751203057 base=38178494.00 value=403451.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751263057 base=38190494.00 value=415398.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751203153 base=None value=247545856.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751263151 base=None value=247762944.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751203253 base=2112884736.00 value=1082294272.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751263235 base=2112884736.00 value=1079771136.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751203327 base=None value=2393327616.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403751263313 base=None value=2393843712.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403751203329 base=None value=386510848.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403751263316 base=None value=386015232.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403751203331 base=None value=7264980960303.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403751263317 base=None value=7268144417255.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403751203337 base=38178532.00 value=27290451.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403751263319 base=38190527.00 value=27302446.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403751263057 base=38190494.00 value=415398.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751323057 base=38202494.00 value=427337.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751263151 base=None value=247762944.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751323151 base=None value=248000512.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751263235 base=2112884736.00 value=1079771136.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751323248 base=2112884736.00 value=1077133312.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751263313 base=None value=2393843712.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403751323324 base=None value=2394281984.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403751263316 base=None value=386015232.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403751323327 base=None value=385888256.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403751263317 base=None value=7268144417255.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403751323328 base=None value=7271561740893.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403751263319 base=38190527.00 value=27302446.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403751323330 base=38202530.00 value=27314449.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403751323057 base=38202494.00 value=427337.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751383057 base=38214487.00 value=439219.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751323151 base=None value=248000512.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751383119 base=None value=248246272.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751323248 base=2112884736.00 value=1077133312.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751383181 base=2112884736.00 value=1076932608.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751323324 base=None value=2394281984.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403751383242 base=None value=2394630144.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403751323327 base=None value=385888256.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403751383244 base=None value=387629056.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403751323328 base=None value=7271561740893.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403751383246 base=None value=7274967593241.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403751323330 base=38202530.00 value=27314449.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403751383248 base=38214514.00 value=27326433.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403751383057 base=38214487.00 value=439219.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751443058 base=38226487.00 value=450762.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751383119 base=None value=248246272.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751443121 base=None value=248553472.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751383181 base=2112884736.00 value=1076932608.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751443183 base=2112884736.00 value=1075257344.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751383242 base=None value=2394630144.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403751443237 base=None value=2395125760.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403751383244 base=None value=387629056.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403751443238 base=None value=385626112.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403751383246 base=None value=7274967593241.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403751443239 base=None value=7279217625257.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403751383248 base=38214514.00 value=27326433.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403751443240 base=38226512.00 value=27338431.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403751443058 base=38226487.00 value=450762.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751503057 base=38238487.00 value=462536.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751443121 base=None value=248553472.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751503113 base=None value=248872960.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751443183 base=2112884736.00 value=1075257344.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751503167 base=2112884736.00 value=1075544064.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751443237 base=None value=2395125760.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403751503232 base=None value=2395797504.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403751443238 base=None value=385626112.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403751503234 base=None value=386113536.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403751443239 base=None value=7279217625257.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403751503235 base=None value=7283853708763.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403751443240 base=38226512.00 value=27338431.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403751503236 base=38238512.00 value=27350431.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403751503057 base=38238487.00 value=462536.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751563057 base=38250487.00 value=474287.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751503113 base=None value=248872960.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751563114 base=None value=249176064.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751503167 base=2112884736.00 value=1075544064.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751563181 base=2112884736.00 value=1084559360.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751503232 base=None value=2395797504.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403751563240 base=None value=2396280832.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403751503234 base=None value=386113536.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403751563242 base=None value=386220032.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403751503235 base=None value=7283853708763.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403751563243 base=None value=7288314116594.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403751503236 base=38238512.00 value=27350431.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403751563244 base=38250513.00 value=27362432.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403751563057 base=38250487.00 value=474287.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751623057 base=38262494.00 value=486212.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751563114 base=None value=249176064.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751623152 base=None value=249446400.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751563181 base=2112884736.00 value=1084559360.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751623249 base=2112884736.00 value=1082691584.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751563240 base=None value=2396280832.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403751623327 base=None value=2396809216.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403751563242 base=None value=386220032.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403751623329 base=None value=385794048.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403751563243 base=None value=7288314116594.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403751623331 base=None value=7292060969946.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403751563244 base=38250513.00 value=27362432.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403751623336 base=38262532.00 value=27374451.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403751623057 base=38262494.00 value=486212.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751683057 base=38274494.00 value=498131.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751623152 base=None value=249446400.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751683152 base=None value=249688064.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751623249 base=2112884736.00 value=1082691584.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751683258 base=2112884736.00 value=1085673472.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751623327 base=None value=2396809216.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403751683331 base=None value=2397288448.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403751623329 base=None value=385794048.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403751683336 base=None value=385949696.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403751623331 base=None value=7292060969946.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403751683338 base=None value=7295387545593.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403751623336 base=38262532.00 value=27374451.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403751683341 base=38274533.00 value=27386452.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403751683057 base=38274494.00 value=498131.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751743060 base=38286479.00 value=374812.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=111
+1403751683152 base=None value=249688064.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751743092 base=None value=249794560.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=111
+1403751683258 base=2112884736.00 value=1085673472.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=151
+1403751743119 base=2112884736.00 value=781615104.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=111
+1403751683331 base=None value=2397288448.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403751743143 base=None value=2397550592.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403751683336 base=None value=385949696.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403751743145 base=None value=355700736.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403751683338 base=None value=7295387545593.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403751743145 base=None value=7296692887645.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403751683341 base=38274533.00 value=27386452.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403751743146 base=38286487.00 value=27391752.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403751743060 base=38286479.00 value=374812.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=111
+1403751803060 base=38298464.00 value=167078.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=51
+1403751743092 base=None value=249794560.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=111
+1403751803084 base=None value=249815040.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=51
+1403751743119 base=2112884736.00 value=781615104.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=111
+1403751803103 base=2112884736.00 value=359858176.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=51
+1403751743143 base=None value=2397550592.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403751803120 base=None value=2397743104.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403751743145 base=None value=355700736.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403751803122 base=None value=315650048.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403751743145 base=None value=7296692887645.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403751803122 base=None value=7296692994700.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403751743146 base=38286487.00 value=27391752.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403751803123 base=38298474.00 value=27391836.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403751803060 base=38298464.00 value=167078.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=51
+1403751863061 base=38310455.00 value=42344.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=11
+1403751803084 base=None value=249815040.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=51
+1403751863079 base=None value=249831424.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=11
+1403751803103 base=2112884736.00 value=359858176.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=51
+1403751863092 base=2112884736.00 value=85725184.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=11
+1403751803120 base=None value=2397743104.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403751863104 base=None value=2397915136.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403751803122 base=None value=315650048.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403751863105 base=None value=288595968.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403751803122 base=None value=7296692994700.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403751863106 base=None value=7296693066986.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403751803123 base=38298474.00 value=27391836.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403751863107 base=38310461.00 value=27391899.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403751863061 base=38310455.00 value=42344.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=11
+1403751923060 base=38322448.00 value=42344.00 type=percent detail=PROC_CPU config-name=apache_cpu source=192.168.89.89:55700 config-seqid=2 p-count=11
+1403751863079 base=None value=249831424.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=11
+1403751923079 base=None value=249831424.00 type=rate detail=PROC_IO config-name=apache_io source=192.168.89.89:55700 config-seqid=2 p-count=11
+1403751863092 base=2112884736.00 value=85725184.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=11
+1403751923091 base=2112884736.00 value=85725184.00 type=percent detail=PROC_MEM config-name=apache_mem source=192.168.89.89:55700 config-seqid=2 p-count=11
+1403751863104 base=None value=2397915136.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403751923103 base=None value=2397931520.00 source=192.168.89.89:55700 config-name=disk config-seqid=2 detail=DISK type=rate
+1403751863105 base=None value=288595968.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403751923105 base=None value=288538624.00 source=192.168.89.89:55700 config-name=mem config-seqid=2 detail=MEMORY type=basic
+1403751863106 base=None value=7296693066986.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403751923105 base=None value=7296693072570.00 source=192.168.89.89:55700 config-name=net config-seqid=2 detail=NETWORK type=rate
+1403751863107 base=38310461.00 value=27391899.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
+1403751923106 base=38322454.00 value=27391909.00 source=192.168.89.89:55700 config-name=proc config-seqid=2 detail=CPU type=percent
