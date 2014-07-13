@@ -78,3 +78,117 @@ not require practitioners to manually instrument their application code. This bl
 viable distributed performance framework's effectiveness as it allows practitioners to focus on the performance data and
 not on a myriad of APIs for various architectures or languages.
 
+\section{\dcamp}
+\label{dcamp}
+
+The Distributed Common API for Measuring Performance (\dcamp) is a distributed performance framework built on top of
+Mark Gabel and Michael Haungs' 2007 research on \emph{CAMP: a common API for measuring performance} \cite{gabel2007}.
+The fundamental functionality of \camp is providing an accurate and ``consistent method for retrieving system
+performance data from multiple platforms.'' \dcamp\ takes advantage of this functionality and the authors' work done in
+validating \camp's accuracy and adds the following core feature sets:
+
+\begin{itemize}
+\item Stateful Performance API
+\item Distributed Performance Data Aggregation
+\item Performance Filters and Triggers
+\item Simplistic Fault Tolerance
+\end{itemize}
+
+\subsection{Terminology}
+Knowing the following terminology will make it easier to understand and discuss the \dcamp project, its main goals, its
+usage, its components, and how it works. 
+
+\begin{description}
+
+\item[Distributed Performance Testing Framework (DPTF),]
+\item[Distributed Performance Monitoring Framework (DPMF),]
+\item[Distributed Performance Framework (DPF):]
+
+An DPTF or DPMF (collectively termed DPF) is a framework which allows its users to evaluate the performance of a system
+from both black box and white box perspectives by publishing interfaces for instrumenting, collecting, analyzing, and
+visualizing performance data across the distributed system and distributed applications. Typically, the framework
+provides a black box interface into monitoring a distributed system or application and includes mechanisms for
+triggering actions based on performance events. The \dcamp project is designed to be a DPF. 
+
+\item[Performance Metric,]
+\item[Performance Counter:]
+Performance metrics are any data about a given node relating to its throughput, capacity, utilization, or latency. In
+\dcamp, these are grouped into four different sets of performance metrics (global, network, disk, and per-process) and a
+fifth set of inquiry metrics. They are described fully in section \ref{dcamp_metrics}. 
+
+\item[Metric Aggregation:]
+Metric aggregation is the process of combining metrics from multiple nodes into a single metric. Performance metrics,
+while useful at an individual system granularity, can be rather limited in value for a DPF where the goal is measurement
+of the distributed system as a whole. Metric aggregation provides a coarser granularity for the performance metrics,
+calculating a sum, average, percent, or any other mathematically relevant operation across multiple nodes in the system. 
+
+\item[Metric Calculation:]
+Metric calculation is the process of combining identical metrics from multiple timestamps into a single metric. Various
+equations and inputs used to do this calculation, chosen depending on the type of metric and desired representation;
+these equations are listed in Table \ref{tab:metric_types}.
+
+\item[Filter,]
+\item[Throttle,]
+\item[Threshold:]
+Filtering (or throttling or thresholding) provides a mechanism for reducing the amount of data sent between nodes of the
+system. Filtering allows a user to specify when or at what point to report metrics from one level to its parent. For
+example, a filter might be set to only report average CPU utilization that is over seventy-five percent. 
+
+\item[\dcamp Node,]
+\item[\dcamp Process:]
+A single, independently running instance of \dcamp in the distributed system is called a \dcamp node or process. More
+than one node may exist on a single computer. A node consists of the Node role and zero or more other \dcamp roles. 
+
+\item[\dcamp Service:]
+Services are a way of logically grouping functions within the \dcamp system, from performance metric sampling to \dcamp
+system management. A description of all the \dcamp services can be found in section \ref{roles_and_services}. Each
+service is implemented in \dcamp as an independent thread.
+
+\item[\dcamp Role:]
+Roles in the \dcamp system are groupings of one or more \dcamp services. There does NOT exist a one-to-one
+relationship between roles and services; the \dcamp role-to-service mapping can be seen in Table
+\ref{tab:role_to_services}.
+
+\item[\dcamp Hierarchy:]
+The \dcamp system is organized in a hierarchical pattern with respect to data movement and system control functionality.
+The hierarchy can be thought of as a tree structure, with leaf nodes being at the top of the hierarchy and a single root
+node at the bottom. Metric data moves down the hierarchy from leaves to the root; configuration data and control
+commands move up from the root to the leaves. 
+
+\item[\dcamp Level:]
+Levels are a way of organizing the \dcamp hierarchy horizontally. Levels are defined by their distance from the root
+node. For example, level one is one node away from the root node, or said another way, the first level is directly
+``connected'' to the root node. The second level is two nodes away from the root node, or any node in the second level is
+connected to the root node by another node (in the first level). This necessarily means the root is in level zero (all
+by itself). 
+
+\item[Parent Node:]
+Nodes are called parent nodes if there exists at least one node connected to it from a level of higher ordinal value.
+For example, a node in level one with at least one node connected to it from level two is considered a parent node. The
+root node is inherently a parent node. 
+
+\item[Child Node:]
+A node is called a child node if it is connected to another node in a level of lower ordinal value. For example, a node
+in level one is connected to the root node (in level zero), so it is called a child node. The root node is the only
+node in the \dcamp system which is not a child node. 
+
+\item[\dcamp Configuration:]
+The \dcamp configuration specifies everything about the system, including hierarchy levels, metrics, sampling periods,
+reporting periods, filtering, communication details, etc. The configuration is set at the root node and then
+distributed to the rest of the \dcamp system. Configuration details can be found in section \ref{configuration}. 
+
+\item[ZeroMQ Address,]
+\item[ZeroMQ Endpoint:]
+A \O MQ address is the combination of network host identifier (i.e. an IP Address or resolvable name) and Internet
+socket port number. An endpoint is then the combination of any ZeroMQ transport (\texttt{pgm}, \texttt{inproc},
+\texttt{ipc}, or \texttt{tcp}) and an address.
+
+\item[Metric Collection,]
+\item[Metric Sampling:]
+Metric collection or sampling is the process of measuring metrics on a given node. 
+
+\item[Metric Reporting:]
+Metric reporting is the process of sending sampled metrics to a parent node.
+
+\end{description}
+
