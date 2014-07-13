@@ -83,6 +83,10 @@ def build_tex():
 if not exists(img_outdir):
 	makedirs(img_outdir)  # makes out/ too
 
+if len(argv) > 1 and argv[1] == '-v':
+    verbose = True
+    argv.pop(1)
+
 if len(argv) > 1:
     if argv[1] in ('images', 'images/'):
         i = None
