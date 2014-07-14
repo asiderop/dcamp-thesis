@@ -73,6 +73,18 @@ Inquiry metrics provide a mechanism for enumerating various properties of the sy
 \section{Configuration}
 \label{configuration}
 
+A main feature of \dcamp is the configuration language which gives a system administrator a concise, powerful tool for
+defining its performance monitoring behaviour. Two primary sets of parameters are needed in this configuration: the set
+of nodes to include in \dcamp and the set of metrics those nodes will collect.
+
+While it would be possible for \dcamp to be designed such that branches of the distributed hierarchy are automatically
+formed based on dynamic inputs (e.g. node locality, performance metric configuration, balance of network vs CPU/memory
+impact), the approach taken in \dcamp gives the system administrator control over this parameter.
+
+Specifically, nodes are defined in groups within the \dcamp configuration, and each group is defined to collect one or
+more distinct performance metrics. This gives the system administrator the freedom to collect varying metrics from each
+branch of the topology and/or collect metrics at varying sample periods.
+
 \subsection{Node Specification}
 
 Nodes may be specified individually (as ZeroMQ addresses) or as groups (IP subnets). Additionally, nodes may be included
@@ -80,19 +92,21 @@ or excluded based on host name or IP Address matching. Name matching does a case
 host name; left, right, or whole name matching can be specified. Address matching checks that the node's IP Address
 falls within a given subnet (i.e. IP Address and mask length).
 
-\begin{figure}[ht]
-    \begin{lstlisting}
-    node-spec        = address / node-group
-    address          = host ":" port
-    host             = name / ip-address
-    node-group       = group-name 1*( address / ( subnet ":" port ) ) *filter
-    subnet           = ip-address "/" mask-length
-    filter           = [ "+" / "-" ] ( name-match / subnet-match )
-    name-match       = [ ( "L" / "R" / "W" ) SP ] name
-    subnet-match     = subnet
-    \end{lstlisting}
-    \caption{Configuration File - Node Specification}
-    \label{fig:config_file_node}
+\begin{figure}[H]
+\vspace{+10pt}
+\begin{verbatim}
+  node-spec        = address / node-group
+  address          = host ":" port
+  host             = name / ip-address
+  node-group       = name 1*( address / ( subnet ":" port ) ) *filter
+  subnet           = ip-address "/" mask-length
+  filter           = [ "+" / "-" ] ( name-match / subnet-match )
+  name-match       = [ ( "L" / "R" / "W" ) SP ] name
+  subnet-match     = subnet
+\end{verbatim}
+\vspace{-20pt}
+\caption{Configuration File - Node Specification}
+\label{fig:config_file_node}
 \end{figure}
 
 \subsection{Sample Specification}
@@ -108,33 +122,36 @@ Performance metric samples are specified as:
 
 The report threshold can be specified as ``hold and report every N seconds'' or ``report when the metric value is
 greater/less than X''. When ``hold'' is specified (via an \texttt{*}), all metric values sampled during the time limit
-are sent.
+are sent. Otherwise, the \texttt{<} or \texttt{>} character indicates the metric should only be reported when its
+calculated value is less-than or greater-than the given threshold value.
 
 \begin{figure}[ht]
-    \begin{lstlisting}
-    sample-spec      = 1*sample
-    sample           = sample-rate [ report-threshold ] metric
-    sample-rate      = 1*DIGIT "s" ; seconds
-    report-threshold = ( "*" 1*DIGIT "s" ) / ( ( "<" / ">" ) 1*DIGIT ) ; seconds or raw value
-    metric           = "CPU" / "DISK" / "NETWORK"
-    \end{lstlisting}
-    \caption{Configuration File - Sample Specification}
-    \label{fig:config_file_sample}
+\vspace{+10pt}
+\begin{verbatim}
+  sample-spec      = 1*sample
+  sample           = sample-rate [ report-threshold ] metric
+  sample-rate      = seconds
+  report-threshold = ( "*" seconds ) / ( ( "<" / ">" ) 1*DIGIT )
+  metric           = ( global-metric / process-metric process-name )
+  global-metric    = "CPU" / "MEMORY" / "DISK" / "NETWORK"
+  process-metric   = "PROC_CPU" / "PROC_MEM" / "PROC_IO"
+  seconds          = 1*DIGIT "s"
+\end{verbatim}
+\vspace{-20pt}
+\caption{Configuration File - Sample Specification}
+\label{fig:config_file_sample}
 \end{figure}
 
-NOTE ABOUT ACCUMULATION (DOESN'T WORK)
+\subsubsection{Accumulative Time-Based Filtering Pitfall}
 
-\begin{itemize}
-\item filtering could be done two ways: accumulatively and discretely.
-\item accumulative means we send only one final value for each time range (e.g. collect every second but report every
-      minute, so 60 samples are combined into a single value and sent)
-\item discrete means we send each constituent value for each time range, but they are ``held'' until the time limit is
-      reached
-\item how do these two filtering methods interact with value-based limits? are they always discrete?
-\item ACTUALLY: accumulation is not valuable for monotonically increasing values--it is the same as just sampling at the
-      slower frequency. accumulation is only valuable for non-monotonically increasing values. but in that case, one
-      should find the raw, monotonically increasing values from which it is calculated.
-\end{itemize}
+Filtering can be thought of being done in one of two ways: accumulatively or discretely. Accumulative means only one
+final value is reported for each time range (e.g. collect every second but report every minute, so sixty samples are
+combined into a single value and then sent). Discrete means each constituent value is sent for each time range, but they
+are ``held'' until the time limit is reached.
+
+However, accumulation is not valuable for monotonically increasing values--it is the same as just sampling at the slower
+frequency. Accumulation is only valuable for non-monotonically increasing values, but in that case, one should find the
+raw, monotonically increasing values from which it is calculated and collect that metric instead.
 
 \section{\dcamp Roles and Services}
 \label{roles_and_services}
