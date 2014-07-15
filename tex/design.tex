@@ -149,12 +149,16 @@ Base & Node \\
 \section{Fault Tolerance}
 
 In order to maintain a healthy distributed topology, \dcamp quickly and efficiently recovers from node failures using
-simple fault tolerance rules.
+simple fault tolerance rules. These rules define how/when nodes are considered to have failed as well as the specific
+steps for recovering and/or rebuilding the distributed topology.
 
 \subsection{Heartbeating (Detecting Disconnections)}
 
 \dcamp detects node failures or disconnections via a lack of messages, e.g. missed X consecutive messages or no messages
-received after D seconds. It is important to note that
+received after D seconds. All messages act as heartbeats, not just the special \texttt{HUGZ} messages. By designing the
+protocols with this in mind, network traffic can be minimized.
+
+The \dcamp node failure detection rules are the following:
 
 \begin{itemize}
 \item \textit{Metric} nodes MUST detect when their parent (\textit{Collector}) node disconnects.
@@ -167,23 +171,24 @@ received after D seconds. It is important to note that
       (\hyperref[algor_remind]{Reminder Algorithm})
 \end{itemize}
 
-LATER
+Because of the nature of ZeroMQ sockets, \textit{Collector} nodes should not need to know when a child (\textit{Metric})
+node disconnects---when the child node reenters the topology, it is simply reassigned underneath the \textit{Collector}
+and resume its metric collection and reporting.
 
-\begin{itemize}
-\item should the configuration TTL be used somehow?
-      \begin{itemize}
-      \item alternatively, this could be based on configuration entry TTL expiration.
-      \item collector-to-collector heartbeating? not needed, since these TTLs will come from the root (via the data protocol)
-      \item ttl used to know which first-level collectors are root-eligible?
-      \end{itemize}
-\item heartbeats are sent from first-level collectors to root or all collectors?
-\item does a collector need to know when a metric node disconnects? no.
-\end{itemize}
+Alternative approaches to \textit{Collector} node failure detection are (A) use of an ephemeral time-to-live (TTL)
+property stored by the Configuration service and (B) \textit{Collector}-to-\textit{Collector} heartbeating. (B)
+introduces additional network traffic and cannot scale with sufficiently large topologies. Furthermore, the same
+essential functionality is present in (A) as the TTL would propagate to all \textit{Collector} nodes via the
+Configuration service.
 
-\subsection{Reminder Algorithm (Metric Node Recovery)}
+While approach (A) provides an additional detection mechanism for Collector node disconnections (namely the
+\textit{Root} would detect \textit{Collector} failures as the TTL expires), it is simpler and arguably no less resilient
+to solely detect failures from the child node's perspective.
+
+\subsection{Reminder Algorithm (\textit{Metric} Node Recovery)}
 \label{algor_remind}
 
-Metric nodes can leave and enter the \dcamp system at any time. When they rejoin, they should be placed back into the
+\textit{Metric} nodes can leave and enter the \dcamp system at any time. When they rejoin, they are placed back into the
 same location within the topology so as to maintain as much consistency within the performance data as possible.
 
 The crux of this algorithm is the group definitions within the \dcamp configuration: nodes are always defined to be
@@ -191,36 +196,34 @@ within a group, and the groups define the network topology. Essentially, this al
 Topology protocol; no additional work is necessary.
 
 \begin{enumerate}
-\item Sensor node rejoins the system with \texttt{POLO} response to Root node's \texttt{MARCO} message.
-\item Root node detects Metric node is already part of \dcamp system.
-\item Root node (re)sends \texttt{ASSIGN} message to Metric node.
+\item \textit{Metric} node rejoins the system with \texttt{POLO} response to \textit{Root} node's \texttt{MARCO}
+      message.
+\item \textit{Root} node detects \textit{Metric} node is already part of \dcamp system.
+\item \textit{Root} node (re)sends \texttt{ASSIGN} message to \textit{Metric} node.
 \end{enumerate}
+
+\textit{Collector} nodes will not be overloaded by this algorithm since \textit{Metric} nodes are statically defined in
+groups via the \dcamp Configuration. As \textit{Metric} nodes disconnect and reconnect, the \textit{Collector} node
+virtually always has the same child nodes beneath it.
 
 \subsubsection{DETECTION}
 
-Detecting when a Metric node disconnects is not necessary. Rather the Root node only needs to detect when a Metric node
-rejoins the \dcamp system, comparing the Metric node's UUID to the UUID already saved in the topology.
+Detecting when a \textit{Metric} node disconnects is not necessary. Rather the \textit{Root} node only needs to detect
+when a \textit{Metric} node rejoins the \dcamp system, comparing the \textit{Metric} node's UUID to the UUID already
+saved in the topology.
 
-\subsubsection{QUESTIONS}
-
-\begin{itemize}
-\item How does this account for new nodes which have been assigned to Collector node since this Metric node
-      disconnected? Can the Collector node become overloaded, or is this already accounted for with the configuration
-      groups?
-\end{itemize}
-
-\subsection{Promotion Algorithm (Collector Node Recovery)}
+\subsection{Promotion Algorithm (\textit{Collector} Node Recovery)}
 \label{algor_promo}
 
 As with the Reminder Algorithm, this recovery relies heavily on the \hyperref[proto_topo]{Topology Management Protocol}.
-When a Metric node, M, detects its Collector node, C, is down, 
+When a \textit{Metric} node, M, detects its \textit{Collector} node, C, is down, 
 
 \begin{enumerate}
-\item M sends an \texttt{SOS} message to the Root node, R.
+\item M sends an \texttt{SOS} message to the \textit{Root} node, R.
 \item If R has received an \texttt{SOS} message from more than 1/3 of C's group, the algorithm proceeds as per below.
 \end{enumerate}
 
-When the Root node, R, detects one of the Collector nodes has disconnected,
+When the \textit{Root} node, R, detects one of the \textit{Collector} nodes has disconnected,
 
 \begin{enumerate}
 \item R broadcasts a \texttt{STOP} message to all nodes within C's group and clears the groups configuration from the
@@ -230,16 +233,17 @@ When the Root node, R, detects one of the Collector nodes has disconnected,
 
 \subsubsection{DETECTION}
 
-M will use the \hyperref[proto_config]{Configuration Replication Protocol} (\texttt{HUGZ}) to detect when C disconnects.
-R will use the \hyperref[proto_data]{Data Flow Protocol} (\texttt{DATA(type='HUGZ')}) to detect when any of its
-Collector nodes has disconnected. That is, if M or R receives no messages from C within D seconds, C is considered
-disconnected.
+M will use the \hyperref[proto_config]{Configuration Replication Protocol} (\texttt{HUGZ} message is sent when there are
+no configuration updates) to detect when C disconnects. R will use the \hyperref[proto_data]{Data Flow Protocol}
+(\texttt{DATA(type='HUGZ')} message is sent when no data is scheduled to be reported) to detect when any of its
+\textit{Collector} nodes has disconnected. That is, if M or R receives no messages from C within D seconds, C is
+considered disconnected.
 
-\subsection{Election Algorithm (Root Node Recovery)}
+\subsection{Election Algorithm (\textit{Root} Node Recovery)}
 \label{algor_elect}
 
-This recovery algorithm is based on the bully algorithm\cite{needed}. Only Collector nodes participate in the election,
-initiated when a Collector node, C, detects the Root node, R, is down.
+This recovery algorithm is based on the bully algorithm\cite{needed}. Only \textit{Collector} nodes participate in the
+election, initiated when a \textit{Collector} node, C, detects the \textit{Root} node, R, is down.
 
 \begin{enumerate}
 \item C sends \texttt{WUTUP} message to all nodes whose UUID is higher than its own, expecting a \texttt{YO} message in
@@ -247,8 +251,8 @@ initiated when a Collector node, C, detects the Root node, R, is down.
 \item If C does not receive any \texttt{YO} messages,
       \begin{enumerate}
       \item C declares victory by sending \texttt{IWIN} message to all nodes, and
-      \item C waits W seconds before transitioning to become the Root, allowing for another node to replace it as Root
-            via a separate election.
+      \item C waits W seconds before transitioning to become the Root, allowing for another node to replace it as
+            \textit{Root} via a separate election.
       \end{enumerate}
 \item If C receives a \texttt{YO} message,
       \begin{enumerate}
@@ -270,16 +274,9 @@ Additionally,
 
 \subsubsection{DETECTION}
 
-C will use the \hyperref[proto_config]{Configuration Replication Protocol} (\texttt{HUGZ}) to detect when R disconnects.
-That is, if C receives no message from R within D seconds, R is considered disconnected.
-
-\subsubsection{QUESTIONS}
-
-\begin{itemize}
-\item Is there a difference between starting a new election and resending the initial \texttt{WUTUP} message? Is there
-      an optimization to be found by uniquely ID'ing each election?
-\item Can this algorithm be optimized w.r.t. the number of messages sent?
-\end{itemize}
+C will use the \hyperref[proto_config]{Configuration Replication Protocol} (\texttt{HUGZ} message is sent when there are
+no configuration updates) to detect when R disconnects. That is, if C receives no message from R within D seconds, R is
+considered disconnected.
 
 \section{\dcamp Metrics}
 \label{dcamp_metrics}
