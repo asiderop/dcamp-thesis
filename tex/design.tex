@@ -11,10 +11,10 @@ respect to the number of required messages and can be easily modified to use a m
 \section{Architecture}
 
 \dcamp is designed as a semi-centralized, hierarchical peer-to-peer system utilizing the pipe-flow architecture
-pattern\cite{needed} in which leaf (sensor) nodes of the hierarchy collect data, filter out extraneous data, and send it
-up the pipe to an aggregate node which subsequently filters out more data and sends it up to another aggregate or root
-node. This architecture is efficient in that unwanted data is discarded earlier in the data path, reducing transport and
-processing costs.
+pattern\cite{needed} in which leaf (\textit{Metric}) nodes of the hierarchy collect data, filter out extraneous data,
+and send it up the pipe to a \textit{Collector} node which subsequently filters out more data and sends it up to another
+\textit{Collector} or \textit{Root} node. This architecture is efficient in that unwanted data is discarded earlier in
+the data path, reducing transport and processing costs.
 
 \section{\dcamp Metrics}
 \label{dcamp_metrics}
@@ -166,11 +166,21 @@ raw, monotonically increasing values from which it is calculated and collect tha
 \section{\dcamp Roles and Services}
 \label{roles_and_services}
 
-The \dcamp distributed system is comprised of one or more nodes each running one or more roles. Each role--a published,
-remotely accessible interface--provides one or more sets of functionality. Each set of functionality is known as a
-service.
+The \dcamp distributed system is comprised of one or more nodes, each executing a role. The role is essentially a named
+grouping of a specific, known set of functionality or service. Roles have little to no actual run-time logic but simply
+act as containers for the services; services manage ZeroMQ sockets, communicating with other services/nodes, and do the
+real work of \dcamp.
 
 \subsection{Services}
+
+Each \dcamp service has a specific purpose, but its scope can vary depending on the node's level in the \dcamp topology.
+
+For example, the Configuration service has a specific purpose of replicating the \dcamp configuration from the
+\textit{Root} to every node in the system via three distinct scopes: root, branch, and leaf. As part of the
+\textit{Root} node, the Configuration service acts as a master copy of the configuration and publishes new values as
+needed. As part of a \textit{Collector} node, the Configuration service stores every update from the \textit{Root} (for
+possible use if the \textit{Root} dies) but no other changes are allowed to be written. Lastly as part of a
+\textit{Metric} node, only configuration updates relevant to the node are stored by the Configuration service.
 
 \begin{itemize}
 
@@ -180,7 +190,7 @@ service.
       performance APIs (accessed via CAMP).
 \item \textbf{Filter}---performance metric filtering; provides throttling and thresholding of metrics.
 \item \textbf{Aggregation}--—performance metric aggregation; provides collection of and calculation on metrics from
-      multiple sensors and/or collectors.
+      multiple Sensor and/or Aggregation services.
 \item \textbf{Management}--—primary entry-point for end-user control of \dcamp distributed system; this is the \dcamp
       instrument panel, providing basic administration functions (e.g. start, stop, etc.).
 \item \textbf{Configuration}--—complete or partial configuration replication; provides topology and configuration
@@ -190,9 +200,10 @@ service.
 
 \subsection{Roles}
 
-The \textit{Base} role must be running on each node for it to be part of the \dcamp distributed system. In this document,
-a ``Base node'' is defined as a \dcamp node which has not yet been configured, i.e. it has not joined a running \dcamp
-system.
+The \textit{Base} role must be running on each node for it to be part of the \dcamp distributed system. In this
+document, a ``\textit{Base} node'' is defined as a \dcamp node which has not yet been configured, i.e. it has not joined
+a running \dcamp system. All other roles are launched from within the \textit{Base} role; see Section
+\ref{threading_model} for more details.
 
 The \textit{Metric} role runs on the nodes from which performance metrics should be collected. The \textit{Collector}
 role acts as an aggregation point in the system, combining performance data from multiple \textit{Metric} (and
@@ -205,11 +216,10 @@ fails.
 
 Depending on the use case and desired system performance, an administrator may choose to split roles across multiple
 nodes or collapse them onto a single node. For example, a single node may act as \textit{Metric}, \textit{Collector},
-and \textit{Root} for smaller systems while larger systems would employ dedicated \textit{Collector} nodes.
+and \textit{Root} for smaller systems while larger systems would employ dedicated \textit{Collector} nodes. The \dcamp
+\hyperref[configuration]{Configuration} syntax allows this to be easily defined by the system administrator.
 
-\subsection{Role-to-Service Mappings}
-
-Table \ref{tab:role_to_services} lists the roles which can be ``published'' by a \dcamp node and the services which they
+Table \ref{tab:role_to_services} lists the roles which can be executed by a \dcamp node and the services which they
 implement.
 
 \begin{table}
@@ -240,10 +250,14 @@ Disconnections are detected via a lack of messages, e.g. missed X consecutive me
 seconds.
 
 \begin{itemize}
-\item Metric nodes MUST detect when their parent (Collector) node disconnects. (\hyperref[algor_promo]{Promotion Algorithm})
-\item The Root node MAY detect when a Collector node disconnects. (\hyperref[algor_promo]{Promotion Algorithm})
-\item Collector nodes MUST detect when the Root node disconnects. (\hyperref[algor_elect]{Election Algorithm})
-\item The Root node MUST detect when a Metric node rejoins the system. (\hyperref[algor_remind]{Reminder Algorithm})
+\item \textit{Metric} nodes MUST detect when their parent (\textit{Collector}) node disconnects.
+      (\hyperref[algor_promo]{Promotion Algorithm})
+\item The \textit{Root} node MAY detect when a \textit{Collector} node disconnects. (\hyperref[algor_promo]{Promotion
+      Algorithm})
+\item \textit{Collector} nodes MUST detect when the \textit{Root} node disconnects. (\hyperref[algor_elect]{Election
+      Algorithm})
+\item The \textit{Root} node MUST detect when a \textit{Metric} node rejoins the system.
+      (\hyperref[algor_remind]{Reminder Algorithm})
 \end{itemize}
 
 LATER

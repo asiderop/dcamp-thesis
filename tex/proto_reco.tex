@@ -14,24 +14,24 @@ group-stop       = R-GROUP M-POLO R-STOP
 \end{verbatim}
 \vspace{-5pt}
 \caption[Branch Recovery Protocol]
-	{Branch Recovery Protocol: \texttt{R-} represents the Root node sending a message and \texttt{M-} represents a
-	 Metric node sending a message.}
+	{Branch Recovery Protocol: \texttt{R-} represents the \textit{Root} node sending a message and \texttt{M-}
+	 represents a \textit{Metric} node sending a message.}
 \label{fig:proto_reco_branch_spec}
 \end{figure}
 
-The Branch Recovery Protocol is initiated by Metric nodes when they detect their Collector has died. Once the Root node
-has received an \texttt{SOS} message from at least one third of the branch's Metric nodes, the Root proceeds to shutdown
-the entire branch using the ``stop'' Topology Protocol. Once shut down, a new Collector is selected and the branch is
-rebuilt using the standard ``discover'' Topology Protocol.
+The Branch Recovery Protocol is initiated by \textit{Metric} nodes when they detect their \textit{Collector} has died.
+Once the \textit{Root} node has received an \texttt{SOS} message from at least one third of the branch's \textit{Metric}
+nodes, the \textit{Root} proceeds to shutdown the entire branch using the ``stop'' Topology Protocol. Once shut down, a
+new \textit{Collector} is selected and the branch is rebuilt using the standard ``discover'' Topology Protocol.
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.5]{branch-recovery.pdf}
     \label{fig:proto_branch_reco_image}
     \caption[Branch Recovery Protocol Diagram]
-            {Branch Recovery Protocol Diagram: (1) Metric nodes send \texttt{SOS} requests, (2) Root replies with
-	     \texttt{KEEPCALM}, (3) Root sends \texttt{GROUP} only to nodes in branch, (4) Metric nodes send
-	     \texttt{POLO} requests, (5) Root replies with \texttt{STOP}}
+	    {Branch Recovery Protocol Diagram: (1) \textit{Metric} nodes send \texttt{SOS} requests, (2) \textit{Root}
+	     replies with \texttt{KEEPCALM}, (3) \textit{Root} sends \texttt{GROUP} only to nodes in branch, (4)
+	     \textit{Metric} nodes send \texttt{POLO} requests, (5) \textit{Root} replies with \texttt{STOP}}
 \end{figure}
 
 \texttt{SOS} and \texttt{KEEPCALM} are shorthand for the \texttt{CONTROL} message with a command value of \texttt{"sos"}
@@ -49,14 +49,15 @@ election       = C-WUTUP *C-YO C-IWIN
 \end{verbatim}
 \vspace{-5pt}
 \caption[Root Recovery Protocol]
-        {Root Recovery Protocol: \texttt{C-} represents a Collector node sending a message.}
+        {Root Recovery Protocol: \texttt{C-} represents a \textit{Collector} node sending a message.}
 \label{fig:proto_reco_root_spec}
 \end{figure}
 
-As each Collector node detects the Root node has died, it attempts to start an election via the \texttt{WUTUP} message.
-Collector nodes with higher UUIDs will respond to the first Collector by sending the \texttt{YO} message. If no
-\texttt{YO} messages are received by the first Collector, the \texttt{IWIN} message is sent out to all Collector nodes,
-self-declaring the first Collector as the new Root.
+As each \textit{Collector} node detects the \textit{Root} node has died, it attempts to start an election via the
+\texttt{WUTUP} message. \textit{Collector} nodes with higher UUIDs will respond to the first \textit{Collector} by
+sending the \texttt{YO} message. If no \texttt{YO} messages are received by the first \textit{Collector}, the
+\texttt{IWIN} message is sent out to all \textit{Collector} nodes, self-declaring the first \textit{Collector} as the
+new Root.
 
 \begin{figure}[H]
     \centering

@@ -1,13 +1,15 @@
 \subsection{Topology Protocols}
 \label{proto_topo}
 
-The \dcamp distributed topology is dynamically established as the Root node sends out its discovery message and receives
-join messages from Base nodes. When a Base node responds to the Root, the Base node is given its assignment.
+The \dcamp distributed topology is dynamically established as the \textit{Root} node sends out its discovery message and
+receives join messages from \textit{Base} nodes. When a \textit{Base} node responds to the \textit{Root}, the
+\textit{Base} node is given its assignment.
 
-To reduce network traffic and load on the Root, Base nodes are designed to ignore \texttt{MARCO} messages from nodes
-whose UUID matches a previous successful topology discovery handshake. The Root node uses this to its advantage when
-attempting to stop nodes: the same \texttt{MARCO} / \texttt{POLO} pattern is used, but the Root node uses a different
-UUID in the \texttt{MARCO} message and a responds with a \texttt{STOP} message instead of an assignment.
+To reduce network traffic and load on the \textit{Root}, \textit{Base} nodes are designed to ignore \texttt{MARCO}
+messages from nodes whose UUID matches a previous successful topology discovery handshake. The \textit{Root} node uses
+this to its advantage when attempting to stop nodes: the same \texttt{MARCO} / \texttt{POLO} pattern is used, but the
+\textit{Root} node uses a different UUID in the \texttt{MARCO} message and a responds with a \texttt{STOP} message
+instead of an assignment.
 
 \begin{figure}[H]
 \vspace{+10pt}
@@ -17,8 +19,8 @@ stop     = R-MARCO B-POLO ( R-STOP / R-WTF )
 \end{verbatim}
 \vspace{-5pt}
 \caption[Topology Protocols]
-        {Topology Protocols: \texttt{R-} represents the Root node sending a message and \texttt{B-}
-         represents a Base node sending a message.}
+	{Topology Protocols: \texttt{R-} represents the \textit{Root} node sending a message and \texttt{B-}
+         represents a \textit{Base} node sending a message.}
 \label{fig:proto_topo_spec}
 \end{figure}
 
@@ -27,8 +29,8 @@ stop     = R-MARCO B-POLO ( R-STOP / R-WTF )
     \includegraphics[scale=0.5]{topo.pdf}
     \label{fig:proto_topo_image}
     \caption[Topology Protocol Diagram]
-	    {Topology Protocol Diagram: (1) Root sends \texttt{MARCO} at regular intervals, (2) Base sends \texttt{POLO}
-	     request, (3) Root replies with  \texttt{ASSIGN} or \texttt{STOP}}
+	    {Topology Protocol Diagram: (1) \textit{Root} sends \texttt{MARCO} at regular intervals, (2) \textit{Base}
+	     sends \texttt{POLO} request, (3) \textit{Root} replies with  \texttt{ASSIGN} or \texttt{STOP}}
 \end{figure}
 
 \subsubsection{Message Definitions}
@@ -57,7 +59,7 @@ REQ/REP connection. The \texttt{POLO}, \texttt{ASSIGN}, and \texttt{STOP} messag
 \texttt{CONTROL(command="POLO")}, \texttt{CONTROL(command="ASSIGN")}, and \texttt{CONTROL(command="STOP")} respectively.
 
 In the case of \texttt{ASSIGN}, the third frame contains the specific topology instructions (level-one collector, leaf
-node, etc.) being sent to the Base node.
+node, etc.) being sent to the \textit{Base} node.
 
 \begin{figure}[H]
 \vspace{+10pt}

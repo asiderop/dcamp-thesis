@@ -133,9 +133,9 @@ at monitoring large distributed systems and how to best configure its metric col
 \subsection{Workload}
 
 \dcamp is setup to monitor a machine's global metrics, scaling the number of simulated nodes in the \dcamp system from
-three nodes (one Root, one Collector, one Sensor) up to 200 nodes (eight groups with twenty-five nodes per group). The
-metric configuration is kept constant for each test run. As \dcamp starts, monitors in steady state, and shuts down, the
-machine's network traffic is monitored and recorded every five seconds.
+three nodes (one \textit{Root}, one \textit{Collector}, one \textit{Metric}) up to 200 nodes (eight groups with
+twenty-five nodes per group). The metric configuration is kept constant for each test run. As \dcamp starts, monitors in
+steady state, and shuts down, the machine's network traffic is monitored and recorded every five seconds.
 
 The test machine is a MacBook Pro (2.7GHz Core i7, 8GB 1333MHz DDR3, SSD) running OSX 10.9. All simulated \dcamp nodes
 use endpoints on the machine's loopback interface, and only the loopback interface traffic is monitored. The machine is
@@ -186,8 +186,8 @@ than the number of nodes.
 
 However, the number of messages being sent per node actually goes down and levels off just under 1 packet per node per
 second. This can be attributed to the fact that the number of Sensor nodes increases faster in relation to the number of
-Collector nodes. That is, Sensor nodes do not require full-configuration replication and send/receive fewer messages
-since they are relatively uninvolved with topology coordination in comparison to Collector nodes.
+\textit{Collector} nodes. That is, Sensor nodes do not require full-configuration replication and send/receive fewer messages
+since they are relatively uninvolved with topology coordination in comparison to \textit{Collector} nodes.
 
 As this ratio increases, it is expected the number of messages per node to decrease. This latter observation indicates a
 higher number of child nodes per parent would result in lower network utilization and better \dcamp scalability.

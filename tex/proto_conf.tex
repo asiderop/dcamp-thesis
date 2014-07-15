@@ -4,13 +4,13 @@
 \dcamp configuration and topology state are replicated across the system using key-value pairs, with the keys laid out
 in a hierarchical fashion. This lends itself nicely to PUB/SUB topic filtering.
 
-For example, because a Metric node only needs the configuration values for its particular group, the node subscribes
-only to the \texttt{"/CONFIG/<group-name>/"} topic. Any \texttt{KVPUB} whose key does not start with this string is
-then discarded.
+For example, because a \textit{Metric} node only needs the configuration values for its particular group, the node
+subscribes only to the \texttt{"/CONFIG/<group-name>/"} topic. Any \texttt{KVPUB} whose key does not start with this
+string is then discarded.
 
-In practice, Metric nodes need more than just their group-specific configuration, but the general principle holds true:
-nodes only receive the configuration data they require and nothing more. In the case of first-level Collector nodes, they
-receive all updates since they are fail-over candidates for the root node.
+In practice, \textit{Metric} nodes need more than just their group-specific configuration, but the general principle
+holds true: nodes only receive the configuration data they require and nothing more. In the case of first-level
+\textit{Collector} nodes, they receive all updates since they are fail-over candidates for the \textit{Root} node.
 
 \begin{figure}[H]
 \vspace{+10pt}
@@ -21,26 +21,28 @@ snap-sync          = C-ICANHAZ ( ( *P-KVSYNC P-KTHXBAI ) / P-WTF )
 \end{verbatim}
 \vspace{-5pt}
 \caption[Configuration Protocol Specification]
-	{Configuration Protocol Specification: \texttt{P-} represents the parent node (Root or Collector) sending a
-	 message and \texttt{C-} represents the child node (Collector or Metric) sending a message.}
+	{Configuration Protocol Specification: \texttt{P-} represents the parent node (\textit{Root} or
+	 \textit{Collector}) sending a message and \texttt{C-} represents the child node (\textit{Collector} or
+	 \textit{Metric}) sending a message.}
 \label{fig:proto_config_spec}
 \end{figure}
 
-A newly assigned first-level Collector node will first subscribe to new configuration updates from the Root node and
-then send a configuration snapshot request to the Root node. A newly assigned Metric (or non-first-level Collector) node
-will first subscribe to new configuration updates from its parent Collector node, and then send its parent Collector
-node a filtered configuration snapshot request. Once its snapshot has been successfully received, a node will process
-any pending configuration updates and then, in the case of a Collector node, respond to child node snapshot requests.
+A newly assigned first-level Collector node will first subscribe to new configuration updates from the \textit{Root}
+node and then send a configuration snapshot request to the \textit{Root} node. A newly assigned Metric (or
+non-first-level \textit{Collector}) node will first subscribe to new configuration updates from its parent
+\textit{Collector} node, and then send its parent \textit{Collector} node a filtered configuration snapshot request.
+Once its snapshot has been successfully received, a node will process any pending configuration updates and then, in the
+case of a \textit{Collector} node, respond to child node snapshot requests.
 
 The \dcamp configuration replication algorithm adheres to the Clustered Hashmap Protocol\cite{chp} with a few minor
 (and one major) modifications:
 
 \begin{enumerate}
-\item only the Root node may write updates to the configuration,
-\item the full configuration table will be replicated across all first-level Collector nodes (lower-level nodes may
-      filter their configuration to only store relevant data),
+\item only the \textit{Root} node MUST write updates to the configuration,
+\item the full configuration table MUST be replicated across all first-level \textit{Collector} nodes (lower-level nodes
+      MAY filter their configuration to only store relevant data),
 \item a different set of command names are used (as described below), and
-\item configuration updates are distributed via the \dcamp hierarchy (instead of directly from the Root node).
+\item configuration updates are distributed via the \dcamp hierarchy (instead of directly from the \textit{Root} node).
 \end{enumerate}
 
 \begin{figure}[H]
@@ -123,8 +125,9 @@ Frame 4: subtree specification, as 0MQ string
 monotonically increasing. When a \texttt{KVPUB} is received which has a sequence number lower than a previously received
 \texttt{KVPUB}, the node MUST delete its saved configuration values and request a new snapshot.
 
-Frame 2 SHOULD contain the UUID of the node from which the value originated. In \dcamp, this should only be the Root
-node's UUID. Frame 3 MAY contain additional properties for the key-value pair, such as an ephemeral time-to-live.
+Frame 2 SHOULD contain the UUID of the node from which the value originated. In \dcamp, this should only be the
+\textit{Root} node's UUID. Frame 3 MAY contain additional properties for the key-value pair, such as an ephemeral
+time-to-live.
 
 \begin{figure}[H]
 \vspace{+10pt}
