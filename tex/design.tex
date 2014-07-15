@@ -1,72 +1,82 @@
 \chapter{Design}
 \label{design}
 
-\textbf{General design:} semi-centralized, hierarchical peer-to-peer system utilizing the pipe-flow architecture pattern
-in which leaf (sensor) nodes of the hierarchy collect data, filter out extraneous data, and send it up the pipe to an
-aggregate node which subsequently filters out more data and sends it up to another aggregate or root node.
+\dcamp is designed to be simple and only add complexity where needed. This allows for quick and easy, large scale
+testing, for example. Additionally, in order to be transparent, minimizing network traffic was an important concern.
 
-\dcamp was designed to be simple and only add complexity where needed. This allows, for example, for quick and easy,
-large scale testing. Additionally, in order to be transparent, minimizing network traffic was important.
+To this end, \dcamp configuration and management protocols are designed to be human-readable and verbose; this makes
+them easy to debug and modify as needed. The data protocol, while also human-readable in its current form, is terse with
+respect to the number of required messages and can be easily modified to use a more compact encoding scheme.
+
+\section{Architecture}
+
+\dcamp is designed as a semi-centralized, hierarchical peer-to-peer system utilizing the pipe-flow architecture
+pattern\cite{needed} in which leaf (sensor) nodes of the hierarchy collect data, filter out extraneous data, and send it
+up the pipe to an aggregate node which subsequently filters out more data and sends it up to another aggregate or root
+node. This architecture is efficient in that unwanted data is discarded earlier in the data path, reducing transport and
+processing costs.
 
 \section{\dcamp Metrics}
 \label{dcamp_metrics}
-Metrics marked with ``(\emph{dCAMP})'' are extensions added by the \dcamp project to the basic CAMP metrics. These provide a
-performance view of multiple nodes in the distributed network and are collected by the Aggregate service rather than the
-CAMP service.
+
+The crux of any DPF are the performance metrics to which it provides access. This section lists the set of performance
+metrics available via \dcamp. Metrics marked with ``(\emph{dCAMP})'' are extensions added by the \dcamp project to the
+basic CAMP metrics. These provide a performance view of multiple nodes in the distributed network and are collected by
+the Aggregation service rather than the Sensor service.
 
 \subsection{Global Metrics}
 Global metrics measure overall CPU, process, thread, and memory usage of the system.
 \begin{itemize}
-\item Node CPU usage 
-\item Node free physical memory (KB) 
-\item Aggregate average CPU usage (\dcamp) 
-\item Aggregate free physical memory (percentage) (\dcamp)
+\item Node CPU usage
+\item Node free physical memory
+\item Aggregate average CPU usage (\dcamp)
+\item Aggregate free physical memory (\dcamp)
 \end{itemize}
 
 \subsection{Network I/O Metrics}
 Network metrics measure utilization of a given network interface on the system.
 \begin{itemize}
-\item Total bytes sent on the given interface 
-\item Total packets sent on the given interface 
-\item Total bytes received on the given interface 
-\item Total packets received on the given interface 
-\item Aggregate bytes sent (\dcamp) 
-\item Aggregate packets sent (\dcamp) 
-\item Aggregate bytes received (\dcamp) 
+\item Total bytes sent on the given interface
+\item Total packets sent on the given interface
+\item Total bytes received on the given interface
+\item Total packets received on the given interface
+\item Aggregate bytes sent (\dcamp)
+\item Aggregate packets sent (\dcamp)
+\item Aggregate bytes received (\dcamp)
 \item Aggregate packets received (\dcamp)
 \end{itemize}
 
 \subsection{Disk I/O Metrics}
 Disk I/O metrics measure throughput of a given disk or partition on the system.
 \begin{itemize}
-\item Number of read operations on the given disk 
-\item Number of write operations on the given disk 
-\item Number of read operations on the given partition 
-\item Number of write operations on the given partition 
-\item Aggregate number of read operations (\dcamp) 
+\item Number of read operations on the given disk
+\item Number of write operations on the given disk
+\item Number of read operations on the given partition
+\item Number of write operations on the given partition
+\item Aggregate number of read operations (\dcamp)
 \item Aggregate number of write operations (\dcamp)
 \end{itemize}
 
 \subsection{Per-process Metrics}
 Per-process metrics measure CPU, memory, and thread usage for a single process on the system.
 \begin{itemize}
-\item Number of major and minor page faults 
-\item Process CPU utilization 
-\item Process user mode CPU utilization 
-\item Process privileged mode CPU utilization 
-\item Size of the process' working set in KB 
-\item Size of the used virtual address space in KB 
+\item Number of major and minor page faults
+\item Process CPU utilization
+\item Process user mode CPU utilization
+\item Process privileged mode CPU utilization
+\item Size of the process' working set in KB
+\item Size of the used virtual address space in KB
 \item Number of threads contained in the process
 \end{itemize}
 
 \subsection{Inquiry Metrics}
 Inquiry metrics provide a mechanism for enumerating various properties of the system.
 \begin{itemize}
-\item Enumeration of the available disk partitions 
-\item Enumeration of the available physical disks 
-\item Enumeration of the valid inputs to the network functions 
-\item Number of CPUs in the system 
-\item ``process identifier'' for the given pid 
+\item Enumeration of the available disk partitions
+\item Enumeration of the available physical disks
+\item Enumeration of the valid inputs to the network functions
+\item Number of CPUs in the system
+\item ``process identifier'' for the given PID
 \item ``process identifier'' for each running process launched from an executable of the given name
 \end{itemize}
 
