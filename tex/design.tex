@@ -18,55 +18,52 @@ the data path, reducing transport and processing costs.
 
 \section{Requirements}
 
+As with any software engineering project, it is vital to have clearly stated requirements. \dcamp is no different. Below
+are the list of functional and non-functional requirements which guide its design and implementation.
+
 \subsection{Functional}
 
 \begin{enumerate}
 
-\item Configuration
+\item Configuration and Management
       \begin{itemize}
-      \item instantiation, administration
-      \item topology coordination
-      \item metric collection spec.
+      \item An interface to instantiate and administer the system MUST be provided.
+      \item Topology coordination MUST be handled automatically.
+      \item An interface for configuring metric collections MUST be provided.
       \end{itemize}
 
 \item Metric Collection
       \begin{itemize}
-      \item \dcamp API on top of CAMP
-      \item filters (at various levels), thresholds
-      \item aggregation of metrics across nodes
-      \item output to log file
+      \item An API for stateful, aggregate metrics on top of CAMP must be provided.
+      \item Filters and thresholds SHOULD be configurable at any level in the collection topology.
+      \item Aggregation of metrics across nodes MUST be supported.
+      \item Performance data SHOULD be written to log files on each node.
       \end{itemize}
 
 \item Fault Tolerance
       \begin{itemize}
-      \item simple rules to handle failures
+      \item The topology MUST sustain brief network disconnectivity of any node.
+      \item The topology MUST handle entrance/exit of any node(s) in the system.
+            \begin{itemize}
+            \item \textit{Metric} nodes MUST be allowed to enter/exit topology at any time.
+            \end{itemize}
+      \item \textit{Root}/\textit{Collector} nodes (i.e. parents) MUST failover in case of extended disconnectivity.
+            \begin{itemize}
+            \item Loss of previously collected data SHOULD be minimized during failover.
+            \end{itemize}
+      \item Management node MAY be allowed to enter/exit topology at any time.
       \end{itemize}
 
 \end{enumerate}
 
-\subsection{Fault Tolerance}
-
-\begin{enumerate}
-
-\item Topology MUST sustain brief network disconnectivity of any node.
-\item \textit{Metric} nodes MUST be allowed to enter/exit topology at any time.
-\item \textit{Root}/\textit{Collector} nodes (i.e. parents) MUST failover in case of extended disconnectivity.
-      \begin{itemize}
-      \item Loss of previously collected data SHOULD be minimized during failover.
-      \end{itemize}
-\item Management node MAY be allowed to enter/exit topology at any time.
-
-\end{enumerate}
-
-\subsection{Testing}
+\subsection{Non-Functional}
 
 \begin{itemize}
 
-\item \textbf{Transparency:} \dcamp SHOULD introduce negligible performance impact on sensor nodes.
-\item \textbf{Accuracy:} \dcamp MUST accurately report metrics/performance of sensor nodes (individual and aggregated).
-\item \textbf{Scalability:} \dcamp SHOULD maintain its transparency and accuracy as it scales (i.e. the number of sensor
-      nodes increases).
-\item \textbf{Fault Tolerance:} \dcamp MUST successfully handle entrance/exit of any node(s) in the system.
+\item \textbf{Transparency:} \dcamp SHOULD introduce negligible performance impact on \textit{Metric} nodes.
+\item \textbf{Accuracy:} \dcamp MUST accurately report performance of \textit{Metric} nodes (individual and aggregated).
+\item \textbf{Scalability:} \dcamp SHOULD maintain its transparency and accuracy as it scales (i.e. the number of
+      \textit{Metric} nodes increases).
 
 \end{itemize}
 
