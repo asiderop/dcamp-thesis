@@ -3,71 +3,87 @@
 
 \subsubsection{Additional Features}
 
-These features would provide a more complete, end-to-end solution for distributed performance monitoring.
+While \dcamp in its current implementation meets the requirements of a basic DPF, these features should advance it into
+a more complete, end-to-end distributed performance monitoring solution.
 
-\begin{itemize}
+An \textbf{end-to-end tool} built on top of \dcamp could allow a system administrator to quickly look at the performance
+of a large part of the network via aggregate metrics and easily drill down into the groups and/or nodes which exhibit
+problematic behaviour. Toward this goal, a \textbf{lightweight web server} could be implemented on each node, adding
+support for REST APIs and access to historical metric data along with a graphical user interface for easier \dcamp
+system management.
 
-\item end-to-end tool built on top of \dcamp; aggregation provides benefit of looking at large parts of system quickly;
-you can look at the aggregate and drill down to find the problem nodes
+The current \dcamp protocols leave much to be desired when it comes to secure communication and operation. A more secure
+implementation would include a form of \textbf{salted pass phrases} with every control message or even encrypt all
+messages sent from one node to another.
 
-\item Lightweight web server on each node to support REST APIs and graphical interface.
-
-\item security --- send salted passphrase with every control message, encrypt all messages, etc.
-
-\item provide full support for metric sampling in collector role (instead of requiring two nodes on single machine)
-
-\end{itemize}
+One of the possible pain points with \dcamp is the control given to the system administrator through group
+specifications. Specifically, administrators are tasked not only with identifying which nodes to include in the system,
+but also how those nodes are placed into the distributed topology. Instead of this manual configuration,
+\textbf{automatic grouping} of nodes may be implemented based on network locality, metric configuration and sample
+periods, or even a tunable such as preference of network vs. CPU/memory overhead. The administrator would be left with
+the task of defining which metrics a given node should collect and \dcamp would best select where the nodes sit in the
+hierarchy, how many children nodes a single parent manages, etc.
 
 \subsubsection{Fault Tolerance}
 
-Improve the fault tolerance of \dcamp by implementing these features which were out-of-scope for the original project.
+The fault tolerance of \dcamp could be improved by implementing these features which were considered out-of-scope for
+the original project.
 
-\begin{itemize}
+\dcamp does not support any fault tolerance for network failures---it only attempts to recover from node failures. It is
+assumed that if (part of) the network goes down, the lack of data from that subnet will suffice. Specifically, \dcamp
+cannot currently tolerate a \textbf{Split-Brain Syndrome} \cite{needed}. It may be enhanced to recover from such network
+partitions, though.
 
-\item network failure: \dcamp does not support any fault tolerance for network failures; \dcamp only attempts to recover
-from node failures. It is assumed that if (part of) the network goes down, the lack of data from that subnet will
-suffice. specifically, \dcamp does not tolerate the split brain syndrome\cite{needed}.
+The system time among multiple nodes in the distributed system may vary significantly. \dcamp is not meant to be a
+high-resolution system with respect to the \textbf{ordering of performance data occurrences}. It is assumed that NTP
+provides sufficient time synchronization across all nodes in the system OR the precise ordering of performance events in
+the system is not required.
 
-\item time accuracy: The system time among multiple nodes in the system may vary significantly; \dcamp is not meant to
-be a high-resolution system with respect to the order of performance data occurrences. It is assumed that NTP provides
-sufficient time synchronization across all nodes in the system OR the precise ordering of performance events in the
-system is not required.
+To further increase fault tolerance of the topology, \dcamp should be able to \textbf{operate without a \textit{Root}}
+node. That is, the Management service should not be continuously needed for the system to operate. Essentially this
+comes down to all top-level \textit{Collector} nodes being potential endpoints for end-user control, at which point it
+momentarily acts as a Root, sending out configuration updates.
 
-\item self-restarting executable for base node
-
-\item detect collector failure in the root role, not just metric role
-
-\item Root node does not need to be present for the system to operate. 1) Root (i.e. `Management` service) node can come
-and go, 2) all data is stored at top-level Collector nodes, 3) Root comes online and asks Collectors for data (since
-T?), 4) there is a ``master'' Collector node for config (is that same as root?)
-
-\end{itemize}
+Lastly, as described in Chapter \ref{implementation}, \dcamp could become more resilient to software failures by running
+\textit{Base} nodes within a \textbf{self-restarting executable}. If the process crashes for any reason, it would
+automatically be restarted and join back into the network.
 
 \subsubsection{Improve Performance and Scalability}
 
-Increase efficiency of protocols and make really large \dcamp systems possible.
+With several places for improvement, increasing the efficiency and performance of \dcampns's own implementation could
+make really large systems feasible.
 
-\begin{itemize}
+The current implementation of each ZeroMQ protocol heavily relies on a common polling pattern. Not only does this waste
+thread resources waiting on socket connections, but the code becomes hard to maintain as well. An alternate solution to
+this polling is event-driven I/O. ZeroMQ supports this alternate message pattern via \textbf{IOLoop and Green Events}
+\cite{needed}.
 
-\item use IOLoop (green events?) instead of polling sockets for messages
-      \begin{itemize}
-      \item look into using an io loop with callbacks to better manage sockets
-      \item possibly, use a single io loop, hosted by the base node service and passed to the roles it starts?
-      \item this could greatly increase the scalability of dCAMP and reduce its overhead
-      \item except the sensor service, most threads sit idly waiting for messages to arrive; this is a waste of system
-            resources; using events reduces complexity of implementation and improves runtime performance
-      \end{itemize}
+With IOLoop, it may be possible to use a single IO loop, hosted by the \textit{Base} node, shared among all the active
+services. This reduces the number of idle threads per node, freeing valuable OS resources and reducing \dcampns's
+processing overhead.
 
-\item multicast topo discovery -- reduce config cost, use gateways to multicast into other subnets
+Although \dcamp only uses classic TCP protocols for all communication, ZeroMQ does support \textbf{multicast network
+protocols}. Using multicast judiciously within \dcamp could greatly reduce configuration costs and network traffic, for
+example in the \hyperref[proto_topo]{Topology Protocols}. For \dcamp systems spanning multiple subnets, the use of
+multicast would require special network configurations or special ZeroMQ gateways for passing messages from one subnet
+to the next.
 
-\item multiple-level branches are not supported in the current implementation. that is, all collector nodes have the
-      root node as their parent and only have leaf nodes as their children.
-      \begin{itemize}
-      \item support would allow large group configurations to be automatically split into multiple (identically
-            configured) branches for improved scalability
-      \end{itemize}
+\textbf{Multiple-level branches} are not supported in the current implementation. That is, all \textit{Collector} nodes
+have the \textit{Root} node as their parent and only have \textit{Metric} nodes as their children. Extending support for
+multiple levels of \textit{Collectors} would allow large group configurations to be automatically split into multiple
+(identically configured) branches for improved scalability
 
-\end{itemize}
+Compiling the various critical paths within \dcampns, such as the metric sampling code in the Sensor service, using
+\textbf{Pyrex or Cython} may boost performance \cite{needed} and lower the cost of metric collection such that faster
+sample periods can be used without issue.
+
+Due to Python's Global Interpreter Lock \cite{py-threads}, there are limitations to the parallel execution of threads on
+an SMP system. While \dcampns's use of threads is heavily I/O-bound, some gains may also be found by using full-fledged
+\textbf{processes instead of threads}.
+
+While not a huge cost, \dcamp currently requires two nodes to execute alongside each other on a system which hosts a
+\textit{Collector}. An improvement would be to provide full support for \textbf{metric sampling directly within the
+\textit{Collector} role}.
 
 \subsubsection{Metric Extensions}
 
@@ -82,7 +98,9 @@ It could be possible for data messages to contain nested data messages, e.g. ave
 
 \textbf{GROUPINGS}
 \dcamp may need a more compact data message format for combining multiple metrics into a single message, e.g. for
-aggregation purposes or representing entire branches in the topology.
+aggregation purposes or representing entire branches in the topology. this improves network efficiency i.e. with
+compression of data
+
 group by source/type/time?
 group start/end frames?
 
@@ -97,3 +115,7 @@ end-user.
 Perhaps there should be some special, e.g. ``once'', metric collection specifications so config data can be sent up to the
 root only at node start.
 
+\textbf{REPORT VARIANCE}
+metrics are sampled regularly but reported randomly within the period in order to not overload the parent nodes.
+
+\textbf{CUSTOM METRICS}
