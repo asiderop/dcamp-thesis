@@ -3,7 +3,7 @@
 
 To verify \dcamp meets both the transparency and scalability distributed performance framework criterion outlined in
 Chapter \ref{introduction}, several experiments were run on an installation of \dcamp in a test environment. The goal of
-these experiments was two fold: measure \dcamp's transparency in a real-world environment as well as determine the
+these experiments was two fold: measure \dcampns's transparency in a real-world environment as well as determine the
 thresholds for several key configuration parameters as \dcamp scales.
 
 Any DPF can be configured in such a way that it impacts the performance of the system being monitored, for example by
@@ -18,7 +18,7 @@ requirements.
 \section{Transparency}
 
 To measure the impact of \dcamp on a monitored process, a workload is defined and measured with and without \dcamp
-active. The measured difference in performance of the monitored process is defined to be \dcamp's monitoring overhead.
+active. The measured difference in performance of the monitored process is defined to be \dcampns's monitoring overhead.
 
 \subsection{Workload}
 
@@ -104,9 +104,9 @@ latency of the successful requests improves slightly. This explains the trend li
     \label{fig:fib25_graph}
 \end{figure}
 
-Apache's disk-bound performance measured in the 5MB download test is relatively unaffected by \dcamp. This graph also
-shows the 512 thread load point as the beginning of a trend line shift, again correlating with the increase in request
-error rate.
+Apache's disk-bound performance measured in the 5MB download test is relatively unaffected by \dcampns. This is expected
+since the infrequent samples being logged to an output file are \dcampns's only disk access. This graph also shows the 512
+thread load point as the beginning of a trend line shift, again correlating with the increase in request error rate.
 
 \begin{figure}[H]
     \centering
@@ -124,10 +124,14 @@ system. It is better to monitor a process using a faster sample period than an e
 period. The \dcamp system impact is noticeable but a considerably smaller factor than the impact hardware limitations
 have on performance monitoring.
 
+Lastly, holding all else constant, slower sample periods have an obviously lower impact on system performance compared
+to faster sample periods. Possibly using \dcampns's reporting threshold, system impact can be minimized while still
+maintaining fine sample granularity.
+
 \section{Scalability}
 
 One of the primary measures of scalability for a distributed system is its network traffic.\cite{zanikolas2005} By
-simulating successively larger \dcamp systems (with respect to node count), once can extrapolate \dcamp's effectiveness
+simulating successively larger \dcamp systems (with respect to node count), once can extrapolate \dcampns's effectiveness
 at monitoring large distributed systems and how to best configure its metric collections.
 
 \subsection{Workload}
