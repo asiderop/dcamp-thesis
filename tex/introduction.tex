@@ -84,14 +84,19 @@ not on a myriad of APIs for various architectures or languages.
 The Distributed Common API for Measuring Performance (\dcamp) is a distributed performance framework built on top of
 Mark Gabel and Michael Haungs' 2007 research on \emph{CAMP: a common API for measuring performance} \cite{gabel2007}.
 The fundamental functionality of \camp is providing an accurate and ``consistent method for retrieving system
-performance data from multiple platforms.'' \dcamp\ takes advantage of this functionality and the authors' work done in
-validating \camp's accuracy and adds the following core feature sets:
+performance data from multiple platforms.''
+
+\dcamp\ takes advantage of this functionality and the authors' work done in validating \camp's accuracy and adds the
+core feature sets listed beelow. As shown in the analysis work presented in Chapter \ref{analysis}, \dcamp adds these
+features while still maintaining minimal impact on the systems, processes, and networks being monitored.
+
+The key contributions of the Distributed Common API for Measuring Performance are:
 
 \begin{itemize}
-\item Stateful Performance API
-\item Distributed Performance Data Aggregation
-\item Performance Filters and Triggers
-\item Simplistic Fault Tolerance
+\item a stateful performance API,
+\item distributed performance data aggregation,
+\item performance filters and triggers, and
+\item simplistic fault tolerance.
 \end{itemize}
 
 \subsection{Terminology}
