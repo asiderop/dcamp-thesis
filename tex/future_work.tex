@@ -87,35 +87,21 @@ While not a huge cost, \dcamp currently requires two nodes to execute alongside 
 
 \subsubsection{Metric Extensions}
 
-Only a small subset of metrics were implemented in \dcamp as a proof of concept. The rest of the full set listed in
+Only a small subset of metrics were implemented in \dcamp as a proof of concept. The rest of the full set listed in the
 \hyperref[dcamp_metrics]{\dcamp Metrics} section are left as future work.
 
-\textbf{VARIABLE LENGTH DATA}
-Does \dcamp need to support arbitrary data lengths?
+Beyond the list of statically defined metrics, \textbf{user-defined metrics} would expand the performance monitoring
+infinitely. This could be implemented as a Python module integrated into the distributed system being monitored or
+through a plug-in system built into \dcamp itself.
 
-\textbf{NESTED METRICS}
-It could be possible for data messages to contain nested data messages, e.g. average/sum of rates.
+Additionally, \dcamp could support additional data types such as \textbf{histograms} and \textbf{variable length
+strings} or even more fine grained control over when metrics are sampled. For example, metrics could be
+\textbf{collected on demand}, driven by user requests via the Management service, or collected at a special ``once''
+sample period so data is sent to the \textit{Root} node only at start.
 
-\textbf{GROUPINGS}
-\dcamp may need a more compact data message format for combining multiple metrics into a single message, e.g. for
-aggregation purposes or representing entire branches in the topology. this improves network efficiency i.e. with
-compression of data
-
-group by source/type/time?
-group start/end frames?
-
-\textbf{HISTOGRAMS}
-\dcamp should provide a metric histogram ability. Perhaps this should done at each node or only at the root.
-
-\textbf{METRIC REQUESTS}
-The admin can use \dcamp to request metrics on a one-time basis, for example, to enumerate the available disks on each
-node. The key here is a metric collection is not based on configuration file but rather on real-time input from the
-end-user.
-
-Perhaps there should be some special, e.g. ``once'', metric collection specifications so config data can be sent up to the
-root only at node start.
-
-\textbf{REPORT VARIANCE}
-metrics are sampled regularly but reported randomly within the period in order to not overload the parent nodes.
-
-\textbf{CUSTOM METRICS}
+There are also two features which can be implemented to improve collection and reporting efficiency. First, a more
+compact data message format could be used to \textbf{combine multiple data samples into a single message}, e.g. for
+aggregation purposes or representing entire branches in the topology. This would improve network efficiency as fewer
+packets would require routing and data could be more effectively compressed. Second, metrics could be sampled regularly
+but \textbf{reported randomly} within the period in order to distribute arrival of data from child nodes and not
+overload the Aggregation service.
