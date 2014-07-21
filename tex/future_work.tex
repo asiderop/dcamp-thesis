@@ -31,8 +31,8 @@ the original project.
 
 \dcamp does not support any fault tolerance for network failures---it only attempts to recover from node failures. It is
 assumed that if (part of) the network goes down, the lack of data from that subnet will suffice. Specifically, \dcamp
-cannot currently tolerate a \textbf{Split-Brain Syndrome} \cite{needed}. It may be enhanced to recover from such network
-partitions, though.
+cannot currently tolerate a \textbf{split-brain syndrome} in which the network has been partitioned and entire subsets
+of the system cannot communicate with each other. It may be enhanced to recover from such network partitions, though.
 
 The system time among multiple nodes in the distributed system may vary significantly. \dcamp is not meant to be a
 high-resolution system with respect to the \textbf{ordering of performance data occurrences}. It is assumed that NTP
@@ -55,12 +55,12 @@ make really large systems feasible.
 
 The current implementation of each ZeroMQ protocol heavily relies on a common polling pattern. Not only does this waste
 thread resources waiting on socket connections, but the code becomes hard to maintain as well. An alternate solution to
-this polling is event-driven I/O. ZeroMQ supports this alternate message pattern via \textbf{IOLoop and Green Events}
-\cite{needed}.
+this polling is event-driven I/O. ZeroMQ supports this alternate messaging pattern via Facebook's \textbf{Tornado
+IOLoop}\cite{tornado}\cite{ioloop} and libev via \textbf{gevent}\cite{gevent}\cite{libev}.
 
 With IOLoop, it may be possible to use a single IO loop, hosted by the \textit{Base} node, shared among all the active
-services. This reduces the number of idle threads per node, freeing valuable OS resources and reducing \dcampns's
-processing overhead.
+services. This reduces the number of idle threads per node, freeing valuable operating system resources and reducing
+\dcampns's processing overhead.
 
 Although \dcamp only uses classic TCP protocols for all communication, ZeroMQ does support \textbf{multicast network
 protocols}. Using multicast judiciously within \dcamp could greatly reduce configuration costs and network traffic, for
@@ -74,10 +74,10 @@ multiple levels of \textit{Collectors} would allow large group configurations to
 (identically configured) branches for improved scalability
 
 Compiling the various critical paths within \dcampns, such as the metric sampling code in the Sensor service, using
-\textbf{Pyrex or Cython} may boost performance \cite{needed} and lower the cost of metric collection such that faster
-sample periods can be used without issue.
+\textbf{Pyrex}\cite{pyrex} or \textbf{Cython}\cite{cython} may boost performance and lower the cost of metric collection
+such that faster sample periods can be used without issue.
 
-Due to Python's Global Interpreter Lock \cite{py-threads}, there are limitations to the parallel execution of threads on
+Due to Python's Global Interpreter Lock\cite{py-threads}, there are limitations to the parallel execution of threads on
 an SMP system. While \dcampns's use of threads is heavily I/O-bound, some gains may also be found by using full-fledged
 \textbf{processes instead of threads}.
 
@@ -108,5 +108,5 @@ overload the Aggregation service.
 
 Lastly, \dcamp could be extended to support some hardware performance counters, bringing it more in-line with hybrid
 performance frameworks. In particular, it would be interesting to add support for Graphical Processing Unit metrics such
-as those available via the NVIDIA Management Library \cite{needed} which already has Python bindings support
+as those available via the NVIDIA Management Library\cite{nvidiaML} which already has Python bindings support
 \cite{py-nvidia}.

@@ -7,15 +7,15 @@
 
 ### hawkeye
 @misc{hawkeye,
- key = "hawkeye",
- title = "Hawkeye",
- howpublished = "\url{http://www.cs.wisc.edu/condor/hawkeye/}",
+ key = {hawkeye},
+ title = {Hawkeye},
+ howpublished = {\url{http://www.cs.wisc.edu/condor/hawkeye/}},
 }
 
 ### camp
 @inproceedings{gabel2007,
  author = {Gabel, Mark and Haungs, Michael},
- title = {CAMP: a common API for measuring performance},
+ title = {{CAMP}: a common {API} for measuring performance},
  booktitle = {LISA'07: Proceedings of the 21st conference on Large Installation System Administration Conference},
  year = {2007},
  isbn = {978-1-59327-152-7},
@@ -27,15 +27,15 @@
 
 ### sflow
 @misc{host-sflow,
- key = "sflow2",
- title = "About Host {sFlow}: Data Center Wide Server Performance Monitoring",
- howpublished = "\url{http://host-sflow.sourceforge.net/about.php}"
+ key = {host-sflow},
+ title = {About {Host sFlow}: Data Center Wide Server Performance Monitoring},
+ howpublished = {\url{http://host-sflow.sourceforge.net/about.php}}
 }
 
 @misc{sflow,
- key = "sflow1",
- title = "Traffic Monitoring using {sFlow}",
- howpublished = "\url{http://www.sflow.org/sFlowOverview.pdf}"
+ key = {sflow},
+ title = {Traffic Monitoring using {sFlow}},
+ howpublished = {\url{http://www.sflow.org/sFlowOverview.pdf}}
 }
 
 ### ganglia
@@ -51,45 +51,90 @@
 
 ### python
 @misc{py-threads,
- key = "py-threads",
- title = "Python 3: Global Interpreter Lock",
- howpublished = "\url{https://docs.python.org/3/glossary.html#term-global-interpreter-lock}"
+ key = {python-threads},
+ title = {Python 3: Global Interpreter Lock},
+ howpublished = {\url{https://docs.python.org/3/glossary.html#term-global-interpreter-lock}}
 }
 
 @misc{py-nvidia,
- key = "py-nvidia",
- title = "Python Bindings for the NVIDIA Management Library",
- howpublished = "\url{https://pypi.python.org/pypi/nvidia-ml-py/}"
+ key = {python-nvidia},
+ title = {Python Bindings for the {NVIDIA Management Library}},
+ howpublished = {\url{https://pypi.python.org/pypi/nvidia-ml-py/}}
+}
+
+@misc{nvidiaML,
+ key = {nvidia},
+ title = {{NVIDIA Management Library}},
+ howpublished = {\url{https://developer.nvidia.com/nvidia-management-library-nvml}}
+}
+
+@misc{pyrex,
+ key = {pyrex},
+ title = {Pyrex --- a Language for Writing Python Extension Modules},
+ howpublished = {\url{http://www.cosc.canterbury.ac.nz/greg.ewing/python/Pyrex/}}
+}
+
+@misc{cython,
+ key = {cython},
+ title = {Cython: C-Extensions for Python},
+ howpublished = {\url{http://www.cython.org}}
 }
 
 ### jmeter
 @misc{jmeter,
- key = "jmeter",
- title = "Apache JMeter",
- howpublished = "\url{http://jmeter.apache.org/}"
+ key = {jmeter},
+ title = {{Apache JMeter}},
+ howpublished = {\url{http://jmeter.apache.org}}
 }
 
 ### zeromq
+
 @misc{chp,
- author = "Pieter Hintjens",
- title = "Clustered Hashmap Protocol",
- howpublished = "\url{http://rfc.zeromq.org/spec:12/CHP}",
- month = "April",
- year = 2011
+ author = {Pieter Hintjens},
+ title = {Clustered Hashmap Protocol},
+ howpublished = {\url{http://rfc.zeromq.org/spec:12/CHP}},
+ month = {April},
+ year = {2011}
 }
+
 @book{zguide,
- author = "Pieter Hintjens",
- title = "Code Connected Volume 1, Learning ZeroMQ",
- note = "\url{http://zguide.zeromq.org}",
- publisher = "CreateSpace Independent Publishing Platform",
- month = "January",
- year = 2013
+ author = {Pieter Hintjens},
+ title = {Code Connected Volume 1, Learning {ZeroMQ}},
+ note = {\url{http://zguide.zeromq.org}},
+ publisher = {CreateSpace Independent Publishing Platform},
+ month = {January},
+ year = {2013}
 }
+
 @misc{zmq-socket,
- author = "Martin Sustrik and Martin Lucina and Pieter Hintjens",
- title = "zmq\_socket - create {\O MQ} socket",
- howpublished = "\url{http://api.zeromq.org/3-2:zmq-socket}",
- year = 2012
+ author = {Martin Sustrik and Martin Lucina and Pieter Hintjens},
+ title = {\texttt{zmq\_socket} --- create {{\O MQ}} socket},
+ howpublished = {\url{http://api.zeromq.org/3-2:zmq-socket}},
+ year = {2012}
+}
+
+@misc{tornado,
+ key = {tornado},
+ title = {Tornado},
+ howpublished = {\url{http://www.tornadoweb.org}},
+}
+
+@misc{ioloop,
+ key = {tornado-ioloop},
+ title = {\texttt{tornado.ioloop} --- Main event loop},
+ howpublished = {\url{http://www.tornadoweb.org/en/stable/ioloop.html}},
+}
+
+@misc{gevent,
+ key = {gevent},
+ title = {gevent: A coroutine-based network library for Python},
+ howpublished = {\url{http://www.gevent.org}},
+}
+
+@misc{libev,
+ key = {gevent-libev},
+ title = {libev: A full-featured and high-performance event loop},
+ howpublished = {\url{http://libev.schmorp.de}},
 }
 
 # survey-esque articles, i.e., related work
@@ -347,3 +392,11 @@ ISSN={0018-9235}, }
  address = {Los Alamitos, CA, USA},
 }
 
+@techreport{pipe-filter,
+ author = {Garlan, David and Shaw, Mary},
+ title = {An Introduction to Software Architecture},
+ year = {1994},
+ source = {http://www.ncstrl.org:8900/ncstrl/servlet/search?formname=detail\&id=oai%3Ancstrlh%3Acmucs%3ACMU%2F%2FCS-94-166},
+ publisher = {Carnegie Mellon University},
+ address = {Pittsburgh, PA, USA},
+} 

@@ -10,11 +10,11 @@ respect to the number of required messages and can be easily modified to use a m
 
 \section{Architecture}
 
-\dcamp is designed as a semi-centralized, hierarchical peer-to-peer system utilizing the pipe-flow architecture
-pattern \cite{needed} in which leaf (\textit{Metric}) nodes of the hierarchy collect data, filter out extraneous data,
-and send it up the pipe to a \textit{Collector} node which subsequently filters out more data and sends it up to another
-\textit{Collector} or \textit{Root} node. This architecture is efficient in that unwanted data is discarded earlier in
-the data path, reducing transport and processing costs.
+\dcamp is designed as a semi-centralized, hierarchical peer-to-peer system utilizing the UNIX Pipes and Filter
+architectural pattern \cite{pipe-filter} in which leaf (\textit{Metric}) nodes of the hierarchy collect data, filter out
+extraneous data, and send it up the pipe to a \textit{Collector} node which subsequently filters out more data and sends
+it up to another \textit{Collector} or \textit{Root} node. This architecture is efficient in that unwanted data is
+discarded earlier in the data path, reducing transport and processing costs.
 
 \section{Requirements}
 
