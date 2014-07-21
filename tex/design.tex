@@ -242,8 +242,9 @@ considered disconnected.
 \subsection{Election Algorithm (\textit{Root} Node Recovery)}
 \label{algor_elect}
 
-This recovery algorithm is based on the bully algorithm\cite{needed}. Only \textit{Collector} nodes participate in the
-election, initiated when a \textit{Collector} node, C, detects the \textit{Root} node, R, is down.
+This recovery algorithm is based on the bully algorithm present by H. Garcia-Molina in \cite{bully}. Only
+\textit{Collector} nodes participate in the election, initiated when a \textit{Collector} node, C, detects the
+\textit{Root} node, R, is down.
 
 \begin{enumerate}
 \item C sends \texttt{WUTUP} message to all nodes whose UUID is higher than its own, expecting a \texttt{YO} message in

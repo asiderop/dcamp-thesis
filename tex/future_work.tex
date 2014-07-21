@@ -105,3 +105,8 @@ aggregation purposes or representing entire branches in the topology. This would
 packets would require routing and data could be more effectively compressed. Second, metrics could be sampled regularly
 but \textbf{reported randomly} within the period in order to distribute arrival of data from child nodes and not
 overload the Aggregation service.
+
+Lastly, \dcamp could be extended to support some hardware performance counters, bringing it more in-line with hybrid
+performance frameworks. In particular, it would be interesting to add support for Graphical Processing Unit metrics such
+as those available via the NVIDIA Management Library \cite{needed} which already has Python bindings support
+\cite{py-nvidia}.
