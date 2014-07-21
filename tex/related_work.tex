@@ -1,8 +1,6 @@
 \chapter{Related Work}
 \label{related_work}
 
-\emph{THIS SECTION IS FROM MY 508 PAPER \newline AND NEEDS TO BE CLEANED UP}
-
 Being distributed, a framework must collect data from a large number of nodes and aggregate the data to one node or
 client. Implementations have been built using centralized, hierarchical, peer-to-peer and any number of other
 architectures. There are three types of metric gathering techniques: (1) hardware counters and sensors use specialized
@@ -12,43 +10,13 @@ architecture-independent interface, and (3) hybrid approaches use a combination 
 attain a balance between the two.
 
 There are a number of distributed performance frameworks being actively researched and developed, both academically and
-commercially. This work defines a set of criteria for evaluating distributed performance frameworks to measure the
-usefulness and viability of the framework. In the next section I list similar survey work, showing the novelty of this
-paper. Section 3 presents the evaluation criteria, section 4 provides the evaluation results of several distributed
-performance frameworks, and section 5 concludes.
-
-\section{Related Work}
-
-Several papers have been published dealing with this topic and which try to give an overview of the current state of
-distributed performance frameworks. This work, while related, differs in two main aspects: (1) the evaluation criteria
-presented here is more complete than previous works' requirements and (2) this work looks specifically at distributed
-performance frameworks rather than distributed system or grid tools and frameworks.
-
-Zoraja et al. include a section on Monitoring Issues in their work on \newline OMIS/OCM, CORAL, and MIMO
-\cite{zoraja1999} focusing on design and implementation issues for monitoring systems. These monitoring issues share
-some critical points with the criteria presented here, but the work lacks an analysis of other distributed performance
-frameworks and only includes limited analysis of the presented frameworks against the listed monitoring issues.
-\cite{hofmann1994} provides a short survey of related monitoring systems in comparison to the ZM4/SIMPLE monitoring
-environment. While this survey does look at a number of important framework characteristics, it is restricted to hybrid
-distributed performance frameworks.
-
-Allan and Ashworth published an exhaustive survey of distributed computing tools \cite{allan2001} but did not present
-any particular focus on distributed performance frameworks nor did they include a set of criteria for evaluating
-frameworks. Zanikolas et al. present an in-depth taxonomy of grid monitoring systems \cite{zanikolas2005}, including a
-set of general requirements for monitoring systems. Their work does much for defining a good set of criteria for
-evaluating and analyzing distributed performance frameworks, but has a much broader scope than this work. This work
-expands on their monitoring system requirements to account for the completeness and validity of distributed performance
-frameworks.
-
-\section{Analysis Results}
-
-The distributed performance frameworks analyzed in this section were chosen based on their categorization in the
+commercially. The frameworks listed in this section were chosen based on their categorization in the
 \cite{zanikolas2005} taxonomy; only level 2 frameworks are included. Level 2 frameworks are defined as having at least
 one type of republisher in addition to producers; these frameworks usually distribute functionality across multiple
 hosts. \cite{zanikolas2005} A limited analysis is conducted by reviewing the available literature, and further analysis
 (i.e., verifying scalability, transparency, and validity) is left as future work.
 
-\subsection{NetLogger}
+\subsubsection{NetLogger}
 
 Work done by Brian Tierney and Dan Gunter \cite{tierney1998} \cite{gunter2000} presents the Network Application Logger
 Toolkit (NetLogger). This framework can be used to monitor the performance of distributed systems at a very detailed
@@ -69,7 +37,7 @@ service provides a push data delivery and can utilize the security mechanisms pa
 authenticate requests for performance data. NetLogger is currently implemented for C, C++, Java, Perl, and Python
 applications. Because the framework lacks black box characteristics, its portability is greatly reduced.
 
-\subsection{JAMM}
+\subsubsection{JAMM}
 
 Java Agents for Monitoring and Management (JAMM) \cite{tierney2000} is the fruit of work by the authors of NetLogger to
 build a monitoring system with managed sensors. 
@@ -85,7 +53,7 @@ architecture is generally distributed with the directory service being centraliz
 NetLogger, inherits the validity, completeness, security, and transparency of NetLogger along with its lack of
 portability. JAMM does, however, prove itself in terms of scalability with it's own architecture.
 
-\subsection{Hawkeye}
+\subsubsection{Hawkeye}
 
 Hawkeye \cite{hawkeye} is a monitoring and management tool for distributed systems which makes use of technology
 previously researched and developed as part of the Condor project \cite{litzkow1988}. Condor provides mechanisms for
@@ -105,7 +73,7 @@ its transparency is unknown. The frameworks module based producer architecture g
 being only available on Linux and Solaris makes the framework less portable. Lastly, the ability to run jobs securely on
 target machines has been left as future work by the authors.
 
-\subsection{SCALEA-G}
+\subsubsection{SCALEA-G}
 
 Truong and Fahringer present SCALEA-G \cite{truong2004}, an unified monitoring and performance analysis system for
 distributed systems. It is based on the Open Grid Service Architecture \cite{foster2002} and allows for a number of
@@ -121,7 +89,7 @@ performance analysis.
 The framework makes use of secure sockets to achieve secure communications and achieves high completeness via code
 instrumentation. Unfortunately, the authors do not provide any report on SCALEA-G's validity or transparency.
 
-\subsection{IMPuLSE}
+\subsubsection{IMPuLSE}
 
 Integrated Monitoring and Profiling for Large Scale Environments \cite{bridges2004} was designed to address ``operating
 system-induced performance anomalies'' and provide ``accurate, low-overhead, whole-system monitoring.'' The authors have
@@ -132,41 +100,42 @@ The IMPuLSE framework is still in the design stage, and therefore lacks any impl
 message-centric design pattern which shows promising results. Unfortunately, this leaves the framework with unknown
 transparency, security, completeness, portability, and validity.
 
-\section{Conclusion}
+\subsubsection{Host sFlow}
+
+sFlow is a network monitoring protocol consisting of sFlow Agents, built directly into the router and switch network
+device management layer by each vendor, which analyze traffic and send metrics to sFlow Collectors on the network.
+\cite{sflow} Host sFlow is an open-source implementation of the sFlow protocol which uses sFlow Agents to monitor
+multi-vendor physical and virtual servers. Host sFlow is capable of application layer monitoring (e.g. node.js,
+Memcached), as well, and may be implemented directly by device/OS manufacturers for easier deployment. \cite{host-sflow}
+
+In supporting host and application performance metric analysis alongside network metrics in one common system, sFlow has
+an advantage over more traditional host-only distributed performance frameworks. While sFlow's claims to scalable and
+accurate network level monitoring have been validated \cite{needed}, less work has been to show the same for Host sFlow.
+\cite{needed}
+
+\subsubsection{Ganglia}
+
+Ganglia is a distributed performance framework designed specifically for high-performance computing (HPC) environments,
+and it has been used to monitor real-world HPC, grid, and ``planetary-scale'' systems. Ganglia uses different protocols
+for intra- and inter-cluster communication: a multicast listen/announce protocol within a single cluster and a tree of
+point-to-point connections between clusters. Ganglia is well used and is actively used to monitor over 500 different
+systems. \cite{ganglia}
+
+The analysis presented in \cite{ganglia} shows the design scales and maintains transparency for systems of several
+hundred nodes. Still, scalability is a concern of the authors since the multicast protocol exhibits a quadratic
+trendline as the number of nodes within a cluster increases. Memory usage and inter-cluster bandwidth also increase as
+the number of nodes increases, albeit much more linearly. In comparison, \dcamp memory usage is nearly constant since
+performance data is not persisted in memory to the same extent.
+
+\subsubsection{Conclusion}
 
 There are a number of high quality and effective distributed performance frameworks being actively researched and
 developed, but with some frameworks having more research than others, there is a natural disparity of information about
 each framework. While the frameworks vary in distributed architecture and features, they all fulfill the minimum
-requirements of performance frameworks. The frameworks analyzed in this work are mainly software based sensor
-frameworks. This was chosen due to the inherent portability advantage of software sensors over hardware or hybrid
-sensors.
+requirements of performance frameworks. The frameworks listed in this work are mainly software based sensor frameworks.
+This was chosen due to the inherent portability advantage of software sensors over hardware or hybrid sensors.
 
 Many authors have failed to address their framework's validity, transparency, and scalability explicitly, thinking the
 framework's architecture speaks for itself or blindly assuming it is accurate and introduces negligible load on the
 measured system. I leave it as future work to conduct formal experiments to test validity, transparency, and scalability
-of the distributed performance frameworks analyzed here.
-
-\section{NEW RESEARCH}
-
-\begin{itemize}
-
-\item http://host-sflow.sourceforge.net/about.php
-
-``The Host sFlow agent exports physical and virtual server performance metrics using the sFlow protocol. The agent
-provides scalable, multi-vendor, multi-OS performance monitoring with minimal impact on the systems being monitored.''
-
-Also capable of application layer monitoring (e.g. Apache, Tomcat, node.js, Memcached).
-
-\item http://ganglia.sourceforge.net/ (http://ganglia.info/papers/science.pdf)
-
-``Ganglia is a scalable distributed monitoring system for high-performance computing systems such as clusters and
-Grids. It is based on a hierarchical design targeted at federations of clusters. It leverages widely used technologies
-such as XML for data representation, XDR for compact, portable data transport, and RRDtool for data storage and
-visualization. It uses carefully engineered data structures and algorithms to achieve very low per-node overheads and
-high concurrency.''
-
-\item https://pypi.python.org/pypi/nvidia-ml-py/
-
-Python Bindings for the NVIDIA Management Library; provides access to GPU performance metrics.
-
-\end{itemize}
+of the distributed performance frameworks listed here.
