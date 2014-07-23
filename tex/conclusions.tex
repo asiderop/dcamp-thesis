@@ -1,7 +1,27 @@
 \chapter{Conclusions}
 \label{conclusions}
 
+In this work I presented the Distributed Common API for Measuring Performance, a distributed performance framework built
+on top of Mark Gabel and Michael Haung's \camp \cite{gabel2007}. I described the design and implementation of \dcampns,
+using roles and services on top of ZeroMQ to build a simple, reliable distributed system.
+
+I also presented a set of criterion for evaluating distributed performance frameworks by extending and updating the
+criterion presented in \cite{zanikolas2005}. I used this criterion to evaluate \dcamp along with several other related
+works.
+
 \section{Summary of Contributions}
+
+\dcamp itself extends \camp with (1) a stateful performance measurement API, (2) distribution and aggregation of
+performance metrics, (3) filtering and triggering of performance metrics across the distributed system, and (4) simple
+fault tolerance to recover from node failures.
+
+The updated distributed performance framework criterion is introduced and used to evaluate \dcampns. Chapter
+\ref{analysis} presents an empirical evaluation of \dcampns's transparency and scalability. Validity and portability are
+inherited from \camp as well as the use of portable Python libraries. \dcampns's data delivery models and completeness
+are apparent in the system's design and configuration.
+
+Updating \dcamp to meet the security criterion is unfinished work as described in the next section along with the rest
+of \dcampns's future directions.
 
 \section{Future Work}
 \label{future_work}
