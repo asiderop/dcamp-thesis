@@ -283,9 +283,12 @@ considered disconnected.
 \label{dcamp_metrics}
 
 The crux of any DPF are the performance metrics to which it provides access. This section lists the set of performance
-metrics available via \dcamp. Metrics marked with ``(\emph{dCAMP})'' are extensions added by the \dcamp project to the
+metrics designed within \dcamp. Metrics marked with ``(\emph{dCAMP})'' are extensions added by the \dcamp project to the
 basic CAMP metrics. These provide a performance view of multiple nodes in the distributed network and are collected by
 the Aggregation service rather than the Sensor service.
+
+It should be noted here: only a basic subset of these metrics are actually implemented in the current version of \dcamp
+as a proof of concept. Please, refer to page \pageref{metric_extensions} of the Future Work section for more details.
 
 \subsubsection{Global Metrics}
 Global metrics measure overall CPU, process, thread, and memory usage of the system.
