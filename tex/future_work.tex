@@ -5,13 +5,16 @@ a more complete, end-to-end distributed performance monitoring solution.
 
 An \textbf{end-to-end tool} built on top of \dcamp could allow a system administrator to quickly look at the performance
 of a large part of the network via aggregate metrics and easily drill down into the groups and/or nodes which exhibit
-problematic behaviour. Toward this goal, a \textbf{lightweight web server} could be implemented on each node, adding
-support for REST APIs and access to historical metric data along with a graphical user interface for easier \dcamp
-system management.
+problematic behaviour. Three options toward this goal are most readily apparent. The first would be to implement a
+\textbf{lightweight web server} within each \textit{Base} node, adding support for REST API access to historical metric
+data along with a graphical user interface for easier \dcamp system management. The second would be a more traditional
+API, allowing \dcamp to run as a module inside another Python application. The third option is a slight variation of the
+second, exposing an API via ZeroMQ so \dcamp continues to operate as a separate process but still gives direct
+programmatic access to performance data and system management.
 
-The current \dcamp protocols leave much to be desired when it comes to secure communication and operation. A more secure
-implementation would include a form of \textbf{salted pass phrases} with every control message or even encrypt all
-messages sent from one node to another.
+The current \dcamp protocols leave much to be desired when it comes to secure communication and operation, failing the
+Security criterion presented in Chapter \ref{introduction}. A more secure implementation would include a form of
+\textbf{salted pass phrases} with every control message or even encrypt all messages sent from one node to another.
 
 One of the possible pain points with \dcamp is the control given to the system administrator through group
 specifications. Specifically, administrators are tasked not only with identifying which nodes to include in the system,
