@@ -15,8 +15,9 @@ outdir = join(basedir, 'out')
 
 a2s = sh.Command("/Volumes/Repositories/Personal/asciitosvg/a2s")
 s2p = sh.Command("/usr/local/bin/svg2pdf")
-pdftex = sh.pdflatex.bake('-output-directory', outdir, 'dcamp')
-bibtex = sh.bibtex.bake(join(outdir, 'dcamp'))
+
+pdftex = sh.pdflatex.bake('-output-directory', outdir)
+bibtex = sh.bibtex
 
 images = [
     'topo',
@@ -60,20 +61,21 @@ def build_images(given=None):
 
     print('DONE')
 
-def build_tex():
-    pprog('building TEX: ')
+def build_tex(outdir, fname):
+    pprog('building TEX: "%s.tex" ' % fname)
 
     pprog('tex(1) ')
-    check(pdftex)
+    check(pdftex.bake(fname))
 
-    pprog('bib ')
-    check(bibtex)
+    if fname != 'presentation':
+        pprog('bib ')
+        check(bibtex.bake(join(outdir, fname)))
 
     pprog('tex(2) ')
-    check(pdftex)
+    check(pdftex.bake(fname))
 
     pprog('tex(3) ')
-    check(pdftex)
+    check(pdftex.bake(fname))
 
     print('DONE')
 
@@ -81,7 +83,7 @@ def build_tex():
 # BEGIN MAIN
 
 if not exists(img_outdir):
-	makedirs(img_outdir)  # makes out/ too
+    makedirs(img_outdir)  # makes out/ too
 
 if len(argv) > 1 and argv[1] == '-v':
     verbose = True
@@ -93,15 +95,17 @@ if len(argv) > 1:
         if len(argv) > 2:
             i = argv[2:]
         build_images(i)
-    if argv[1] in ('tex', 'tex/'):
-        build_tex()
+    if argv[1] in ('paper', 'paper/'):
+        build_tex(outdir, 'paper')
+    if argv[1] in ('presentation', 'presentation/'):
+        build_tex(outdir, 'presentation')
     else:
         print('unknown options: {}'.format(argv[1:]))
         exit(1)
 
 else:
     build_images()
-    build_tex()
+    build_tex(outdir, 'dcamp')
 
 print('all done')
 
