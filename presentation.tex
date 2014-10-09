@@ -76,11 +76,6 @@
 
 \usepackage{graphicx} % Allows including images
 \usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
-\usepackage{hyperref} % Allows hyper-linking within presentation
-
-\newcommand{\bi}{\begin{itemize}}
-\newcommand{\ei}{\end{itemize}}
-\newcommand{\ig}{\includegraphics}
 
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
@@ -91,7 +86,7 @@
 \author{Alexander P. Sideropoulos} % Your name
 \institute[CalPoly] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
-California Polytechnic State University, San Luis Obispo\\ % Your institution for the title page
+California Polytechnic State University, San Luis Obispo \\ % Your institution for the title page
 \medskip
 \textit{alexander@thequery.net} % Your email address
 }
@@ -104,8 +99,8 @@ California Polytechnic State University, San Luis Obispo\\ % Your institution fo
 \end{frame}
 
 \begin{frame}
-\frametitle{Overview} % Table of contents slide, comment this block out to remove it
-\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\frametitle{Outline} % Table of contents slide, comment this block out to remove it
+\tableofcontents[pausesections] % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
 \end{frame}
 
 %----------------------------------------------------------------------------------------
@@ -113,100 +108,74 @@ California Polytechnic State University, San Luis Obispo\\ % Your institution fo
 %----------------------------------------------------------------------------------------
 
 %------------------------------------------------
-\section{Overview}
+\section{Introduction}
 %------------------------------------------------
 
+%------------------------------------------------
+\subsection{Problem}
 \begin{frame}
-\frametitle{Paragraphs of Text}
-Sed iaculis dapibus gravida. Morbi sed tortor erat, nec interdum arcu. Sed id lorem lectus. Quisque viverra augue id sem ornare non aliquam nibh tristique. Aenean in ligula nisl. Nulla sed tellus ipsum. Donec vestibulum ligula non lorem vulputate fermentum accumsan neque mollis.\\~\\
-
-Sed diam enim, sagittis nec condimentum sit amet, ullamcorper sit amet libero. Aliquam vel dui orci, a porta odio. Nullam id suscipit ipsum. Aenean lobortis commodo sem, ut commodo leo gravida vitae. Pellentesque vehicula ante iaculis arcu pretium rutrum eget sit amet purus. Integer ornare nulla quis neque ultrices lobortis. Vestibulum ultrices tincidunt libero, quis commodo erat ullamcorper id.
+\frametitle{problem}
+software increasingly distributed, need to test and evaluate performance of
+distribute systems (page 1)
 \end{frame}
 
-\begin{frame}{It's all about money}
- 
 %------------------------------------------------
-
+\subsection{Solution}
 \begin{frame}
-\frametitle{Bullet Points}
-\begin{itemize}
-\item Lorem ipsum dolor sit amet, consectetur adipiscing elit
-\item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
-\item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
-\item Nam cursus est eget velit posuere pellentesque
-\item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
-\end{itemize}
+\frametitle{solution}
+dpf, define these (page 1-2)
+\end{frame}
+
+%------------------------------------------------
+\subsection{Criterion}
+\begin{frame}
+\frametitle{criterion}
+how to compare and choose
+-   overview and sources (page 2)
+-   list each one (page 2-4)
+\end{frame}
+
+%------------------------------------------------
+\subsection{dCAMP}
+\begin{frame}
+\frametitle{dcamp}
+introduced as a better dpf (page 5)
+\end{frame}
+
+%------------------------------------------------
+\subsection{Terminology}
+\begin{frame}
+\frametitle{terms}
+(page 5-9)
+-   perf metric
+-   metric sampling, reporting, aggregation, calculation
+-   service + role
+-   zeromq
+-   zeromq address + endpoint
 \end{frame}
 
 %------------------------------------------------
 \section{dCAMP Design}
 %------------------------------------------------
+
+%------------------------------------------------
 \subsection{Architecture}
-
-\begin{frame}
-\frametitle{Architecture}
-
-\begin{table}
-\begin{tabular}{l l l}
-\toprule
-\textbf{Treatments} & \textbf{Response 1} & \textbf{Response 2}\\
-\midrule
-Treatment 1 & 0.0003262 & 0.562 \\
-Treatment 2 & 0.0015681 & 0.910 \\
-Treatment 3 & 0.0009271 & 0.296 \\
-\bottomrule
-\end{tabular}
-\caption{Table caption}
-\end{table}
-
-\end{frame}
+\frame{pipe and filter, hierarchically distributed}
 
 %------------------------------------------------
 \subsection{Roles and Services}
-
-\begin{frame}
-\frametitle{Table}
-\begin{table}
-\begin{tabular}{l l l}
-\toprule
-\textbf{Treatments} & \textbf{Response 1} & \textbf{Response 2}\\
-\midrule
-Treatment 1 & 0.0003262 & 0.562 \\
-Treatment 2 & 0.0015681 & 0.910 \\
-Treatment 3 & 0.0009271 & 0.296 \\
-\bottomrule
-\end{tabular}
-\caption{Table caption}
-\end{table}
-\end{frame}
-
-%------------------------------------------------
-\subsection{Fault Tolerance}
-
-\begin{frame}
-\frametitle{Theorem}
-\begin{theorem}[Mass--energy equivalence]
-$E = mc^2$
-\end{theorem}
-\end{frame}
+\frame{all of them with table}
 
 %------------------------------------------------
 \subsection{Metrics}
+\frame{overview, dcamp metric groups, pitfall}
 
-\begin{frame}
-\frametitle{Blocks of Highlighted Text}
-\begin{block}{Block 1}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lectus nisl, ultricies in feugiat rutrum, porttitor sit amet augue. Aliquam ut tortor mauris. Sed volutpat ante purus, quis accumsan dolor.
-\end{block}
-
-\begin{block}{Block 2}
-Pellentesque sed tellus purus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum quis magna at risus dictum tempor eu vitae velit.
-\end{block}
-
-\begin{block}{Block 3}
-Suspendisse tincidunt sagittis gravida. Curabitur condimentum, enim sed venenatis rutrum, ipsum neque consectetur orci, sed blandit justo nisi ac lacus.
-\end{block}
-\end{frame}
+%------------------------------------------------
+\subsection{Fault Tolerance}
+\frame{heartbeating}
+\frame{reminder}
+\frame{promotion}
+\frame{election}
 
 %------------------------------------------------
 \section{dCAMP Implementation}
@@ -214,72 +183,56 @@ Suspendisse tincidunt sagittis gravida. Curabitur condimentum, enim sed venenati
 
 %------------------------------------------------
 \subsection{Operation}
-
-\begin{frame}
-\frametitle{Text}
-\end{frame}
+\frame{high-level}
+\frame{threading}
 
 %------------------------------------------------
 \subsection{Protocols}
-
-\begin{frame}[fragile] % Need to use the fragile option when verbatim is used in the slide
-\frametitle{Verbatim}
-
-\begin{example}[Theorem Slide Code]
-\begin{verbatim}
-\begin{frame}
-\frametitle{Theorem}
-\begin{theorem}[Mass--energy equivalence]
-$E = mc^2$
-\end{theorem}
-\end{frame}\end{verbatim}
-\end{example}
-
-\end{frame}
+\frame{topology}
+\frame{configuration}
+\frame{data}
+\frame{recovery}
 
 %------------------------------------------------
 \section{dCAMP Analysis}
 %------------------------------------------------
 
-\begin{frame}
-\frametitle{Figure}
-Uncomment the code on this slide to include your own image from the same directory as the template .TeX file.
-%\begin{figure}
-%\includegraphics[width=0.8\linewidth]{test}
-%\end{figure}
-\end{frame}
+%------------------------------------------------
+\subsection{Transparency}
+\frame{workload}
+\frame{configuration}
+\frame{results}
+
+%------------------------------------------------
+\subsection{Scalability}
+\frame{workload}
+\frame{configuration}
+\frame{results}
 
 %------------------------------------------------
 \section{Evaluation and Conclusion}
 %------------------------------------------------
 
-\begin{frame}[fragile] % Need to use the fragile option when verbatim is used in the slide
-\frametitle{Citation}
-An example of the \verb|\cite| command to cite within the presentation:\\~
-
-This statement requires citation \cite{p1}.
-\end{frame}
-
-\begin{frame}
-\frametitle{Multiple Columns}
-\begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
-
-\column{.45\textwidth} % Left column and width
-\textbf{Heading}
-\begin{enumerate}
-\item Statement
-\item Explanation
-\item Example
-\end{enumerate}
-
-\column{.5\textwidth} % Right column and width
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lectus nisl, ultricies in feugiat rutrum, porttitor sit amet augue. Aliquam ut tortor mauris. Sed volutpat ante purus, quis accumsan dolor.
-
-\end{columns}
-\end{frame}
+%------------------------------------------------
+\subsection{dcamp}
+\frame{dcamp}
 
 %------------------------------------------------
+\subsection{related work}
+\frame{related work}
 
+%------------------------------------------------
+\subsection{contributions}
+\frame{contributions}
+
+%------------------------------------------------
+\subsection{future work}
+\frame{features}
+\frame{fault tolerance}
+\frame{performance and scalability}
+\frame{metric extensions}
+
+\subsection{References}
 \begin{frame}
 \frametitle{References}
 \footnotesize{
@@ -291,6 +244,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lectus nisl, ul
 }
 \end{frame}
 
+%----------------------------------------------------------------------------------------
 %----------------------------------------------------------------------------------------
 
 \appendix
