@@ -15,13 +15,13 @@
 \setbeameroption{hide notes}
 
 % Uncomment these lines (and comment above lines) to print handouts.
-% \documentclass[handout]{beamer}
-% \setbeameroption{show notes}
-% \usepackage{pgfpages}
-% \pgfpagesuselayout{4 on 1}[letterpaper,landscape,border shrink=5mm]
-% % This makes notes pages totally plain and adds a bit of space between paragraphs on the notes pages.
-% \setbeamertemplate{note page}[plain]
-% \addtobeamertemplate{note page}{\setlength{\parskip}{12pt}}
+%\documentclass[handout]{beamer}
+%\setbeameroption{show notes}
+%\usepackage{pgfpages}
+%\pgfpagesuselayout{4 on 1}[letterpaper,landscape,border shrink=5mm]
+%% This makes notes pages totally plain and adds a bit of space between paragraphs on the notes pages.
+%\setbeamertemplate{note page}[plain]
+%\addtobeamertemplate{note page}{\setlength{\parskip}{12pt}}
 
 %----------------------------------------------------------------------------------------
 %	PACKAGES AND THEMES
@@ -223,8 +223,8 @@ architecture-independent interface, and
 \eee
 
 \note{Notes:}
-\noi{frameworks listed in this work were chosen based on their categorization in the \cite{zanikolas2005} taxonomy; only
-level 2 frameworks are included.}
+\noi{frameworks listed in this work were chosen based on their categorization in the Zanikolas \cite{zanikolas2005}
+taxonomy; only level 2 frameworks are included.}
 \noi{Level 2 frameworks are defined as having at least one type of republisher in addition to producers;}
 \noi{these frameworks usually distribute functionality across multiple hosts.}
 \noi{A limited analysis is conducted by reviewing the available literature, and further analysis (i.e., verifying
@@ -339,6 +339,7 @@ specific, known set of \textbf{services}. Each \dcamp service implements a speci
 \note{Notes:}
 \noi{Roles have little to no actual run-time logic but simply act as containers for the services}
 \noi{services manage ZeroMQ sockets, communicating with other services/nodes, and do the real work of \dcamp}
+\noi{DEFINE: zeromq is a message queueing framework, provides sockets and message patterns for distributed software}
 \end{frame}
 
 %------------
@@ -853,7 +854,7 @@ services on top of ZeroMQ to build a simple, reliable distributed system.
 \medskip
 
 I also presented a set of \textbf{criterion for evaluating distributed performance frameworks} by extending and updating
-the criterion presented in \cite{zanikolas2005}. I used this criterion to evaluate \dcamp along with several other level
+the criterion presented by Zanikolas \cite{zanikolas2005}. I used this criterion to evaluate \dcamp along with several other level
 2 distributed performance frameworks and related works.
 
 \note{Notes:}
