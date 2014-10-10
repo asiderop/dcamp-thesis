@@ -130,10 +130,12 @@ California Polytechnic State University, San Luis Obispo \\ % Your institution f
 
 \begin{document}
 
+%------------
 \begin{frame}
 \titlepage % Print the title page as the first slide
 \end{frame}
 
+%------------
 \begin{frame}
 \frametitle{Outline} % Table of contents slide, comment this block out to remove it
 \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
@@ -148,8 +150,9 @@ California Polytechnic State University, San Luis Obispo \\ % Your institution f
 %------------------------------------------------
 
 %------------------------------------------------
-\subsection{Motivation}
+\subsection{Motivation and Scope}
 
+%------------
 \begin{frame}
 \frametitle{Building Distributed Systems}
 
@@ -165,6 +168,7 @@ locally and throughout the world.
 \noi{EX: efficient use of resources --- folding@home}
 \end{frame}
 
+%------------
 \begin{frame}
 \frametitle{Building Distributed Systems}
 
@@ -176,9 +180,7 @@ availability and work load on its individual nodes.
 \noi{development is difficult, even with best tools}
 \end{frame}
 
-%------------------------------------------------
-\subsection{Solution}
-
+%------------
 \begin{frame}
 \frametitle{Distributed Performance Frameworks (DPF)}
 
@@ -205,14 +207,15 @@ Distributed \textbf{Performance Monitoring} Frameworks:
 \end{frame}
 
 %------------------------------------------------
-\subsection{DPF Evaluation Criterion}
+\subsection{Evaluation Criterion}
 
+%------------
 \begin{frame}
 \frametitle{Criterion for Evaluating Distributed Performance Frameworks}
 
 In order for practitioners and researchers alike to \textbf{effectively choose} a distributed performance framework, it
 is necessary to have a set criteria for evaluation. Presented here is an extended criterion of the general requirements
-presented by Zanikolas et al. for grid systems.
+presented by Zanikolas et al. for grid systems \cite{zanikolas2005}.
 
 \bee[<+(1)->]
 \item{Data Delivery Models} (original)
@@ -235,13 +238,15 @@ presented by Zanikolas et al. for grid systems.
 \end{frame}
 
 %------------------------------------------------
-\subsection{dCAMP}
+\subsection{Distributed CAMP}
 
+%------------
 \begin{frame}
 \frametitle{Distributed Common API for Measuring Performance}
+
 \dcamp is a distributed performance framework built on top of Mark Gabel and Michael Haungs' 2007 research on
-\emph{CAMP: a common API for measuring performance}. \camp provides an \textbf{accurate} and ``\textbf{consistent}
-method for retrieving system performance data from \textbf{multiple platforms}.''
+\emph{CAMP: a common API for measuring performance}\cite{gabel2007}. \camp provides an \textbf{accurate} and
+``\textbf{consistent} method for retrieving system performance data from \textbf{multiple platforms}.''
 
 \medskip
 
@@ -268,6 +273,7 @@ systems, processes, and networks being monitored.}
 %------------------------------------------------
 \subsection{Architecture}
 
+%------------
 \begin{frame}
 \frametitle{System Architecture}
 
@@ -282,6 +288,7 @@ up the pipe to a parent node which subsequently filters out more data and sends 
 %------------------------------------------------
 \subsection{Roles and Services}
 
+%------------
 \begin{frame}[t]
 \frametitle{\dcamp Roles and Services}
 
@@ -301,6 +308,7 @@ specific, known set of \textbf{services}. Each \dcamp service implements a speci
 \noi{services manage ZeroMQ sockets, communicating with other services/nodes, and do the real work of \dcamp}
 \end{frame}
 
+%------------
 \begin{frame}[t]
 \frametitle{\dcamp Roles and Services}
 
@@ -318,6 +326,7 @@ A service's scope can vary depending on the node's level in the \dcamp topology.
 
 \end{frame}
 
+%------------
 \begin{frame}[t]
 \frametitle{\dcamp Roles and Services}
 
@@ -351,6 +360,7 @@ Base & Node \\
 \noi{may choose to split roles across multiple nodes or collapse them onto a single node.}
 \end{frame}
 
+%------------
 \begin{frame}
 \begin{columns}
 
@@ -385,6 +395,7 @@ are launched from within the \textit{Base} role.
 %------------------------------------------------
 \subsection{Operation}
 
+%------------
 \begin{frame}
 \frametitle{Sequence of \dcamp Operation}
 
@@ -405,6 +416,7 @@ are launched from within the \textit{Base} role.
 \noi{expected \textit{Base} nodes are managed by a watchdog utility}
 \end{frame}
 
+%------------
 \begin{frame}
 \frametitle{Steady-State Operation}
 \bee[<+->]
@@ -457,24 +469,24 @@ are launched from within the \textit{Base} role.
 %------------------------------------------------
 
 %------------------------------------------------
-\subsection{dcamp}
 \frame{dcamp}
 
 %------------------------------------------------
-\subsection{contributions}
 \frame{contributions}
 
-\subsection{References}
+%------------------------------------------------
+
+%------------
 \begin{frame}
 \frametitle{References}
 \footnotesize{
 \begin{thebibliography}{99} % Beamer does not support BibTeX so references must be inserted manually as below
 
-\bibitem[Zanikolas, 2005]{zanikolas2005} {Zanikolas,, Serafeim and Sakellariou,, Rizos} (2005)
+\bibitem{zanikolas2005}[Zanikolas, 2005] {Zanikolas,, Serafeim and Sakellariou,, Rizos} (2005)
 \newblock A taxonomy of grid monitoring systems
 \newblock \emph{Future Gener. Comput. Syst.} 21(1), 0167-739X, p163--188.
 
-\bibitem[Gabel, 2007]{gabel2007} {Gabel, Mark and Haungs, Michael} (2007)
+\bibitem{gabel2007}[Gabel, 2007] {Gabel, Mark and Haungs, Michael} (2007)
 \newblock {{CAMP}: a common {API} for measuring performance}
 \newblock \emph{LISA'07: Proceedings of the 21st conference on Large Installation System Administration Conference}, p1--14
 
@@ -492,6 +504,8 @@ are launched from within the \textit{Base} role.
 
 %------------------------------------------------
 \subsection{Terminology}
+
+%------------
 \begin{frame}
 \frametitle{terms}
 (page 5-9)
@@ -505,6 +519,7 @@ are launched from within the \textit{Base} role.
 %------------------------------------------------
 \subsection{DPF Evaluation Criterion Details}
 
+%------------
 \begin{frame}
 \frametitle{Data Delivery Models}
 Monitoring information includes fairly static (e.g., software and hardware configuration of a given node) and dynamic
@@ -514,12 +529,14 @@ receiving a constant stream of events. In this regard, the monitoring system mus
 delivery models.
 \end{frame}
 
+%------------
 \begin{frame}
 \frametitle{Security}
 Certain scenarios may require a monitoring service to support security services such as access control, single or mutual
 authentication of parties, and secure transport of monitoring information.
 \end{frame}
 
+%------------
 \begin{frame}
 \frametitle{Scalability}
 Monitoring systems have to cope efficiently with a growing number of resources, events and users. This scalability can
@@ -527,15 +544,17 @@ be achieved as a result of good performance which guarantees that a monitoring s
 within an acceptable response time in a variety of load scenarios.
 \end{frame}
 
+%------------
 \begin{frame}
 \frametitle{Transparency}
 Transparency refers to the lack of impact a distributed performance framework makes on the system being monitored. As
-Zanikolas et al. state, it is ``typically measured as a function of host (processor, memory, I/O) and network load
+\cite{zanikolas2005} states, it is ``typically measured as a function of host (processor, memory, I/O) and network load
 (bandwidth) generated by the collection, processing and distribution of events.'' If a framework lacks transparency it
 will fail to allow the underlying distributed system to perform well and will produce inaccurate performance
 measurements, thereby reducing its Scalability and destroying its Validity.
 \end{frame}
 
+%------------
 \begin{frame}
 \frametitle{Completeness}
 The Completeness of a distributed performance framework refers to the exhaustiveness to which it gathers performance
@@ -544,6 +563,7 @@ system's processor, memory, disk, and network usage. Several distributed perform
 performance metrics about the given distributed system being monitored, but this is usually at the cost of Portability.
 \end{frame}
 
+%------------
 \begin{frame}
 \frametitle{Validity}
 A distributed performance framework is only as good as the data is produces; if the sensors or gathering techniques are
@@ -551,6 +571,7 @@ inaccurate, then the data is useless at best, misleading at worst. Validity of a
 of a framework provide formal verification of its accuracy.
 \end{frame}
 
+%------------
 \begin{frame}
 \frametitle{Portability}
 A framework's ability to run on a completely heterogeneous distributed system without special considerations by the
