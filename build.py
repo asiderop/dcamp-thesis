@@ -74,9 +74,8 @@ def build_tex(outdir, fname):
     pprog('tex(2) ')
     check(pdftex.bake(fname))
 
-    if not fname.startswith('presentation'):
-        pprog('tex(3) ')
-        check(pdftex.bake(fname))
+    pprog('tex(3) ')
+    check(pdftex.bake(fname))
 
     print('DONE')
 
@@ -99,8 +98,7 @@ if len(argv) > 1:
     if argv[1] in ('paper', 'paper/'):
         build_tex(outdir, 'paper')
     if argv[1] in ('presentation', 'presentation/'):
-        build_tex(outdir, 'presentation-slides')
-        build_tex(outdir, 'presentation-handout')
+        build_tex(outdir, 'presentation')
     else:
         print('unknown options: {}'.format(argv[1:]))
         exit(1)

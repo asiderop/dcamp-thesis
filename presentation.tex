@@ -11,9 +11,27 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\documentclass{beamer}
+\setbeameroption{hide notes}
+
+% Uncomment these lines (and comment above lines) to print handouts.
+% \documentclass[handout]{beamer}
+% \setbeameroption{show notes}
+% \usepackage{pgfpages}
+% \pgfpagesuselayout{4 on 1}[letterpaper,landscape,border shrink=5mm]
+% % This makes notes pages totally plain and adds a bit of space between paragraphs on the notes pages.
+% \setbeamertemplate{note page}[plain]
+% \addtobeamertemplate{note page}{\setlength{\parskip}{12pt}}
+
 %----------------------------------------------------------------------------------------
 %	PACKAGES AND THEMES
 %----------------------------------------------------------------------------------------
+
+\mode<handout>{
+
+\setbeamercolor{background canvas}{bg=black!5}
+
+}
 
 \mode<presentation> {
 
@@ -405,7 +423,7 @@ are launched from within the \textit{Base} role.
 %------------------------------------------------
 
 %------------------------------------------------
-\subsection{Protocols}
+\subsection{ZeroMQ Protocols}
 \frame{topology}
 \frame{configuration}
 \frame{data}
@@ -469,7 +487,7 @@ are launched from within the \textit{Base} role.
 
 \appendix
 
-\section{Appendix}
+\section{\appendixname}
 \frame{\tableofcontents}
 
 %------------------------------------------------
@@ -544,7 +562,7 @@ focus on the performance data and not on a myriad of APIs for various architectu
 \end{frame}
 
 %------------------------------------------------
-\subsection{related work}
+\subsection{Related Work}
 \frame{related work}
 
 %------------------------------------------------
