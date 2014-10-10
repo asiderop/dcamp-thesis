@@ -160,6 +160,7 @@ Due to the \textbf{plateauing speed} of individual processing units and encourag
 the internet at large, there exists a natural trend of distributing large, complex systems across multiple components
 locally and throughout the world.
 
+\note{Notes:}
 \noi{cpus not getting faster, but core counts increasing}
 \noi{internet has become more pervasive in today's business economy}
 \noi{software systems are becoming increasingly distributed}
@@ -176,6 +177,7 @@ In order to effectively build these systems, software practitioners must be able
 \textbf{performance defects} as well as bottlenecks, all while the distributed system itself is responding to changes in
 availability and work load on its individual nodes.
 
+\note{Notes:}
 \noi{systems are not always homogeneous w.r.t. hardware architecture or os}
 \noi{development is difficult, even with best tools}
 \end{frame}
@@ -203,6 +205,7 @@ Distributed \textbf{Performance Monitoring} Frameworks:
 \eei
 }
 
+\note{Notes:}
 \noi{DPF refers to both}
 \end{frame}
 
@@ -228,6 +231,7 @@ presented by Zanikolas et al. for grid systems \cite{zanikolas2005}.
 \item{Portability (alternate)}
 \eee
 
+\note{Notes:}
 \noi{there exist several DPF developed by commercial and research institutions}
 \noi{\textbf{none found meets all of these criteria}}
 \noi{delivery model: periodic vs on-demand (dynamic vs static data), push vs pull (sparse vs stream)}
@@ -262,6 +266,7 @@ sets:
 \end{itemize}
 }
 
+\note{Notes:}
 \noi{As shown in the analysis work presented later, \dcamp adds these features while still maintaining minimal impact on the
 systems, processes, and networks being monitored.}
 \end{frame}
@@ -281,6 +286,7 @@ systems, processes, and networks being monitored.}
 Filter} architectural pattern in which leaf nodes of the hierarchy collect data, filter out extraneous data, and send it
 up the pipe to a parent node which subsequently filters out more data and sends it up to another parent node.
 
+\note{Notes:}
 \noi{This architecture is efficient in that unwanted data is discarded earlier in the data path, reducing transport and
      processing costs.}
 \end{frame}
@@ -304,6 +310,7 @@ specific, known set of \textbf{services}. Each \dcamp service implements a speci
 \item \textbf{Configuration}--—configuration replication; topology and configuration distribution
 \eei
 
+\note{Notes:}
 \noi{Roles have little to no actual run-time logic but simply act as containers for the services}
 \noi{services manage ZeroMQ sockets, communicating with other services/nodes, and do the real work of \dcamp}
 \end{frame}
@@ -324,6 +331,7 @@ A service's scope can vary depending on the node's level in the \dcamp topology.
 \item \textit{Metric}: only stores updates relevant to the node
 \eei
 
+\note{Notes:}
 \end{frame}
 
 %------------
@@ -352,6 +360,7 @@ Base & Node \\
 \label{tab:role_to_services}
 \end{table}
 
+\note{Notes:}
 \noi{\textit{Metric} role runs on the nodes from which performance metrics should be collected.}
 \noi{\textit{Collector} role acts as an aggregation point in the system, from multiple \textit{Metric} (and
      \textit{Collector}) nodes; provides additional aggregated performance metrics.}
@@ -377,6 +386,7 @@ The \textit{Base} role must be running on each node for it to be part of the \dc
 are launched from within the \textit{Base} role.
 \end{column}
 
+\note{Notes:}
 \noi{In this document, a ``\textit{Base} node'' is defined as a \dcamp node which has not yet been configured, i.e. it
      has not joined a running \dcamp system.}
 \noi{Node, Role, Services Threading Model Diagram: Thread boundaries are represented by dashed lines. Except for the
@@ -412,6 +422,7 @@ are launched from within the \textit{Base} role.
 \item \textit{Root} node exits, reverting to \textit{Base} node.
 \eee
 
+\note{Notes:}
 \noi{\textit{Base} nodes (other \textit{Root}) can be started at any time by using the \dcamp CLI}
 \noi{expected \textit{Base} nodes are managed by a watchdog utility}
 \end{frame}
@@ -428,6 +439,8 @@ are launched from within the \textit{Base} role.
       processing (e.g. graphing metrics during a test scenario or correlating statistics with a distributed event
       log).
 \eee
+
+\note{Notes:}
 \end{frame}
 
 %------------------------------------------------
@@ -447,6 +460,7 @@ receives join messages from \textit{Base} nodes. When a \textit{Base} node respo
 \centering
 \includegraphics[scale=0.5]{topo.pdf}
 
+\note{Notes:}
 \noi{To reduce network traffic and load on the \textit{Root}, \textit{Base} nodes are designed to ignore \texttt{MARCO}
 messages from nodes whose UUID matches a previous successful topology discovery handshake.}
 \noi{The \textit{Root} node uses this to its advantage when attempting to stop nodes: the same \texttt{MARCO} /
@@ -460,6 +474,7 @@ responds with a \texttt{STOP} message instead of an assignment.}
 \centering
 \includegraphics[height=7.6cm,transparent]{config.pdf}
 
+\note{Notes:}
 \noi{\dcamp configuration and topology state are replicated across the system using key-value pairs, with the keys laid out
 in a hierarchical fashion.}
 \noi{\textit{Metric} node only needs the configuration values for its particular group, the node subscribes only to the
@@ -480,6 +495,7 @@ update             = P-KVPUB / P-HUGZ
 snap-sync          = C-ICANHAZ ( *P-KVSYNC P-KTHXBAI )
 \end{verbatim}
 
+\note{Notes:}
 \noi{A newly assigned \textbf{first-level Collector} node will first subscribe to new configuration updates from the
 \textit{Root} node and then send a configuration snapshot request to the \textit{Root} node.}
 \noi{A newly assigned \textbf{Metric} (or non-first-level \textit{Collector}) node will first subscribe to new
@@ -499,6 +515,7 @@ and the \textbf{internal protocol} for data flowing between components within a 
 \centering
 \includegraphics[scale=0.35]{data.pdf}
 
+\note{Notes:}
 \noi{Both protocols have the same specification and use the same message formats.}
 \noi{The \dcamp data flow protocol is very simple: single message type.}
 \noi{The data flows from one node to another via PUB/SUB sockets.}
@@ -518,6 +535,7 @@ Topology Protocol.
 \centering
 \includegraphics[scale=0.35]{branch-recovery.pdf}
 
+\note{Notes:}
 \noi{The Branch Recovery Protocol is initiated by \textit{Metric} nodes when they detect their \textit{Collector} has
 died.}
 \noi{Once the \textit{Root} node has received an \texttt{SOS} message from at least one third of the branch's
@@ -536,6 +554,7 @@ Topology Protocol.
 \centering
 \includegraphics[scale=0.35]{root-recovery.pdf}
 
+\note{Notes:}
 \noi{As each \textit{Collector} node detects the \textit{Root} node has died, it attempts to start an election via the
 \texttt{WUTUP} message.}
 \noi{\textit{Collector} nodes with higher UUIDs will respond to the first \textit{Collector} by sending the \texttt{YO}
@@ -556,6 +575,8 @@ all \textit{Collector} nodes, self-declaring the first \textit{Collector} as the
 \frametitle{Strategy}
 To measure the impact of \dcamp on a monitored process, a workload is defined and measured with and without \dcamp
 active. The measured difference in performance of the monitored process is defined to be \dcampns's monitoring overhead.
+
+\note{Notes:}
 \end{frame}
 
 %------------
@@ -576,6 +597,7 @@ point, the threads continuously (in this order):
 \item download a 5MB file of random binary data.
 \end{enumerate}
 
+\note{Notes:}
 \noi{The client machine is directly connected to the Apache server via crossover gigabit Ethernet.}
 \noi{Fibonacci workload is CPU-bound, 5MB download is disk-bound, home page workload is only used to seed the client
      connection and is not part of the analysis measurements.}
@@ -602,6 +624,7 @@ usage (\texttt{apache\_mem}), and combined disk/network throughput (\texttt{apac
 \item \textbf{1s} -- global metrics every 300 seconds, Apache metrics every 1 second, heartbeats every 300 seconds
 \end{itemize}
 
+\note{Notes:}
 \noi{No thresholds were defined for any of the configurations. That is, Sensor nodes immediately reported every sample
      instead of holding them for later reporting.}
 \end{frame}
@@ -612,6 +635,7 @@ usage (\texttt{apache\_mem}), and combined disk/network throughput (\texttt{apac
 \centering
 \includegraphics[height=8.6cm,transparent]{compare-fib.pdf}
 
+\note{Notes:}
 \noi{In the CPU-bound Fibonacci test, the biggest relative increase in request latency occurs between the runs with two and
 four threads. This correlates to the two physical CPU cores on the system exceeding capacity.}
 \noi{The 1m config run exhibits the worst performance of all the CPU-bound tests. This shows that global metric monitoring is actually more CPU
@@ -627,6 +651,7 @@ latency of the successful requests improves slightly. This explains the trend li
 \centering
 \includegraphics[height=8.6cm,transparent]{compare-down.pdf}
 
+\note{Notes:}
 \noi{Apache's disk-bound performance measured in the 5MB download test is relatively unaffected by \dcampns. This is expected
 since the infrequent samples being logged to an output file are \dcampns's only disk access.}
 \noi{The graph also shows the 512 thread load point as the beginning of a trend line shift, again correlating with the
@@ -649,6 +674,7 @@ to faster sample periods.
 maintaining fine sample granularity.
 \eee
 
+\note{Notes:}
 \end{frame}
 
 %------------------------------------------------
@@ -660,6 +686,8 @@ maintaining fine sample granularity.
 One of the primary measures of scalability for a distributed system is its network traffic.\cite{zanikolas2005} By
 simulating successively larger \dcamp systems (with respect to node count), one can extrapolate \dcampns's effectiveness
 at monitoring large distributed systems and how to best configure its metric collections.
+
+\note{Notes:}
 \end{frame}
 
 %------------
@@ -675,6 +703,7 @@ The test machine is a MacBook Pro (2.7GHz Core i7, 8GB 1333MHz DDR3, SSD) runnin
 use endpoints on the machine's loopback interface, and only the loopback interface traffic is monitored. The machine is
 otherwise entirely idle during the test runs.
 
+\note{Notes:}
 \noi{three-node system: one \textit{Root}, one \textit{Collector}, one \textit{Metric}}
 \noi{200-node system: eight groups with twenty-five nodes per group}
 \end{frame}
@@ -691,6 +720,7 @@ otherwise entirely idle during the test runs.
 \item memory usage every 60 seconds
 \end{itemize}
 
+\note{Notes:}
 \noi{No thresholds were defined for the above configuration. That is, Sensor nodes immediately reported every sample instead
 of holding them for later reporting.}
 \end{frame}
@@ -701,6 +731,7 @@ of holding them for later reporting.}
 \centering
 \includegraphics[height=8.6cm,transparent]{dcamp-net-bytes-steady.pdf}
 
+\note{Notes:}
 \noi{The rest (other than start-up/shut-down) of steady operation shows expected low network traffic except on sample periods.}
 \end{frame}
 
@@ -710,7 +741,7 @@ of holding them for later reporting.}
 \centering
 \includegraphics[height=8.6cm,transparent]{dcamp-net-packets-steady.pdf}
 
-\noi{}
+\note{Notes:}
 \end{frame}
 
 %------------
@@ -719,7 +750,7 @@ of holding them for later reporting.}
 \centering
 \includegraphics[height=8.6cm,transparent]{dcamp-net-average.pdf}
 
-\noi{}
+\note{Notes:}
 \end{frame}
 
 %------------
@@ -728,7 +759,7 @@ of holding them for later reporting.}
 \centering
 \includegraphics[height=8.6cm,transparent]{dcamp-net-average-pernode.pdf}
 
-\noi{}
+\note{Notes:}
 \end{frame}
 
 %------------
@@ -750,6 +781,7 @@ second. This can be attributed to the fact that the number of Sensor nodes incre
 number of child nodes per parent would result in lower network utilization and better \dcamp scalability.
 \eee
 
+\note{Notes:}
 \noi{That is, Sensor nodes do not require full-configuration replication and send/receive fewer messages since they are
 relatively uninvolved with topology coordination in comparison to \textit{Collector} nodes.}
 
