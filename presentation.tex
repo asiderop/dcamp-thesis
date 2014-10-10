@@ -798,17 +798,59 @@ relatively uninvolved with topology coordination in comparison to \textit{Collec
 
 %------------
 \begin{frame}
-\frametitle{terms}
-(page 5-9)
--   perf metric
--   metric sampling, reporting, aggregation, calculation
--   service + role
--   zeromq
--   zeromq address + endpoint
+\frametitle{Terminology}
+\begin{description}
+
+\item[\dcamp Service:]
+Services are a way of logically grouping functions within the \dcamp system. Each service is implemented in \dcamp as an
+independent thread.
+
+\item[\dcamp Role:]
+Roles in the \dcamp system are groupings of one or more \dcamp services. There does not exist a one-to-one
+relationship between roles and services.
+
+\item[ZeroMQ:]
+ZeroMQ is a message queuing framework which allows a developer to build distributed systems by focusing on the data
+and implementing simple design patterns.
+
+\item[ZeroMQ Address:]
+A \O MQ address is the combination of network host identifier (i.e. an IP Address or resolvable name) and Internet
+socket port number. 
+
+\item[ZeroMQ Endpoint:]
+An endpoint is the combination of any ZeroMQ transport (\texttt{pgm}, \texttt{inproc}, \texttt{ipc}, or \texttt{tcp})
+and a \O MQ address.
+
+\end{description}
+\end{frame}
+
+%------------
+\begin{frame}
+\frametitle{Terminology}
+\begin{description}
+
+\item[Performance Metric:]
+Performance metrics are any data about a given node relating to its throughput, capacity, utilization, or latency.
+
+\item[Metric Sampling:]
+Metric collection or sampling is the process of measuring metrics on a given node. 
+
+\item[Metric Reporting:]
+Metric reporting is the process of sending sampled metrics to a parent node.
+
+\item[Metric Aggregation:]
+Metric aggregation is the process of combining metrics from multiple nodes into a single metric, providing a coarser
+granularity for the performance metrics. Metrics are combined by calculating a sum, average, percent, or any other
+mathematically relevant operation.
+
+\item[Metric Calculation:]
+Metric calculation is the process of combining identical metrics from multiple timestamps into a single metric.
+
+\end{description}
 \end{frame}
 
 %------------------------------------------------
-\subsection{DPF Evaluation Criterion Details}
+\subsection{Evaluation Criterion Details}
 
 %------------
 \begin{frame}
@@ -887,19 +929,6 @@ focus on the performance data and not on a myriad of APIs for various architectu
 \frame{Request/Reply}
 \frame{Pipeline}
 \frame{Exclusive Pair}
-
-%------------------------------------------------
-\subsection{dCAMP Messages}
-\frame{Topology}
-\frame{Configuration}
-\frame{Data}
-
-%------------------------------------------------
-\subsection{dCAMP Protocols}
-\frame{Topology}
-\frame{Configuration}
-\frame{Branch Recovery}
-\frame{Root Recovery}
 
 %------------------------------------------------
 \subsection{dCAMP Configuration}
