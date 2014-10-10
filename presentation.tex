@@ -465,10 +465,9 @@ active. The measured difference in performance of the monitored process is defin
 %------------
 \begin{frame}
 \frametitle{Workload}
-Apache JMeter\cite{jmeter} (v2.11) is used to run load against a default-configured Apache instance on a Lenovo Thinkpad
-(dual 2.16GHz Centrino Duo T2600, 2GB 667MHz DDR2, SATA) running Ubuntu 13.10. The client machine, a MacBook Pro (2.7GHz
-Core i7, 8GB 1333MHz DDR3, SSD) running OSX 10.9, is directly connected to the Apache server via crossover gigabit
-Ethernet.
+\textbf{Client:} Apache JMeter (v2.11) on a MacBook Pro (2.7GHz Core i7, 8GB 1333MHz DDR3, SSD) running OSX 10.9. \\
+\textbf{Server:} default-configured Apache instance on a Lenovo Thinkpad (dual 2.16GHz Centrino Duo T2600, 2GB 667MHz
+DDR2, SATA) running Ubuntu 13.10.
 
 \medskip
 
@@ -481,6 +480,7 @@ point, the threads continuously (in this order):
 \item download a 5MB file of random binary data.
 \end{enumerate}
 
+\noi{The client machine is directly connected to the Apache server via crossover gigabit Ethernet.}
 \noi{Fibonacci workload is CPU-bound, 5MB download is disk-bound, home page workload is only used to seed the client
      connection and is not part of the analysis measurements.}
 \noi{After the ramp up phase of each load point (launching 10 threads per second), the test ensures all threads continue
@@ -493,8 +493,8 @@ point, the threads continuously (in this order):
 \begin{frame}
 \frametitle{Configuration}
 
-Each \dcamp configuration level monitors four global metrics and three process-specific metrics on the Apache
-process(es). The global metrics are CPU usage (\texttt{proc}), memory usage (\texttt{mem}), disk throughput
+Each \dcamp configuration level monitors \textbf{four global metrics} and \textbf{three process-specific metrics} on the
+Apache process(es). The global metrics are CPU usage (\texttt{proc}), memory usage (\texttt{mem}), disk throughput
 (\texttt{disk}), and network throughput (\texttt{net}); the Apache metrics are CPU usage (\texttt{apache\_cpu}), memory
 usage (\texttt{apache\_mem}), and combined disk/network throughput (\texttt{apache\_io}).
 
@@ -557,9 +557,107 @@ maintaining fine sample granularity.
 
 %------------------------------------------------
 \subsection{Scalability}
-\frame{workload}
-\frame{configuration}
-\frame{results}
+
+%------------
+\begin{frame}
+\frametitle{Strategy}
+One of the primary measures of scalability for a distributed system is its network traffic.\cite{zanikolas2005} By
+simulating successively larger \dcamp systems (with respect to node count), one can extrapolate \dcampns's effectiveness
+at monitoring large distributed systems and how to best configure its metric collections.
+\end{frame}
+
+%------------
+\begin{frame}
+\frametitle{Workload}
+\dcamp is setup to monitor a machine's global metrics, scaling the number of \textbf{simulated nodes in the \dcamp
+system from 3 nodes up to 200 nodes}. The metric configuration is kept constant for each test run. As \dcamp starts,
+monitors in steady state, and shuts down, the machine's network traffic is monitored and recorded every five seconds.
+
+\medskip
+
+The test machine is a MacBook Pro (2.7GHz Core i7, 8GB 1333MHz DDR3, SSD) running OSX 10.9. All simulated \dcamp nodes
+use endpoints on the machine's loopback interface, and only the loopback interface traffic is monitored. The machine is
+otherwise entirely idle during the test runs.
+
+\noi{three-node system: one \textit{Root}, one \textit{Collector}, one \textit{Metric}}
+\noi{200-node system: eight groups with twenty-five nodes per group}
+\end{frame}
+
+%------------
+\begin{frame}
+\frametitle{Configuration}
+\dcamp is configured to monitor and report the below \textbf{global metrics}, using a heartbeat of 60 seconds.
+
+\begin{itemize}
+\item CPU usage every 60 seconds
+\item total disk throughput every 120 seconds
+\item total network throughput every 120 seconds
+\item memory usage every 60 seconds
+\end{itemize}
+
+\noi{No thresholds were defined for the above configuration. That is, Sensor nodes immediately reported every sample instead
+of holding them for later reporting.}
+\end{frame}
+
+%------------
+\begin{frame}
+\frametitle{Steady State Network Bytes}
+\centering
+\includegraphics[height=8.6cm,transparent]{dcamp-net-bytes-steady.pdf}
+
+\noi{The rest (other than start-up/shut-down) of steady operation shows expected low network traffic except on sample periods.}
+\end{frame}
+
+%------------
+\begin{frame}
+\frametitle{Steady State Network Packets}
+\centering
+\includegraphics[height=8.6cm,transparent]{dcamp-net-packets-steady.pdf}
+
+\noi{}
+\end{frame}
+
+%------------
+\begin{frame}
+\frametitle{Average Network Utilization}
+\centering
+\includegraphics[height=8.6cm,transparent]{dcamp-net-average.pdf}
+
+\noi{}
+\end{frame}
+
+%------------
+\begin{frame}
+\frametitle{Average Network Utilization Per Node}
+\centering
+\includegraphics[height=8.6cm,transparent]{dcamp-net-average-pernode.pdf}
+
+\noi{}
+\end{frame}
+
+%------------
+\begin{frame}
+\frametitle{Observations}
+
+\bee
+\item Sparklines of each load point show the same pattern: highest network traffic occurs during start up and then also
+on shutdown. This pattern follows the design of \dcamp which uses a chatty configuration protocol and a terse data
+protocol.
+\item As the node count increases, the rate at which bytes/packets are sent and received increases. This correlates with
+the larger configuration which \dcamp must track as well as the additional nodes sending and receiving data.
+\item Looking at the same values but also relating them to the number of nodes in the system, one sees the configuration
+size grows faster than the number of nodes.
+\item The number of messages being sent per node actually goes down and levels off just under 1 packet per node per
+second. This can be attributed to the fact that the number of Sensor nodes increases faster in relation to the number of
+\textit{Collector} nodes.
+\item As this ratio increases, it is expected the number of messages per node to decrease. This indicates a higher
+number of child nodes per parent would result in lower network utilization and better \dcamp scalability.
+\eee
+
+\noi{That is, Sensor nodes do not require full-configuration replication and send/receive fewer messages since they are
+relatively uninvolved with topology coordination in comparison to \textit{Collector} nodes.}
+
+\end{frame}
 
 %------------------------------------------------
 \section{Evaluation and Conclusion}
