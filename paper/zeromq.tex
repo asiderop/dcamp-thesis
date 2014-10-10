@@ -90,7 +90,7 @@ Only the \texttt{PAIR} socket type can be used for this pattern.
 \section{Useful Features for \dcamp}
 
 Apart from the general happiness ZeroMQ offers to the distributed systems developer, some features are particularly
-useful in \dcamp.
+useful in \dcampns.
 
 \subsection{Topic Filtering}
 
@@ -113,7 +113,7 @@ ZeroMQ's atomic multipart message passing lends itself to what \textit{The Guide
 \cite{zguide}. That is, use cheap, easy to write/read, overly verbose messages for infrequent control scenarios and
 nasty, compact, highly performant messages for long-lived and frequent data scenarios.
 
-In \dcamp, all control messages follow the cheap pattern, making them easy to debug. But the data messages, which tend
+In \dcampns, all control messages follow the cheap pattern, making them easy to debug. But the data messages, which tend
 to not need a lot of debugging, are free to be more optimized.
 
 \subsection{Simplified Threading Design}

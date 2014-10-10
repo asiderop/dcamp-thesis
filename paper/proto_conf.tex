@@ -125,7 +125,7 @@ Frame 4: subtree specification, as 0MQ string
 monotonically increasing. When a \texttt{KVPUB} is received which has a sequence number lower than a previously received
 \texttt{KVPUB}, the node MUST delete its saved configuration values and request a new snapshot.
 
-Frame 2 SHOULD contain the UUID of the node from which the value originated. In \dcamp, this should only be the
+Frame 2 SHOULD contain the UUID of the node from which the value originated. In \dcampns, this should only be the
 \textit{Root} node's UUID. Frame 3 MAY contain additional properties for the key-value pair, such as an ephemeral
 time-to-live.
 
@@ -145,7 +145,7 @@ Frame 4: value, as blob
 
 \textbf{\texttt{HUGZ}} is the heartbeat message sent from parent to child when the rate of \texttt{KVPUB} messages being
 sent drops below a predetermined threshold. The \texttt{HUGZ} message is critical to maintaining topological consistency
-in \dcamp.
+in \dcampns.
 
 \begin{figure}[H]
 \vspace{+10pt}

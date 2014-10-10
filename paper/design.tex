@@ -12,9 +12,9 @@ respect to the number of required messages and can be easily modified to use a m
 
 \dcamp is designed as a semi-centralized, hierarchical peer-to-peer system utilizing the UNIX Pipes and Filter
 architectural pattern \cite{pipe-filter} in which leaf (\textit{Metric}) nodes of the hierarchy collect data, filter out
-extraneous data, and send it up the pipe to a \textit{Collector} node which subsequently filters out more data and sends
-it up to another \textit{Collector} or \textit{Root} node. This architecture is efficient in that unwanted data is
-discarded earlier in the data path, reducing transport and processing costs.
+extraneous data, and send it up the pipe to a parent (\textit{Collector}) node which subsequently filters out more data
+and sends it up to another parent (\textit{Collector} or \textit{Root}) node. This architecture is efficient in that
+unwanted data is discarded earlier in the data path, reducing transport and processing costs.
 
 \section{Requirements}
 
@@ -73,7 +73,7 @@ are the list of functional and non-functional requirements which guide its desig
 The \dcamp distributed system is comprised of one or more nodes, each executing a role. The role is essentially a named
 grouping of a specific, known set of functionality or service. Roles have little to no actual run-time logic but simply
 act as containers for the services; services manage ZeroMQ sockets, communicating with other services/nodes, and do the
-real work of \dcamp.
+real work of \dcampns.
 
 \subsection{Services}
 
@@ -149,8 +149,8 @@ Base & Node \\
 \section{Fault Tolerance}
 
 In order to maintain a healthy distributed topology, \dcamp quickly and efficiently recovers from node failures using
-simple fault tolerance rules. These rules define how/when nodes are considered to have failed as well as the specific
-steps for recovering and/or rebuilding the distributed topology.
+simple fault tolerance rules. These rules define how and when nodes are considered to have failed as well as the
+specific steps for recovering and/or rebuilding the distributed topology.
 
 \subsection{Heartbeating (Detecting Disconnections)}
 
@@ -283,7 +283,7 @@ considered disconnected.
 \label{dcamp_metrics}
 
 The crux of any DPF are the performance metrics to which it provides access. This section lists the set of performance
-metrics designed within \dcamp. Metrics marked with ``(\emph{dCAMP})'' are extensions added by the \dcamp project to the
+metrics designed within \dcampns. Metrics marked with ``(\emph{dCAMP})'' are extensions added by the \dcamp project to the
 basic CAMP metrics. These provide a performance view of multiple nodes in the distributed network and are collected by
 the Aggregation service rather than the Sensor service.
 

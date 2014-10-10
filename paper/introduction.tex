@@ -19,12 +19,12 @@ frameworks.
 
 \section{Distributed Performance Framework Criterion}
 
-In order for practitioners and researchers alike to effectively use a distributed performance framework, it is necessary
-to have a set criteria for evaluation. Presented here is an extended criterion of the general requirements presented by
-\cite{zanikolas2005} for grid systems. Data Delivery Models and Security have been taken directly from their work.
-Scalability has been modified to only consider good performance as its goal while Low Intrusiveness has been turned into
-Transparency. Extensibility has been removed from the list, and Completeness and Validity have been added. This work
-provides an alternate definition for Portability.
+In order for practitioners and researchers alike to effectively choose a distributed performance framework, it is
+necessary to have a set criteria for evaluation. Presented here is an extended criterion of the general requirements
+presented by \cite{zanikolas2005} for grid systems. Data Delivery Models and Security have been taken directly from
+their work. Scalability has been modified to only consider good performance as its goal while Low Intrusiveness has been
+turned into Transparency. Extensibility has been removed from the list, and Completeness and Validity have been added.
+This work provides an alternate definition for Portability.
 
 \subsubsection{Data Delivery Models}
 
@@ -66,17 +66,17 @@ performance metrics about the given distributed system being monitored, but this
 \subsubsection{Validity}
 
 A distributed performance framework is only as good as the data is produces; if the sensors or gathering techniques are
-inaccurate, then the data is inaccurate and useless. Validity of a framework is achieved when the authors of a framework
-provide formal verification of its accuracy.
+inaccurate, then the data is useless at best, misleading at worst. Validity of a framework is achieved when the authors
+of a framework provide formal verification of its accuracy.
 
 \subsubsection{Portability}
 
 A framework's ability to run on a completely heterogeneous distributed system without special considerations by the
-practitioner is what I define as Portability. More specifically, a portable framework has a unified API regardless of
-the system architecture, does not restrict itself to applications written in specific programming languages, and does
-not require practitioners to manually instrument their application code. This black box characteristic is vital for a
-viable distributed performance framework's effectiveness as it allows practitioners to focus on the performance data and
-not on a myriad of APIs for various architectures or languages.
+practitioner is what this work defines as Portability. More specifically, a portable framework has a unified API
+regardless of the system architecture, does not restrict itself to applications written in specific programming
+languages, and does not require practitioners to manually instrument their application code. This black box
+characteristic is vital for a viable distributed performance framework's effectiveness as it allows practitioners to
+focus on the performance data and not on a myriad of APIs for various architectures or languages.
 
 \section{\dcamp}
 \label{dcamp}
@@ -101,7 +101,7 @@ The key contributions of the Distributed Common API for Measuring Performance ar
 
 \subsection{Terminology}
 Knowing the following terminology will make it easier to understand and discuss the \dcamp project, its main goals, its
-usage, its components, and how it works. 
+usage, its components, and its inner workings. 
 
 \begin{description}
 
@@ -118,8 +118,8 @@ triggering actions based on performance events. The \dcamp project is designed t
 \item[Performance Metric,]
 \item[Performance Counter:]
 Performance metrics are any data about a given node relating to its throughput, capacity, utilization, or latency. In
-\dcamp, these are grouped into four different sets of performance metrics (global, network, disk, and per-process) and a
-fifth set of inquiry metrics. They are described fully in section \ref{dcamp_metrics}. 
+\dcampns, these are grouped into four different sets of performance metrics---global, network, disk, and
+per-process---and a fifth set of inquiry metrics. They are described fully in section \ref{dcamp_metrics}. 
 
 \item[Metric Aggregation:]
 Metric aggregation is the process of combining metrics from multiple nodes into a single metric. Performance metrics,
@@ -129,7 +129,7 @@ calculating a sum, average, percent, or any other mathematically relevant operat
 
 \item[Metric Calculation:]
 Metric calculation is the process of combining identical metrics from multiple timestamps into a single metric. Various
-equations and inputs used to do this calculation, chosen depending on the type of metric and desired representation;
+equations and inputs are used to do this calculation, chosen depending on the type of metric and desired representation;
 these equations are listed in Table \ref{tab:metric_types}.
 
 \item[Filter,]
@@ -150,7 +150,7 @@ system management. A description of all the \dcamp services can be found in sect
 service is implemented in \dcamp as an independent thread.
 
 \item[\dcamp Role:]
-Roles in the \dcamp system are groupings of one or more \dcamp services. There does NOT exist a one-to-one
+Roles in the \dcamp system are groupings of one or more \dcamp services. There does not exist a one-to-one
 relationship between roles and services; the \dcamp role-to-service mapping can be seen in Table
 \ref{tab:role_to_services}.
 
@@ -165,7 +165,7 @@ Levels are a way of organizing the \dcamp hierarchy horizontally. Levels are def
 node. For example, level one is one node away from the root node, or said another way, the first level is directly
 ``connected'' to the root node. The second level is two nodes away from the root node, or any node in the second level is
 connected to the root node by another node (in the first level). This necessarily means the root is in level zero (all
-by itself). 
+by itself).
 
 \item[Parent Node:]
 Nodes are called parent nodes if there exists at least one node connected to it from a level of higher ordinal value.
@@ -182,11 +182,19 @@ The \dcamp configuration specifies everything about the system, including hierar
 reporting periods, filtering, communication details, etc. The configuration is set at the root node and then
 distributed to the rest of the \dcamp system. Configuration details can be found in section \ref{configuration}. 
 
-\item[ZeroMQ Address,]
-\item[ZeroMQ Endpoint:]
+\item[ZeroMQ,]
+\item[zmq,]
+\item[\O MQ:]
+ZeroMQ is a message queuing framework which allows a developer to build distributed systems by focusing on the data
+and implementing simple design patterns.
+
+\item[ZeroMQ Address:]
 A \O MQ address is the combination of network host identifier (i.e. an IP Address or resolvable name) and Internet
-socket port number. An endpoint is then the combination of any ZeroMQ transport (\texttt{pgm}, \texttt{inproc},
-\texttt{ipc}, or \texttt{tcp}) and an address.
+socket port number. 
+
+\item[ZeroMQ Endpoint:]
+An endpoint is the combination of any ZeroMQ transport (\texttt{pgm}, \texttt{inproc}, \texttt{ipc}, or \texttt{tcp})
+and a \O MQ address.
 
 \item[Metric Collection,]
 \item[Metric Sampling:]
