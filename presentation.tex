@@ -454,9 +454,106 @@ are launched from within the \textit{Base} role.
 
 %------------------------------------------------
 \subsection{Transparency}
-\frame{workload}
-\frame{configuration}
-\frame{results}
+
+%------------
+\begin{frame}
+\frametitle{Strategy}
+To measure the impact of \dcamp on a monitored process, a workload is defined and measured with and without \dcamp
+active. The measured difference in performance of the monitored process is defined to be \dcampns's monitoring overhead.
+\end{frame}
+
+%------------
+\begin{frame}
+\frametitle{Workload}
+Apache JMeter\cite{jmeter} (v2.11) is used to run load against a default-configured Apache instance on a Lenovo Thinkpad
+(dual 2.16GHz Centrino Duo T2600, 2GB 667MHz DDR2, SATA) running Ubuntu 13.10. The client machine, a MacBook Pro (2.7GHz
+Core i7, 8GB 1333MHz DDR3, SSD) running OSX 10.9, is directly connected to the Apache server via crossover gigabit
+Ethernet.
+
+\medskip
+
+Each test run includes 18 different load points, scaling the number of client threads from 2 to 2048. For every load
+point, the threads continuously (in this order):
+
+\begin{enumerate}
+\item load a static home page,
+\item load a PHP page which calculates the 25th Fibonacci number, and
+\item download a 5MB file of random binary data.
+\end{enumerate}
+
+\noi{Fibonacci workload is CPU-bound, 5MB download is disk-bound, home page workload is only used to seed the client
+     connection and is not part of the analysis measurements.}
+\noi{After the ramp up phase of each load point (launching 10 threads per second), the test ensures all threads continue
+     to execute simultaneously for five minutes before shutting down.}
+\noi{The arithmetic mean of the request latency for each step at each load point is then calculated and averaged across
+     three distinct runs of the same test.}
+\end{frame}
+
+%------------
+\begin{frame}
+\frametitle{Configuration}
+
+Each \dcamp configuration level monitors four global metrics and three process-specific metrics on the Apache
+process(es). The global metrics are CPU usage (\texttt{proc}), memory usage (\texttt{mem}), disk throughput
+(\texttt{disk}), and network throughput (\texttt{net}); the Apache metrics are CPU usage (\texttt{apache\_cpu}), memory
+usage (\texttt{apache\_mem}), and combined disk/network throughput (\texttt{apache\_io}).
+
+\begin{itemize}
+\item \textbf{baseline} -- \dcamp off
+\item \textbf{5m} -- all metrics every 300 seconds, heartbeats every 60 seconds
+\item \textbf{1m} -- all metrics every 60 seconds, heartbeats every 60 seconds
+\item \textbf{10s} -- global metrics every 300 seconds, Apache metrics every 10 seconds, heartbeats every 300 seconds
+\item \textbf{1s} -- global metrics every 300 seconds, Apache metrics every 1 second, heartbeats every 300 seconds
+\end{itemize}
+
+\noi{No thresholds were defined for any of the configurations. That is, Sensor nodes immediately reported every sample
+     instead of holding them for later reporting.}
+\end{frame}
+
+%------------
+\begin{frame}
+\frametitle{CPU-Bound Results}
+\centering
+\includegraphics[height=8.6cm,transparent]{compare-fib.pdf}
+
+\noi{In the CPU-bound Fibonacci test, the biggest relative increase in request latency occurs between the runs with two and
+four threads. This correlates to the two physical CPU cores on the system exceeding capacity.}
+\noi{The 1m config run exhibits the worst performance of all the CPU-bound tests. This shows that global metric monitoring is actually more CPU
+intensive than collecting per-process metrics, even for processes with many active processes.}
+\noi{The rate at which request latency worsens begins to level off starting at the 512 thread load point. This is also the
+load point at which Apache begins to return errors. As the percentage of requests resulting in errors increases, the
+latency of the successful requests improves slightly. This explains the trend line shift.}
+\end{frame}
+
+%------------
+\begin{frame}
+\frametitle{Disk-Bound Results}
+\centering
+\includegraphics[height=8.6cm,transparent]{compare-down.pdf}
+
+\noi{Apache's disk-bound performance measured in the 5MB download test is relatively unaffected by \dcampns. This is expected
+since the infrequent samples being logged to an output file are \dcampns's only disk access.}
+\noi{The graph also shows the 512 thread load point as the beginning of a trend line shift, again correlating with the
+increase in request error rate.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Observations}
+
+\bee
+\item When nodes are not expected to fail frequently, using longer heartbeat periods reduces the impact \dcamp has on the
+system.
+\item It is better to monitor a process using a faster sample period than an entire system using a slower sample
+period.
+\item The \dcamp system impact is noticeable but a considerably smaller factor than the impact hardware limitations
+have on performance monitoring.
+\item Holding all else constant, slower sample periods have an obviously lower impact on system performance compared
+to faster sample periods.
+\item Possibly using \dcampns's reporting threshold, system impact can be minimized while still
+maintaining fine sample granularity.
+\eee
+
+\end{frame}
 
 %------------------------------------------------
 \subsection{Scalability}
