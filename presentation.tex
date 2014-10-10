@@ -436,17 +436,113 @@ are launched from within the \textit{Base} role.
 
 %------------------------------------------------
 \subsection{ZeroMQ Protocols}
-\frame{topology}
-\frame{configuration}
-\frame{data}
-\frame{recovery}
 
-%------------------------------------------------
-\subsection{Fault Tolerance}
-\frame{heartbeating}
-\frame{reminder}
-\frame{promotion}
-\frame{election}
+%------------
+\begin{frame}[t]
+\frametitle{Topology Protocol}
+The \dcamp distributed topology is dynamically established as the \textit{Root} node sends out its discovery message and
+receives join messages from \textit{Base} nodes. When a \textit{Base} node responds to the \textit{Root}, the
+\textit{Base} node is given its assignment.
+
+\centering
+\includegraphics[scale=0.5]{topo.pdf}
+
+\noi{To reduce network traffic and load on the \textit{Root}, \textit{Base} nodes are designed to ignore \texttt{MARCO}
+messages from nodes whose UUID matches a previous successful topology discovery handshake.}
+\noi{The \textit{Root} node uses this to its advantage when attempting to stop nodes: the same \texttt{MARCO} /
+\texttt{POLO} pattern is used, but the \textit{Root} node uses a different UUID in the \texttt{MARCO} message and a
+responds with a \texttt{STOP} message instead of an assignment.}
+\end{frame}
+
+%------------
+\begin{frame}[t]
+\frametitle{Configuration Protocol}
+\centering
+\includegraphics[height=7.6cm,transparent]{config.pdf}
+
+\noi{\dcamp configuration and topology state are replicated across the system using key-value pairs, with the keys laid out
+in a hierarchical fashion.}
+\noi{\textit{Metric} node only needs the configuration values for its particular group, the node subscribes only to the
+\texttt{"/CONFIG/<group-name>/"} topic.}
+\noi{Any \texttt{KVPUB} whose key does not start with this string is then discarded.}
+\end{frame}
+
+\begin{frame}[fragile,t]
+\frametitle{Configuration Protocol}
+
+The \dcamp configuration replication algorithm generally adheres to the Clustered Hashmap Protocol\cite{chp}.
+
+\medskip
+
+\begin{verbatim}
+config-replication = *update / snap-sync
+update             = P-KVPUB / P-HUGZ
+snap-sync          = C-ICANHAZ ( *P-KVSYNC P-KTHXBAI )
+\end{verbatim}
+
+\noi{A newly assigned \textbf{first-level Collector} node will first subscribe to new configuration updates from the
+\textit{Root} node and then send a configuration snapshot request to the \textit{Root} node.}
+\noi{A newly assigned \textbf{Metric} (or non-first-level \textit{Collector}) node will first subscribe to new
+configuration updates from its parent \textit{Collector} node, and then send its parent \textit{Collector} node a
+\textbf{filtered configuration snapshot request}.}
+\noi{Once its snapshot has been successfully received, a node will process any pending configuration updates and then,
+in the case of a \textit{Collector} node, respond to child node snapshot requests.}
+\end{frame}
+
+%------------
+\begin{frame}[t]
+\frametitle{Data Protocol}
+There are two data flow protocols in the \dcamp system: the \textbf{external protocol} for data flowing between nodes
+and the \textbf{internal protocol} for data flowing between components within a single node.
+
+\bigskip
+\centering
+\includegraphics[scale=0.35]{data.pdf}
+
+\noi{Both protocols have the same specification and use the same message formats.}
+\noi{The \dcamp data flow protocol is very simple: single message type.}
+\noi{The data flows from one node to another via PUB/SUB sockets.}
+\noi{Internally, data flows from the upstream data producers, through a filtering/processing unit, and out to downstream
+data consumers via PUSH/PULL sockets.}
+\noi{When data rate is slower than a predefined threshold, heartbeats are sent instead to keep inter-node connections
+alive.}
+\end{frame}
+
+%------------
+\begin{frame}[t]
+\frametitle{Recovery Protocols: Promotion}
+The \dcamp Recovery Protocols are used for the Promotion and Election algorithms and use the same base messages as the
+Topology Protocol.
+
+\bigskip
+\centering
+\includegraphics[scale=0.35]{branch-recovery.pdf}
+
+\noi{The Branch Recovery Protocol is initiated by \textit{Metric} nodes when they detect their \textit{Collector} has
+died.}
+\noi{Once the \textit{Root} node has received an \texttt{SOS} message from at least one third of the branch's
+\textit{Metric} nodes, the \textit{Root} proceeds to shutdown the entire branch using the ``stop'' Topology Protocol.}
+\noi{Once shut down, a new \textit{Collector} is selected and the branch is rebuilt using the standard ``discover''
+Topology Protocol.}
+\end{frame}
+
+%------------
+\begin{frame}[t]
+\frametitle{Recovery Protocols: Election}
+The \dcamp Recovery Protocols are used for the Promotion and Election algorithms and use the same base messages as the
+Topology Protocol.
+
+\bigskip
+\centering
+\includegraphics[scale=0.35]{root-recovery.pdf}
+
+\noi{As each \textit{Collector} node detects the \textit{Root} node has died, it attempts to start an election via the
+\texttt{WUTUP} message.}
+\noi{\textit{Collector} nodes with higher UUIDs will respond to the first \textit{Collector} by sending the \texttt{YO}
+message.}
+\noi{If no \texttt{YO} messages are received by the first \textit{Collector}, the \texttt{IWIN} message is sent out to
+all \textit{Collector} nodes, self-declaring the first \textit{Collector} as the new Root.}
+\end{frame}
 
 %------------------------------------------------
 \section{dCAMP Analysis}
@@ -812,6 +908,6 @@ focus on the performance data and not on a myriad of APIs for various architectu
 
 %------------------------------------------------
 \subsection{dCAMP Metrics}
-\frame{overview, dcamp metric groups, pitfall}
+\frame{overview, dcamp metric groups, t3.1, pitfall}
 
 \end{document} 
