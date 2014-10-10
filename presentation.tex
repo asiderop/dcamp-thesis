@@ -209,6 +209,29 @@ Distributed \textbf{Performance Monitoring} Frameworks:
 \noi{DPF refers to both}
 \end{frame}
 
+%------------
+\begin{frame}
+\frametitle{Distributed Performance Frameworks (DPF)}
+Three types of metric gathering techniques:
+
+\bee
+\item hardware counters and sensors use specialized hardware to gather highly accurate metrics and are highly dependent
+on the underlying hardware architecture,
+\item software sensors use modern operating system interfaces to acquire moderately accurate performance metrics in an
+architecture-independent interface, and
+\item hybrid approaches use a combination of hardware and software sensors to attain a balance between the two.
+\eee
+
+\note{Notes:}
+\noi{frameworks listed in this work were chosen based on their categorization in the \cite{zanikolas2005} taxonomy; only
+level 2 frameworks are included.}
+\noi{Level 2 frameworks are defined as having at least one type of republisher in addition to producers;}
+\noi{these frameworks usually distribute functionality across multiple hosts.}
+\noi{A limited analysis is conducted by reviewing the available literature, and further analysis (i.e., verifying
+scalability, transparency, and validity) is left as future work.}
+
+\end{frame}
+
 %------------------------------------------------
 \subsection{Evaluation Criterion}
 
@@ -267,6 +290,9 @@ sets:
 }
 
 \note{Notes:}
+\noi{Many authors have failed to address their framework's validity, transparency, and scalability explicitly, thinking
+the framework's architecture speaks for itself or blindly assuming it is accurate and introduces negligible load on the
+measured system.}
 \noi{As shown in the analysis work presented later, \dcamp adds these features while still maintaining minimal impact on the
 systems, processes, and networks being monitored.}
 \end{frame}
@@ -661,7 +687,7 @@ increase in request error rate.}
 \begin{frame}
 \frametitle{Observations}
 
-\bee
+\bee[<+->]
 \item When nodes are not expected to fail frequently, using longer heartbeat periods reduces the impact \dcamp has on the
 system.
 \item It is better to monitor a process using a faster sample period than an entire system using a slower sample
@@ -766,22 +792,26 @@ of holding them for later reporting.}
 \begin{frame}
 \frametitle{Observations}
 
-\bee
+\bee[<+->]
 \item Sparklines of each load point show the same pattern: highest network traffic occurs during start up and then also
-on shutdown. This pattern follows the design of \dcamp which uses a chatty configuration protocol and a terse data
-protocol.
-\item As the node count increases, the rate at which bytes/packets are sent and received increases. This correlates with
-the larger configuration which \dcamp must track as well as the additional nodes sending and receiving data.
-\item Looking at the same values but also relating them to the number of nodes in the system, one sees the configuration
-size grows faster than the number of nodes.
+on shutdown.
+\item As the node count increases, the rate at which bytes/packets are sent and received increases.
+\item Comparing the same rates to the number of nodes in the system, one sees the configuration size grows faster than
+the number of nodes.
 \item The number of messages being sent per node actually goes down and levels off just under 1 packet per node per
-second. This can be attributed to the fact that the number of Sensor nodes increases faster in relation to the number of
-\textit{Collector} nodes.
-\item As this ratio increases, it is expected the number of messages per node to decrease. This indicates a higher
-number of child nodes per parent would result in lower network utilization and better \dcamp scalability.
+second.
+\item As the ratio of Sensor to Collector increases, the number of messages per node is expected to decrease. Therefore,
+a higher number of child nodes per parent should result in lower network utilization and better \dcamp scalability.
 \eee
 
 \note{Notes:}
+\noi{traffic at start/end: follows from \dcampns's use of chatty configuration protocols and a terse data protocol.}
+\noi{node count + net increase: correlates with the larger configuration which \dcamp must track as well as the
+additional nodes sending and receiving data.}
+\noi{bytes per node: more configuration data to pass around}
+
+\noi{packets per node: can be attributed to the fact that the number of Sensor nodes increases faster in relation to the
+number of \textit{Collector} nodes.}
 \noi{That is, Sensor nodes do not require full-configuration replication and send/receive fewer messages since they are
 relatively uninvolved with topology coordination in comparison to \textit{Collector} nodes.}
 
@@ -792,12 +822,43 @@ relatively uninvolved with topology coordination in comparison to \textit{Collec
 %------------------------------------------------
 
 %------------------------------------------------
-\frame{dcamp}
+\begin{frame}
+\frametitle{Evaluation}
+The previous section presents an empirical evaluation of \dcampns's \textbf{transparency} and \textbf{scalability},
+showing \dcamp to be both transparent and scalable when properly configured.
+
+\medskip
+
+\textbf{Validity} and \textbf{portability} are inherited from \camp as well as the use of portable Python libraries.
+\dcampns's \textbf{data delivery models} and \textbf{completeness} are apparent in the system's design and configuration
+capabilities, and these will be easily achieved with a full implementation of \dcampns.
+
+\medskip
+
+Likewise, updating \dcamp to meet the \textbf{security} criterion is unfinished work, but the \dcamp design and use of
+ZeroMQ makes this work straightforward.
+
+\note{Notes:}
+\noi{The updated distributed performance framework criterion is introduced and used to evaluate \dcampns.}
+\noi{several improvements can be made to further \dcampns's transparency and scalability}
+\end{frame}
 
 %------------------------------------------------
-\frame{contributions}
+\begin{frame}
+\frametitle{Contributions}
+In this work I presented the \textbf{Distributed Common API for Measuring Performance}, a distributed performance
+framework built on top of \camp \cite{gabel2007}. I described the design and implementation of \dcampns, using roles and
+services on top of ZeroMQ to build a simple, reliable distributed system.
 
-%------------------------------------------------
+\medskip
+
+I also presented a set of \textbf{criterion for evaluating distributed performance frameworks} by extending and updating
+the criterion presented in \cite{zanikolas2005}. I used this criterion to evaluate \dcamp along with several other level
+2 distributed performance frameworks and related works.
+
+\note{Notes:}
+\noi{again, level 2: dpf with at least one type of republisher in addition to producers}
+\end{frame}
 
 %------------
 \begin{frame}
@@ -805,13 +866,17 @@ relatively uninvolved with topology coordination in comparison to \textit{Collec
 \footnotesize{
 \begin{thebibliography}{99} % Beamer does not support BibTeX so references must be inserted manually as below
 
-\bibitem{zanikolas2005}[Zanikolas, 2005] {Zanikolas,, Serafeim and Sakellariou,, Rizos} (2005)
-\newblock A taxonomy of grid monitoring systems
-\newblock \emph{Future Gener. Comput. Syst.} 21(1), 0167-739X, p163--188.
-
 \bibitem{gabel2007}[Gabel, 2007] {Gabel, Mark and Haungs, Michael} (2007)
 \newblock {{CAMP}: a common {API} for measuring performance}
 \newblock \emph{LISA'07: Proceedings of the 21st conference on Large Installation System Administration Conference}, p1--14
+
+\bibitem{chp}[Hintjens, 2011] {Pieter Hintjens} (2011)
+\newblock {Clustered Hashmap Protocol}
+\newblock {\url{http://rfc.zeromq.org/spec:12/CHP}}, April 2011
+
+\bibitem{zanikolas2005}[Zanikolas, 2005] {Zanikolas,, Serafeim and Sakellariou,, Rizos} (2005)
+\newblock A taxonomy of grid monitoring systems
+\newblock \emph{Future Gener. Comput. Syst.} 21(1), 0167-739X, p163--188.
 
 \end{thebibliography}
 }
@@ -949,26 +1014,161 @@ focus on the performance data and not on a myriad of APIs for various architectu
 
 %------------------------------------------------
 \subsection{Related Work}
-\frame{related work}
+
+%------------
+\begin{frame}
+\frametitle{NetLogger}
+Their research has shown NetLogger to be highly scalable, complete, and transparent as well as valid. The activation
+service provides a push data delivery and can utilize the security mechanisms part of current web services in order to
+authenticate requests for performance data. NetLogger is currently implemented for C, C++, Java, Perl, and Python
+applications. Because the framework lacks black box characteristics, its \textbf{portability is greatly reduced}.
+\end{frame}
+
+%------------
+\begin{frame}
+\frametitle{JAMM}
+JAMM, being heavily based off of NetLogger, inherits the validity, completeness, security, and transparency of NetLogger
+along with its lack of \textbf{portability}. JAMM does, however, prove itself in terms of scalability with it's own
+architecture.
+\end{frame}
+
+%------------
+\begin{frame}
+\frametitle{Hawkeye}
+While no experiments have been run, the generally centralized manager reduces the Hawkeye framework's scalability, and
+its transparency is unknown. The frameworks module based producer architecture gives it an infinite completeness, but
+being only available on Linux and Solaris makes the framework less \textbf{portable}. Lastly, the ability to run jobs
+\textbf{securely} on target machines has been left as future work by the authors.
+\end{frame}
+
+%------------
+\begin{frame}
+\frametitle{SCALEA-G}
+The framework makes use of secure sockets to achieve secure communications and achieves high completeness via code
+instrumentation. Unfortunately, the authors do not provide any report on SCALEA-G's \textbf{validity} or
+\textbf{transparency}.
+\end{frame}
+
+%------------
+\begin{frame}
+\frametitle{SCALEA-G}
+The framework makes use of secure sockets to achieve secure communications and achieves high completeness via code
+instrumentation. Unfortunately, the authors do not provide any report on SCALEA-G's \textbf{validity} or
+\textbf{transparency}.
+\end{frame}
+
+%------------
+\begin{frame}
+\frametitle{Host sFlow}
+In supporting host and application performance metric analysis alongside network metrics in one common system, sFlow has
+an advantage over more traditional host-only distributed performance frameworks. While sFlow's claims to scalable and
+accurate network level monitoring have been validated, less work has been to show the same for Host sFlow.
+\end{frame}
+
+%------------
+\begin{frame}
+\frametitle{Ganglia}
+The analysis presented shows the design scales and maintains transparency for systems of several hundred nodes. Still,
+\textbf{scalability} is a concern of the authors since the multicast protocol exhibits a quadratic trendline as the
+number of nodes within a cluster increases. Memory usage and inter-cluster bandwidth also increase as the number of
+nodes increases, albeit much more linearly. In comparison, \dcamp memory usage is nearly constant since performance data
+is not persisted in memory to the same extent.
+\end{frame}
 
 %------------------------------------------------
 \subsection{ZeroMQ: Sockets and Patterns}
-\frame{details}
 
-%------------------------------------------------
-\subsection{ZeroMQ: Messaging Patterns}
-\frame{Publish/Subscribe}
-\frame{Request/Reply}
-\frame{Pipeline}
-\frame{Exclusive Pair}
+%------------
+\begin{frame}
+\frametitle{ZeroMQ in 100 Words}
+\begin{quote}
+\O MQ (also known as ZeroMQ, 0MQ, or zmq) looks like an embeddable networking library but acts like a concurrency
+framework. It gives you sockets that carry atomic messages across various transports like in-process, inter-process,
+TCP, and multicast. You can connect sockets N-to-N with patterns like fan-out, pub-sub, task distribution, and
+request-reply. It's fast enough to be the fabric for clustered products. Its asynchronous I/O model gives you scalable
+multicore applications, built as asynchronous message-processing tasks. It has a score of language APIs and runs on most
+operating systems. \O MQ is from iMatix [\url{http://www.imatix.com}] and is LGPLv3 open source.
+\end{quote}
+\end{frame}
 
-%------------------------------------------------
-\subsection{dCAMP Configuration}
-\frame{Node Specification}
-\frame{Sample Specification}
+%------------
+\begin{frame}
+\frametitle{ZeroMQ Sockets}
+\O MQ sockets mimic standard TCP sockets, exposing interfaces for creating and destroying instances, binding and
+connecting to network endpoints, and sending and receiving data. However, they have two key differences from their
+TCP counterparts.
+
+\bei
+\item asynchronous---the actual sending and receiving of data on a ZeroMQ socket is handled by a background thread.
+\item built-in support for one-to-many connections; a single socket can send and receive data from multiple endpoints.
+\eei
+\end{frame}
+
+%------------
+\begin{frame}
+\frametitle{ZeroMQ Messages}
+ZeroMQ messages are the building blocks of all data sent across ZeroMQ sockets. A message is comprised of one or more
+frames (or parts), and a single frame can be any size (including zero) that fits in memory. ZeroMQ guarantees messages
+are delivered atomically, meaning either all frames of the message are sent/received or none of the frames. Lastly,
+because sockets are asynchronous and messages are atomic, the entire message must fit in memory.
+\end{frame}
+
+%------------
+\begin{frame}
+\frametitle{ZeroMQ Messaging Patterns}
+\begin{description}
+
+\item[Publish-Subscribe:]
+``The publish-subscribe pattern is used for one-to-many distribution of data from a single publisher to multiple
+subscribers in a fan out fashion.''
+
+\item[Request-Reply:]
+``The request-reply pattern is used for sending requests from a [...] client to one or more [...] services, and receiving
+subsequent replies to each request sent.''
+
+\item[Pipeline:]
+``The pipeline pattern is used for distributing data to nodes arranged in a pipeline. Data always flows down the
+pipeline, and each stage of the pipeline is connected to at least one node. When a pipeline stage is connected to
+multiple nodes data is round-robined among all connected nodes.''
+
+\item[Exclusive Pair:]
+``The exclusive pair pattern is used to connect a peer to precisely one other peer. This pattern is used for inter-thread
+communication across the inproc transport.''
+\end{description}
+\end{frame}
 
 %------------------------------------------------
 \subsection{dCAMP Metrics}
-\frame{overview, dcamp metric groups, t3.1, pitfall}
+
+%------------
+\begin{frame}
+\frametitle{Metric Groups}
+In \dcampns, metrics are grouped into four different sets of performance metrics---global, network, disk, and
+per-process---and a fifth set of inquiry metrics.
+\end{frame}
+
+%------------
+\begin{frame}
+\frametitle{Metric Details}
+\renewcommand{\arraystretch}{1.5}
+\begin{table}
+\begin{tabular}{ l|l|l }
+\hline
+\textbf{Type} & \textbf{Single Sample} & \textbf{Calculation}
+\tabularnewline
+\hline
+basic & raw value at specified timestamp & \( C = V_{t_2} \)
+\tabularnewline
+delta & raw value at specified timestamp & \( C = V_{t_2} - V_{t_1} \)
+\tabularnewline
+rate & raw value at timestamp & \( C = \frac{V_{t_2} - V_{t_1}}{t_2 - t_1} \)
+\tabularnewline
+average & raw value and base value at timestamp & \( C = \frac{V_{t_2} - V_{t_1}}{B_{t_2} - B_{t_1}} \)
+\tabularnewline
+percent & raw value and base value at timestamp & \( C = 100 \frac{V_{t_2} - V_{t_1}}{B_{t_2} - B_{t_1}} \)
+\tabularnewline
+\end{tabular}
+\end{table}
+\end{frame}
 
 \end{document} 
