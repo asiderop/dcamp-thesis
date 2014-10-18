@@ -25,7 +25,8 @@ active. The measured difference in performance of the monitored process is defin
 Apache JMeter\cite{jmeter} (v2.11) is used to run load against a default-configured Apache instance on a Lenovo Thinkpad
 (dual 2.16GHz Centrino Duo T2600, 2GB 667MHz DDR2, SATA) running Ubuntu 13.10. The client machine, a MacBook Pro (2.7GHz
 Core i7, 8GB 1333MHz DDR3, SSD) running OSX 10.9, is directly connected to the Apache server via crossover gigabit
-Ethernet.
+Ethernet. When \dcamp is active, a \textit{Metric} node is running on the server, reporting data to a \textit{Collector}
+node running on the client machine. The \textit{Root} node is also running on the client.
 
 Each test run includes 18 different load points, scaling the number of client threads from 2 to 2048. For every load
 point, the threads continuously (in this order)
@@ -36,7 +37,7 @@ point, the threads continuously (in this order)
 \item download a 5MB file of random binary data.
 \end{enumerate}
 
-The 25th Fibonacci workload is CPU-bound, and the 5MB download is disk-bound; the home page workload is only used to
+The 25th Fibonacci workload is CPU-bound, and the 5MB download is IO-bound; the home page workload is only used to
 seed the client connection and is not part of the analysis measurements. After the ramp up phase of each load point
 (launching 10 threads per second), the test ensures all threads continue to execute simultaneously for five minutes
 before shutting down.
@@ -104,9 +105,10 @@ latency of the successful requests improves slightly. This explains the trend li
     \label{fig:fib25_graph}
 \end{figure}
 
-Apache's disk-bound performance measured in the 5MB download test is relatively unaffected by \dcampns. This is expected
-since the infrequent samples being logged to an output file are \dcampns's only disk access. This graph also shows the 512
-thread load point as the beginning of a trend line shift, again correlating with the increase in request error rate.
+Apache's IO-bound performance measured in the 5MB download test is relatively unaffected by \dcampns. This is expected
+since the infrequent samples being logged to an output file are \dcampns's only disk access and the Data Protocol is
+designed to have a small network footprint. This graph also shows the 512 thread load point as the beginning of a trend
+line shift, again correlating with the increase in request error rate.
 
 \begin{figure}[H]
     \centering
@@ -161,17 +163,18 @@ of holding them for later reporting.
 
 \subsection{Results}
 
-Sparklines of each load point show the same pattern: highest network traffic occurs during start up and then also on
-shutdown. This pattern follows the design of \dcamp which uses a chatty configuration protocol and a terse data
-protocol. The rest of steady operation shows expected low network traffic except on sample periods.
+Sparklines of each load point (not presented in this work) show the same pattern: highest network traffic occurs during
+start up and then also on shutdown. This pattern follows the design of \dcamp which uses a chatty configuration protocol
+and a terse data protocol. The rest of steady-state operation shows an expected bursty pattern, with mostly low network
+traffic except on sample periods.
 
 \begin{figure}[H]
     \centering
     \vspace{-20pt}
     \includegraphics[scale=0.5]{dcamp-net-bytes-steady.pdf}
     \vspace{-40pt}
-    \caption[Scalability: Steady State Network Bytes]
-            {Scalability: Network bytes during steady operation as the number of \dcamp nodes increases.}
+    \caption[Scalability: Steady-State Network Bytes]
+            {Scalability: Network bytes during steady-state operation as the number of \dcamp nodes increases.}
     \label{fig:net_bytes_steady_graph}
 \end{figure}
 
@@ -180,8 +183,8 @@ protocol. The rest of steady operation shows expected low network traffic except
     \vspace{-20pt}
     \includegraphics[scale=0.5]{dcamp-net-packets-steady.pdf}
     \vspace{-40pt}
-    \caption[Scalability: Steady State Network Packets]
-	    {Scalability: Network packets during steady operation as the number of \dcamp nodes increases.}
+    \caption[Scalability: Steady-State Network Packets]
+	    {Scalability: Network packets during steady-state operation as the number of \dcamp nodes increases.}
     \label{fig:net_packets_steady_graph}
 \end{figure}
 

@@ -87,9 +87,6 @@ values depending on the metric type.
 In case of \texttt{HUGZ}, no other property strings are used, and Frames 3 through 5 are all empty. Frame 4 will be
 non-empty for average and percent types.
 
-NOTE: This message needs to be cleaned up...its a bit too verbose. I think just the config-seqid is needed to identify
-      the metric being sampled.
-
 \begin{figure}[H]
 \vspace{+10pt}
 \begin{verbatim}
@@ -97,10 +94,12 @@ Frame 0: data source (leaf or collector node address), as 0MQ string
 Frame 1: properties, JSON-encoded as 0MQ string
 Frame 2: time in ms epoch utc, 8 bytes in network order
 Frame 3: value, 8 bytes in network order
-Frame 4: base value, 8 bytes in network order; only for average and percent types
+Frame 4: base value, 8 bytes in network order; only for average and
+         percent types
 
 properties = *( type / detail / config / seqid )
-type       = "type=" ( "HUGZ" / "basic" / "delta" / "rate" / "average" / "percent" )
+type       = "type=" ( "HUGZ" / "basic" / "delta" / "rate" /
+                       "average" / "percent" )
 detail     = "detail=" <string>
 config     = "config-name=" <string>
 seqid      = "config-seqid=" <integer>

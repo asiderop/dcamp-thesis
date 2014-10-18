@@ -86,6 +86,11 @@ then notifies its service threads, waits for them to finish, then exits.
 
 \section{ZeroMQ Protocols}
 
+ZeroMQ is a fantastic message queuing framework that essentially provides more intelligent sockets as building blocks
+for distributed systems. ZeroMQ handles the intricacies of sending messages between two endpoints and lets the
+application handle the rest of the logic. The protocols described in this section do not come \textit{from} ZeroMQ,
+rather they are built \textit{using} ZeroMQ sockets and message patters.
+
 For a quick background on ZeroMQ socket types and message patterns, please see Appendix \ref{zeromq_primer}.
 
 \input{paper/proto_topo}
