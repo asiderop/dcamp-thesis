@@ -95,9 +95,9 @@ if len(argv) > 1:
         if len(argv) > 2:
             i = argv[2:]
         build_images(i)
-    if argv[1] in ('paper', 'paper/'):
+    elif argv[1] in ('paper', 'paper/'):
         build_tex(outdir, 'paper')
-    if argv[1] in ('presentation', 'presentation/'):
+    elif argv[1] in ('presentation', 'presentation/'):
         build_tex(outdir, 'presentation')
     else:
         print('unknown options: {}'.format(argv[1:]))
