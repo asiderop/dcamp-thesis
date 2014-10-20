@@ -8,7 +8,7 @@
 
 The following steps describe how the \dcamp system is turned on. The \textit{Base} nodes (other than the node assigned
 to be the \textit{Root}) can be started at any time by using the \dcamp CLI, before or after the \textit{Root} node is
-initialized. It is expected these \textit{Base} nodes are managed by a watchdog utility which automatically restarts the
+initialized. It is expected these \textit{Base} nodes are managed by a watchdog utility that automatically restarts the
 node if it exits for any reason.
 
 \begin{figure}[H]
@@ -89,7 +89,7 @@ then notifies its service threads, waits for them to finish, then exits.
 ZeroMQ is a fantastic message queuing framework that essentially provides more intelligent sockets as building blocks
 for distributed systems. ZeroMQ handles the intricacies of sending messages between two endpoints and lets the
 application handle the rest of the logic. The protocols described in this section do not come \textit{from} ZeroMQ,
-rather they are built \textit{using} ZeroMQ sockets and message patters.
+rather they are built \textit{using} ZeroMQ sockets and message patterns.
 
 For a quick background on ZeroMQ socket types and message patterns, please see Appendix \ref{zeromq_primer}.
 

@@ -35,9 +35,9 @@ cannot currently tolerate a \textbf{split-brain syndrome} in which the network h
 of the system cannot communicate with each other. It may be enhanced to recover from such network partitions, though.
 
 The system time among multiple nodes in the distributed system may vary significantly. \dcamp is not meant to be a
-high-resolution system with respect to the \textbf{ordering of performance data occurrences}. It is assumed that NTP
-provides sufficient time synchronization across all nodes in the system OR the precise ordering of performance events in
-the system is not required.
+high-resolution system with respect to the \textbf{ordering of performance data occurrences}. It is assumed that the
+standard Network Time Protocol (NTP) provides sufficient time synchronization across all nodes in the system OR the
+precise ordering of performance events in the system is not required.
 
 To further increase fault tolerance of the topology, \dcamp should be able to \textbf{operate without a \textit{Root}}
 node. That is, the Management service should not be continuously needed for the system to operate. Essentially this
